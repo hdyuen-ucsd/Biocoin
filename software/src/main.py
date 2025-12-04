@@ -125,15 +125,16 @@ async def main():
         # df.to_csv(output_path, index=False)
 
         # Run an SWV measurement
+        frequency = 100
         SWV = SquareWaveVoltammetry(device)
         await SWV.configure(
-            processing_interval=1.0,
+            processing_interval=100*((1/frequency)/2),
             max_current=100.0,
-            E_start=100.0,
+            E_start=-200.0,
             E_stop=200.0,
             E_step=50.0,
             E_amplitude=100.0,
-            pulse_period=400,
+            pulse_period=1/frequency*1000,
             channel=0,
         )
         SWV_data = await SWV.run()

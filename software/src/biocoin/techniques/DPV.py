@@ -133,7 +133,7 @@ class DifferentialPulseVoltammetry(BaseTechnique):
 
         # Build voltage vector for plotting/results alignment
         self.V = self.calc_voltage_vector(E_start, E_stop, E_step)
-        self.duration = len(self.V) * (pulse_period / 1000.0)
+        self.duration = max(len(self.V) * (pulse_period / 1000.0), 2)
 
         # Struct layout (packed, little-endian) with a leading technique ID byte:
         # <B f f f f f f f f B
