@@ -8,13 +8,21 @@
 
 #include <bluefruit.h>
 
+volatile ImpedanceSample latestSample;
+const int packetSize = sizeof(latestSample);
+float bioZ1[] = {242, 252, 262, 270, 285, 300, 315, 350, 365, 380, 390, 400};
+float bioZ2[] = {203.6, 212, 223, 255, 231, 241, 252, 264, 274, 273, 265, 258};
+int sampleIndex = 0;
+std::vector<uint8_t> muxChannels;
+int muxIndex = 0;
+
 namespace bluetooth {
   BLECharacteristic chrStatus(kUUIDChrStatus);
   BLECharacteristic chrDeviceName(kUUIDChrDeviceName);
   BLECharacteristic chrSensorCtrl(kUUIDChrSensorCtrl);
   BLECharacteristic chrSensorData(kUUIDChrSensorData);
   BLECharacteristic chrSensorParams(kUUIDChrSensorParams);
-
+  
 } // namespace bluetooth
 
 using namespace bluetooth;
@@ -42,7 +50,7 @@ void bluetooth::initGatt() {
   // Sensor control
   chrSensorCtrl.setProperties(CHR_PROPS_WRITE | CHR_PROPS_WRITE_WO_RESP);
   chrSensorCtrl.setPermission(SECMODE_NO_ACCESS, SECMODE_OPEN);
-  chrSensorCtrl.setFixedLen(1);
+  chrSensorCtrl.setFixedLen(2);
   chrSensorCtrl.begin();
   chrSensorCtrl.setWriteCallback(onSensorControl);
 
@@ -78,10 +86,69 @@ void bluetooth::onNameWrite(uint16_t, BLECharacteristic*, uint8_t* data, uint16_
 }
 
 void bluetooth::onSensorControl(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  dbgInfo("Received EChem Control Command");
-  if (sensor::controlCommand(data, len)) clearQueue(TX_queue);
+  dbgInfo("Received BioZ Control Command");
+  uint8_t well = data[0];
+  uint8_t command = data[1];
+  command == 1 ? startMuxChannel(well) : stopMuxChannel(well);
+}
+
+void bluetooth::startMuxChannel(uint8_t channel) {
+    if (std::find(muxChannels.begin(), muxChannels.end(), channel-1) == muxChannels.end()) {
+        muxChannels.push_back(channel-1);
+    }
+    Serial.println("Start Well: " + String(channel));
+}
+
+void bluetooth::stopMuxChannel(uint8_t channel) {
+    muxChannels.erase(std::remove(muxChannels.begin(), muxChannels.end(), channel-1), muxChannels.end());
+    Serial.println("Stop Well: " + String(channel));
 }
 
 void bluetooth::onSensorParameters(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  sensor::loadParameters(data, len);
+  Serial.println("Received Sensor Parameters");
+  //sensor::loadParameters(data, len);
+}
+
+void bluetooth::sendSensorData(uint16_t conn_hdl, uint32_t *pData, uint32_t DataCount) {
+  #ifndef DEBUG_MODE
+  fImpPol_Type *pImp = (fImpPol_Type*)pData;
+  
+  float impMag = pImp[0].Magnitude;
+  uint8_t channel = getMUXChannel();
+  latestSample.Impedance = impMag;
+  latestSample.Channel = channel;
+  uint32_t timestamp = millis();
+  uint8_t buffer[packetSize];
+  buffer[0] = channel;
+  memcpy(&buffer[1], &impMag, sizeof(impMag));
+  memcpy(&buffer[1 + sizeof(impMag)], &timestamp, sizeof(timestamp));
+  bool isSelectedChannel = std::find(muxChannels.begin(), muxChannels.end(), channel) != muxChannels.end();
+  if (isNewSampleReady() && isSelectedChannel) {
+      //Serial.println("Channel: " + String(channel) + " Sending Sensor Data: " + String(impMag) + " at timestamp: " + String(timestamp));
+      chrSensorData.notify(conn_hdl, buffer, sizeof(buffer));
+      clearNewSampleFlag();
+  }
+  #endif
+
+  // for testing with flutter
+  #ifdef DEBUG_MODE
+  //Serial.println("Sending Dummy Sensor Data");
+  float impMag = sampleIndex % 2 == 0 ? bioZ1[sampleIndex / 2] : bioZ2[sampleIndex / 2];
+
+  uint8_t channel = sampleIndex % 2; // Alternate between channel 0 and 1
+  uint32_t timestamp = millis();
+  uint8_t buffer[packetSize];
+  buffer[0] = channel;
+  memcpy(&buffer[1], &impMag, sizeof(impMag));
+  memcpy(&buffer[1 + sizeof(impMag)], &timestamp, sizeof(timestamp));
+  bool isSelectedChannel = std::find(muxChannels.begin(), muxChannels.end(), channel) != muxChannels.end();
+  Serial.println("Channel: " + String(channel) + " is selected: " + String(isSelectedChannel));
+  for (int i = 0; i < muxChannels.size(); i++) {
+    Serial.println("Selected Channel: " + String(muxChannels[i]));
+  }
+  if (isSelectedChannel) {
+      chrSensorData.notify(conn_hdl, buffer, sizeof(buffer));
+  }
+  sampleIndex = (sampleIndex + 1) % 24;
+  #endif
 }

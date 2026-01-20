@@ -81,7 +81,7 @@ namespace sensor {
 }
 
 namespace storage {
-  constexpr const char* kDefaultName = "BioCoin";     // Must be less than BLE_GAP_DEVNAME_MAX_LEN (248 characters)
+  constexpr const char* kDefaultName = "BioZ";     // Must be less than BLE_GAP_DEVNAME_MAX_LEN (248 characters)
 } // namespace storage
 
 
@@ -91,6 +91,7 @@ namespace storage {
  *      Constant                Value                     Meaning
  *****************************************************************************/
 
+#define APPBUFF_SIZE 512
 
 #define SYS_CLOCK_FREQ 64000000.0f // Defined system frequency of the MCU
 
