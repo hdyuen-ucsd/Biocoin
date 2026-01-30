@@ -47,8 +47,8 @@ namespace bluetooth {
   constexpr float kAdvFastRate = 30;                   // Time [ms] between advertising events in fast mode, rounded to 0.625ms chunks
                                                        // For recommended advertising interval, https://developer.apple.com/library/content/qa/qa1931/_index.html   
   constexpr uint16_t kAdvFastTimeout = 30;             // Advertising time [s] in fast mode before going to slow mode
-  constexpr float kConnectionInterval = 100;           // Connection interval [ms] when data is ready to be sent
-  constexpr float kConnectionIntervalEff = 4000;       // Connection interval [ms] accounting for slave latency (effective interval = conninterval*(1+slavelatency))
+  constexpr float kConnectionInterval = 10;           // Connection interval [ms] when data is ready to be sent
+  constexpr float kConnectionIntervalEff = 100;       // Connection interval [ms] accounting for slave latency (effective interval = conninterval*(1+slavelatency))
                                                        // Must have kConnectionIntervalEff × (1 + slave_latency) ≤ supervision_timeout / 2
   constexpr float kSupervisorTimeout = 31000;          // Maximum time [ms] between "connection intervals" before the connection is terminated. Max is 32s.
   
