@@ -1,0 +1,24 @@
+2026-01-28 19:13:36,427   | INFO     | BioCoin Test Script[0m
+2026-01-28 19:13:36,428   | INFO     | Searching for the BioCoin device named "Biocoin"...[0m
+2026-01-28 19:13:36,428   | INFO     | Scanning for devices...[0m
+[31m2026-01-28 19:13:36,527   | ERROR    | Failed to start scanner. Is Bluetooth turned on?
+Traceback (most recent call last):
+  File "C:\Users\Asish\Biocoin\software\src\main.py", line 53, in main
+    await device.connect()
+  File "C:\Users\Asish\Biocoin\software\src\biocoin\device.py", line 69, in connect
+    device_name, address = await find_address_by_uuid(self.uuid, name=name)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asish\Biocoin\software\src\biocoin\utils\ble_util.py", line 85, in find_address_by_uuid
+    devices = await list_all_devices()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asish\Biocoin\software\src\biocoin\utils\ble_util.py", line 60, in list_all_devices
+    devices = await BleakScanner.discover(return_adv=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asish\Biocoin\software\.venv\Lib\site-packages\bleak\__init__.py", line 320, in discover
+    async with cls(**kwargs) as scanner:
+               ~~~^^^^^^^^^^
+  File "C:\Users\Asish\Biocoin\software\.venv\Lib\site-packages\bleak\__init__.py", line 158, in __aenter__
+    await self._backend.start()
+  File "C:\Users\Asish\Biocoin\software\.venv\Lib\site-packages\bleak\backends\winrt\scanner.py", line 256, in start
+    raise BleakError("Failed to start scanner. Is Bluetooth turned on?")
+bleak.exc.BleakError: Failed to start scanner. Is Bluetooth turned on?[0m
