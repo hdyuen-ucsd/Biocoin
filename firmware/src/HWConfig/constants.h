@@ -47,8 +47,8 @@ namespace bluetooth {
   constexpr float kAdvFastRate = 30;                   // Time [ms] between advertising events in fast mode, rounded to 0.625ms chunks
                                                        // For recommended advertising interval, https://developer.apple.com/library/content/qa/qa1931/_index.html   
   constexpr uint16_t kAdvFastTimeout = 30;             // Advertising time [s] in fast mode before going to slow mode
-  constexpr float kConnectionInterval = 100;           // Connection interval [ms] when data is ready to be sent
-  constexpr float kConnectionIntervalEff = 4000;       // Connection interval [ms] accounting for slave latency (effective interval = conninterval*(1+slavelatency))
+  constexpr float kConnectionInterval = 10;           // Connection interval [ms] when data is ready to be sent
+  constexpr float kConnectionIntervalEff = 100;       // Connection interval [ms] accounting for slave latency (effective interval = conninterval*(1+slavelatency))
                                                        // Must have kConnectionIntervalEff × (1 + slave_latency) ≤ supervision_timeout / 2
   constexpr float kSupervisorTimeout = 31000;          // Maximum time [ms] between "connection intervals" before the connection is terminated. Max is 32s.
   
@@ -81,7 +81,7 @@ namespace sensor {
 }
 
 namespace storage {
-  constexpr const char* kDefaultName = "BioZ";     // Must be less than BLE_GAP_DEVNAME_MAX_LEN (248 characters)
+  constexpr const char* kDefaultName = "BioCoin";     // Must be less than BLE_GAP_DEVNAME_MAX_LEN (248 characters)
 } // namespace storage
 
 
@@ -120,7 +120,13 @@ namespace storage {
 #define PIN_BUCKBOOST_AUX_EN 8 // CH2
 #define PIN_BUCKBOOST_ANALOG_EN 29 // CH1
 #define PIN_AFE_VDD_CTRL 9
-#define PIN_TEMP_VDD_CTRL 11
+// #define PIN_TEMP_VDD_CTRL 11
+
+//BIOZ SPECIFIC PINOUTS
+#define PIN_MUX_A0_BIOZ 11
+#define PIN_MUX_A1_BIOZ 12
+#define PIN_HEATER_EN1 24
+#define PIN_HEATER_EN2 25
 
 #define PIN_UARTRX 1
 

@@ -41,8 +41,8 @@ EChem_Imp::EChem_Imp() {
   config.PwrMod = AFEPWR_HP;
   config.AFEBW = AFEBW_250KHZ;
   config.ADCPgaGain = ADCPGA_1P5; /*Gain = 1.5V/V is the factory calibrated most accurate gain setting*/
-  config.ADCSinc3Osr = ADCSINC3OSR_2;
-  config.ADCSinc2Osr = ADCSINC2OSR_22; // adjust these as needed if really fast or really slow sampling is required.
+  config.ADCSinc3Osr = ADCSINC3OSR_4;
+  config.ADCSinc2Osr = ADCSINC2OSR_89; // adjust these as needed if really fast or really slow sampling is required.
                                        // Power vs. SNR tradeoff.
   config.HstiaRtiaSel = HSTIARTIA_5K;
 
@@ -50,8 +50,8 @@ EChem_Imp::EChem_Imp() {
   config.ExcitBufGain = EXCITBUFGAIN_2, config.HsDacGain = HSDACGAIN_1, config.HsDacUpdateRate = 7;
   config.DacVoltPP = 800.0;
 
-  config.DftNum = DFTNUM_8192;
-  config.DftSrc = DFTSRC_SINC3;
+  config.DftNum = DFTNUM_16384;
+  config.DftSrc = DFTSRC_SINC2NOTCH;
   config.HanWinEn = bTRUE;
 
   config.SweepCfg.SweepEn = bFALSE;
@@ -116,6 +116,8 @@ bool EChem_Imp::start() {
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
+  
+  //setBioZChannel(0);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940

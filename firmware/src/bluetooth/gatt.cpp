@@ -50,7 +50,7 @@ void bluetooth::initGatt() {
   // Sensor control
   chrSensorCtrl.setProperties(CHR_PROPS_WRITE | CHR_PROPS_WRITE_WO_RESP);
   chrSensorCtrl.setPermission(SECMODE_NO_ACCESS, SECMODE_OPEN);
-  chrSensorCtrl.setFixedLen(2);
+  chrSensorCtrl.setFixedLen(1);
   chrSensorCtrl.begin();
   chrSensorCtrl.setWriteCallback(onSensorControl);
 
@@ -86,10 +86,12 @@ void bluetooth::onNameWrite(uint16_t, BLECharacteristic*, uint8_t* data, uint16_
 }
 
 void bluetooth::onSensorControl(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  dbgInfo("Received BioZ Control Command");
-  uint8_t well = data[0];
-  uint8_t command = data[1];
-  command == 1 ? startMuxChannel(well) : stopMuxChannel(well);
+  dbgInfo("Received EChem Control Command");
+  if (sensor::controlCommand(data, len)) clearQueue(TX_queue);
+  // dbgInfo("Received BioZ Control Command");
+  // uint8_t well = data[0];
+  // uint8_t command = data[1];
+  // command == 1 ? startMuxChannel(well) : stopMuxChannel(well);
 }
 
 void bluetooth::startMuxChannel(uint8_t channel) {
@@ -105,8 +107,8 @@ void bluetooth::stopMuxChannel(uint8_t channel) {
 }
 
 void bluetooth::onSensorParameters(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  Serial.println("Received Sensor Parameters");
-  //sensor::loadParameters(data, len);
+  //Serial.println("Received Sensor Parameters");
+  sensor::loadParameters(data, len);
 }
 
 void bluetooth::sendSensorData(uint16_t conn_hdl, uint32_t *pData, uint32_t DataCount) {

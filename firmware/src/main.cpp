@@ -18,6 +18,7 @@ unsigned long lastSendTime = 0;
 //////////////////////////////////
 //       Initialization         //
 //////////////////////////////////
+// Hou Dren Repo
 void setup() {
 #ifdef DEBUG_MODE
   Serial.begin(115200); // The baudrate here does not matter when using USB CDC
@@ -45,29 +46,29 @@ void setup() {
   dbgInfo("Done initializing... Off to sleep!");
 #endif
 
-  //suspendLoop(); // This code is event driven -- it does not use the main loop
+  suspendLoop(); // This code is event driven -- it does not use the main loop
 }
 
 void loop() {
-  #ifndef DEBUG_MODE
-    if (Serial.available()) {
-      String cmd = Serial.readStringUntil('\n');
-      cmd.trim();  // Remove any whitespace or newline
+  // #ifndef DEBUG_MODE
+  //   if (Serial.available()) {
+  //     String cmd = Serial.readStringUntil('\n');
+  //     cmd.trim();  // Remove any whitespace or newline
   
-      if (cmd == "reset") {
-        Serial.println("Resetting...");
-        delay(100);  // Ensure the message is sent before reset
-        NVIC_SystemReset();  // Software reset
-      }
-    }  
+  //     if (cmd == "reset") {
+  //       Serial.println("Resetting...");
+  //       delay(100);  // Ensure the message is sent before reset
+  //       NVIC_SystemReset();  // Software reset
+  //     }
+  //   }  
     
-    //----- Send data over BLE if connected -----
+  //   //----- Send data over BLE if connected -----
     
-    if (Bluefruit.connected() && isNewSampleReady()) {
-        uint16_t conn_handle = Bluefruit.Connection(0)->handle(); // first connected central
-        bluetooth::sendSensorData(conn_handle, AppBuff, APPBUFF_SIZE);
-    }
-    #endif
+  //   if (Bluefruit.connected() && isNewSampleReady()) {
+  //       uint16_t conn_handle = Bluefruit.Connection(0)->handle(); // first connected central
+  //       bluetooth::sendSensorData(conn_handle, AppBuff, APPBUFF_SIZE);
+  //   }
+  //   #endif
     
     #ifdef DEBUG_MODE
     // // testing dummy data to flutter

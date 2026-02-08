@@ -32,6 +32,10 @@ void enableAFEInterrupt(void (*handler)());
 void disableAFEInterrupt();
 int8_t setAFEChannel(uint8_t ch);
 
+//BioZ specific functions
+int8_t setBioZChannel(uint8_t ch);
+
+
 void Start_AD5940_SPI(void);
 void Stop_AD5940_SPI(void);
 uint32_t AD5940_GetMCUIntFlag(void);

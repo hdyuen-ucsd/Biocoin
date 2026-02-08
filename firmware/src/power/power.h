@@ -16,4 +16,6 @@ namespace power {
   void powerOnTempSensor();
   void powerOnIontophoresis();
   void powerOffPeripherials();
+
+  
 } // namespace power
