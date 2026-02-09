@@ -1,0 +1,710 @@
+2026-02-08 22:39:09,631   | INFO     | BioCoin Test Script[0m
+2026-02-08 22:39:09,631   | INFO     | Searching for the BioCoin device named "Biocoin"...[0m
+2026-02-08 22:39:09,631   | INFO     | Scanning for devices...[0m
+[34m2026-02-08 22:39:09,873   | DEBUG    | Received 62:05:4E:56:8E:AC: .[0m
+[34m2026-02-08 22:39:09,925   | DEBUG    | Received 62:05:4E:56:8E:AC: .[0m
+[34m2026-02-08 22:39:09,925   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:09,925   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:09,925   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:09,926   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:09,926   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:09,926   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:09,986   | DEBUG    | Received 4E:15:ED:13:D9:9C: .[0m
+[34m2026-02-08 22:39:09,991   | DEBUG    | Received 7D:BE:0E:9F:48:E0: .[0m
+[34m2026-02-08 22:39:10,109   | DEBUG    | Received 5E:CD:3B:30:E9:76: .[0m
+[34m2026-02-08 22:39:10,113   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:10,115   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:10,116   | DEBUG    | Received 4A:DF:3A:5E:B8:DC: .[0m
+[34m2026-02-08 22:39:10,126   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:10,221   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:10,222   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:10,224   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:10,224   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:10,234   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:10,235   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:10,242   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:10,461   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:10,465   | DEBUG    | Received DB:89:0B:21:CF:81: .[0m
+[34m2026-02-08 22:39:10,480   | DEBUG    | Received 53:97:15:D7:BD:60: .[0m
+[34m2026-02-08 22:39:10,587   | DEBUG    | Received E7:6E:14:09:81:8A: .[0m
+[34m2026-02-08 22:39:10,598   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:10,599   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:10,604   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:10,605   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:10,814   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:10,815   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:10,931   | DEBUG    | Received 62:05:4E:56:8E:AC: .[0m
+[34m2026-02-08 22:39:10,932   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:10,944   | DEBUG    | Received 72:2E:13:FD:3D:8F: .[0m
+[34m2026-02-08 22:39:10,945   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:10,946   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:11,049   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:11,055   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:11,056   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:11,062   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,063   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,064   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:11,065   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:11,068   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:11,068   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:11,301   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:11,301   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:11,343   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,343   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,345   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:11,345   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:11,405   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,405   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,413   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,413   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,415   | DEBUG    | Received F8:D0:64:88:A5:11: .[0m
+[34m2026-02-08 22:39:11,417   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:11,418   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:11,420   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:11,424   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:11,425   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:11,657   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,658   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:11,660   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:11,662   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,665   | DEBUG    | Received E6:62:57:0B:A2:DD: .[0m
+[34m2026-02-08 22:39:11,666   | DEBUG    | Received E6:62:57:0B:A2:DD: .[0m
+[34m2026-02-08 22:39:11,763   | DEBUG    | Received 62:05:4E:56:8E:AC: .[0m
+[34m2026-02-08 22:39:11,878   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:11,879   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:11,880   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:11,881   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:11,885   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:11,885   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:11,900   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,901   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:11,992   | DEBUG    | Received EA:E2:CE:9B:19:11: .[0m
+[34m2026-02-08 22:39:11,997   | DEBUG    | Received 50:6F:29:67:88:12: .[0m
+[34m2026-02-08 22:39:12,000   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:12,001   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:12,007   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:12,111   | DEBUG    | Received D6:A7:8A:5A:61:C3: .[0m
+[34m2026-02-08 22:39:12,117   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:12,118   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:12,122   | DEBUG    | Received 3B:35:0C:A5:28:BA: .[0m
+[34m2026-02-08 22:39:12,128   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:12,128   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:12,130   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:12,131   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:12,133   | DEBUG    | Received 4A:DF:3A:5E:B8:DC: .[0m
+[34m2026-02-08 22:39:12,228   | DEBUG    | Received 6A:64:8A:AB:E2:AC: .[0m
+[34m2026-02-08 22:39:12,228   | DEBUG    | Received 6A:64:8A:AB:E2:AC: .[0m
+[34m2026-02-08 22:39:12,230   | DEBUG    | Received F3:FD:F2:1B:A7:98: .[0m
+[34m2026-02-08 22:39:12,233   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:12,234   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:12,235   | DEBUG    | Received 51:A8:4A:DD:CF:FE: .[0m
+[34m2026-02-08 22:39:12,238   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:12,238   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:12,247   | DEBUG    | Received 72:2E:13:FD:3D:8F: .[0m
+[34m2026-02-08 22:39:12,250   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:12,251   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:12,255   | DEBUG    | Received 00:1C:C2:98:50:C7: DREOtf07bC6.[0m
+[34m2026-02-08 22:39:12,349   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:12,351   | DEBUG    | Received 4B:38:E2:D6:79:B2: .[0m
+[34m2026-02-08 22:39:12,352   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:12,354   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:12,355   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:12,366   | DEBUG    | Received 79:E2:02:1F:95:54: .[0m
+[34m2026-02-08 22:39:12,369   | DEBUG    | Received 4A:28:00:DE:81:A6: .[0m
+[34m2026-02-08 22:39:12,370   | DEBUG    | Received 4A:28:00:DE:81:A6: STANMORE III [LE].[0m
+[34m2026-02-08 22:39:12,371   | DEBUG    | Received 7C:7C:8F:C8:5E:8C: .[0m
+[34m2026-02-08 22:39:12,613   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:12,613   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:12,710   | DEBUG    | Received 80:64:6F:10:8E:B2: SPCARE_108EB0.[0m
+[34m2026-02-08 22:39:12,711   | DEBUG    | Received 80:64:6F:10:8E:B2: .[0m
+[34m2026-02-08 22:39:12,712   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:12,714   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,715   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,716   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:12,722   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:12,819   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:12,828   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,828   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,941   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,942   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:12,943   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:12,945   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:12,953   | DEBUG    | Received 00:1C:C2:98:50:C7: DREOtf07bC6.[0m
+[34m2026-02-08 22:39:12,958   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:13,057   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:13,057   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:13,061   | DEBUG    | Received 59:D8:B3:9E:98:BB: .[0m
+[34m2026-02-08 22:39:13,062   | DEBUG    | Received 59:D8:B3:9E:98:BB: .[0m
+[34m2026-02-08 22:39:13,064   | DEBUG    | Received 4D:D5:E2:41:7C:29: .[0m
+[34m2026-02-08 22:39:13,066   | DEBUG    | Received 66:96:E2:B0:B7:CE: .[0m
+[34m2026-02-08 22:39:13,072   | DEBUG    | Received 42:23:F3:45:E4:A0: .[0m
+[34m2026-02-08 22:39:13,077   | DEBUG    | Received 72:2E:13:FD:3D:8F: .[0m
+[34m2026-02-08 22:39:13,080   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:13,182   | DEBUG    | Received F0:DF:42:59:F5:85: .[0m
+[34m2026-02-08 22:39:13,191   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:13,193   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:13,196   | DEBUG    | Received 7C:41:4B:77:A1:21: .[0m
+[34m2026-02-08 22:39:13,310   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:13,312   | DEBUG    | Received 46:FA:83:ED:2A:87: .[0m
+[34m2026-02-08 22:39:13,414   | DEBUG    | Received 76:2F:78:F2:1F:CC: .[0m
+[34m2026-02-08 22:39:13,415   | DEBUG    | Received F8:D0:64:88:A5:11: .[0m
+[34m2026-02-08 22:39:13,430   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:13,537   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:13,539   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:13,539   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:13,548   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:13,550   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:13,649   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:13,650   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:13,652   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:13,656   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:13,658   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:13,672   | DEBUG    | Received 79:E2:02:1F:95:54: .[0m
+[34m2026-02-08 22:39:13,763   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:13,764   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:13,765   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:13,767   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:13,768   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:13,770   | DEBUG    | Received 5B:55:50:83:D9:52: .[0m
+[34m2026-02-08 22:39:13,786   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:13,789   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:13,789   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:13,790   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:13,899   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:13,900   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:13,901   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:13,902   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:13,903   | DEBUG    | Received 42:23:F3:45:E4:A0: .[0m
+[34m2026-02-08 22:39:13,904   | DEBUG    | Received 42:23:F3:45:E4:A0: .[0m
+[34m2026-02-08 22:39:13,910   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:13,911   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:14,003   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,004   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,006   | DEBUG    | Received 72:2E:13:FD:3D:8F: .[0m
+[34m2026-02-08 22:39:14,013   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,014   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,024   | DEBUG    | Received F2:50:20:C5:80:9B: .[0m
+[34m2026-02-08 22:39:14,029   | DEBUG    | Received EC:97:23:5B:65:93: .[0m
+[34m2026-02-08 22:39:14,122   | DEBUG    | Received C0:28:8D:90:7F:00: .[0m
+[34m2026-02-08 22:39:14,136   | DEBUG    | Received 46:FA:83:ED:2A:87: .[0m
+[34m2026-02-08 22:39:14,139   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,140   | DEBUG    | Received 4A:DF:3A:5E:B8:DC: .[0m
+[34m2026-02-08 22:39:14,152   | DEBUG    | Received 6D:D2:EC:DF:FB:2A: .[0m
+[34m2026-02-08 22:39:14,152   | DEBUG    | Received 6D:D2:EC:DF:FB:2A: .[0m
+[34m2026-02-08 22:39:14,255   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,358   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:14,359   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:14,371   | DEBUG    | Received 53:97:15:D7:BD:60: .[0m
+[34m2026-02-08 22:39:14,377   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,379   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,380   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,482   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:14,487   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:14,494   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:14,496   | DEBUG    | Received 43:AC:60:32:E9:9D: .[0m
+[34m2026-02-08 22:39:14,594   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:14,605   | DEBUG    | Received 44:A9:70:09:87:62: .[0m
+[34m2026-02-08 22:39:14,612   | DEBUG    | Received D9:DC:8C:96:8D:E7: .[0m
+[34m2026-02-08 22:39:14,614   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:14,615   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:14,619   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:14,620   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:14,712   | DEBUG    | Received 6D:D2:EC:DF:FB:2A: .[0m
+[34m2026-02-08 22:39:14,713   | DEBUG    | Received 6D:D2:EC:DF:FB:2A: .[0m
+[34m2026-02-08 22:39:14,714   | DEBUG    | Received 66:96:E2:B0:B7:CE: .[0m
+[34m2026-02-08 22:39:14,716   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:14,717   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:14,721   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,722   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:14,726   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,727   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,728   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:14,729   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:14,736   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:14,819   | DEBUG    | 61 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (62:05:4E:56:8E:AC) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (4B:D5:E0:CF:35:D1) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (4A:8D:12:B2:B8:1B) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (6C:2A:68:98:B8:57) | UUIDs: ['3e1d50cd-7e3e-427d-8e1c-b78aa87fe624'][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (04:2C:30:6C:17:99) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (7C:93:04:2E:03:66) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (4E:15:ED:13:D9:9C) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (7D:BE:0E:9F:48:E0) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (5E:CD:3B:30:E9:76) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (44:36:FA:EA:BD:CE) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (05:7E:37:25:AC:B3) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (4A:DF:3A:5E:B8:DC) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (64:25:8A:E0:F4:98) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (58:76:D8:A1:4A:0C) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (74:66:BB:CD:4D:3F) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (DB:89:0B:21:CF:81) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (53:97:15:D7:BD:60) | UUIDs: ['0000fea0-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (E7:6E:14:09:81:8A) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (6E:69:8E:A3:5F:C5) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (58:E0:1E:70:99:49) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (61:99:3D:0E:87:B2) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (72:2E:13:FD:3D:8F) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (48:86:30:F9:74:12) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (62:CA:54:A1:FF:E9) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (72:BB:BF:B0:95:22) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (50:6C:A4:66:A9:2E) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (F8:D0:64:88:A5:11) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (E6:62:57:0B:A2:DD) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (EA:E2:CE:9B:19:11) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (50:6F:29:67:88:12) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: CoolingSystem LCT22002 (C8:8B:29:34:3C:F2) | UUIDs: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (D6:A7:8A:5A:61:C3) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (3B:35:0C:A5:28:BA) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (58:46:A5:3B:E6:26) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,820   | DEBUG    | 	Device: Unknown (6A:64:8A:AB:E2:AC) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (F3:FD:F2:1B:A7:98) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (4F:6F:F9:0B:8E:2C) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (51:A8:4A:DD:CF:FE) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: DREOtf07bC6 (00:1C:C2:98:50:C7) | UUIDs: ['00005348-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (4B:38:E2:D6:79:B2) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (79:E2:02:1F:95:54) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: STANMORE III [LE] (4A:28:00:DE:81:A6) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (7C:7C:8F:C8:5E:8C) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: SPCARE_108EB0 (80:64:6F:10:8E:B2) | UUIDs: ['0000ffff-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (59:D8:B3:9E:98:BB) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (4D:D5:E2:41:7C:29) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (66:96:E2:B0:B7:CE) | UUIDs: ['0000febe-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (42:23:F3:45:E4:A0) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (F0:DF:42:59:F5:85) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (7C:41:4B:77:A1:21) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (46:FA:83:ED:2A:87) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (76:2F:78:F2:1F:CC) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (4E:89:9B:A4:C8:E0) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (5B:55:50:83:D9:52) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (F2:50:20:C5:80:9B) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (EC:97:23:5B:65:93) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (C0:28:8D:90:7F:00) | UUIDs: ['72daa6c3-29c2-6283-0c4a-2818e4d37e75'][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (6D:D2:EC:DF:FB:2A) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (43:AC:60:32:E9:9D) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (44:A9:70:09:87:62) | UUIDs: [][0m
+[34m2026-02-08 22:39:14,821   | DEBUG    | 	Device: Unknown (D9:DC:8C:96:8D:E7) | UUIDs: [][0m
+[31m2026-02-08 22:39:14,823   | ERROR    | BioCoin device named "Biocoin" not found. Listing available BLE devices:
+[0m
+2026-02-08 22:39:14,824   | INFO     | Scanning for devices...[0m
+[34m2026-02-08 22:39:14,845   | DEBUG    | Received 80:64:6F:10:8E:B2: SPCARE_108EB0.[0m
+[34m2026-02-08 22:39:14,846   | DEBUG    | Received 80:64:6F:10:8E:B2: .[0m
+[34m2026-02-08 22:39:14,856   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:14,861   | DEBUG    | Received C0:28:8D:90:7F:00: .[0m
+[34m2026-02-08 22:39:14,861   | DEBUG    | Received C0:28:8D:90:7F:00: .[0m
+[34m2026-02-08 22:39:14,863   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,864   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:14,866   | DEBUG    | Received 4A:BA:ED:EB:9E:EA: .[0m
+[34m2026-02-08 22:39:14,868   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:14,868   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:14,872   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:14,873   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:14,874   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:14,875   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:14,964   | DEBUG    | Received 5B:55:50:83:D9:52: .[0m
+[34m2026-02-08 22:39:14,968   | DEBUG    | Received 74:78:2E:C3:36:D7: .[0m
+[34m2026-02-08 22:39:14,973   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:14,973   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,081   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,082   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,083   | DEBUG    | Received 44:40:D5:95:8F:C8: .[0m
+[34m2026-02-08 22:39:15,204   | DEBUG    | Received 5A:25:EB:8E:9C:FD: .[0m
+[34m2026-02-08 22:39:15,208   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:15,208   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:15,315   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,316   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,324   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,325   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,329   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:15,330   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:15,331   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:15,333   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:15,335   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:15,342   | DEBUG    | Received 45:F1:5B:82:51:30: .[0m
+[34m2026-02-08 22:39:15,345   | DEBUG    | Received 71:01:38:7A:61:71: .[0m
+[34m2026-02-08 22:39:15,346   | DEBUG    | Received 71:01:38:7A:61:71: .[0m
+[34m2026-02-08 22:39:15,436   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:15,441   | DEBUG    | Received 6F:3B:99:2B:7D:08: .[0m
+[34m2026-02-08 22:39:15,453   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,463   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,464   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:15,465   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:15,550   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:15,551   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:15,552   | DEBUG    | Received 1D:96:12:E9:FC:50: .[0m
+[34m2026-02-08 22:39:15,556   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:15,565   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:15,566   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:15,571   | DEBUG    | Received 78:71:55:06:80:2A: .[0m
+[34m2026-02-08 22:39:15,574   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,575   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,689   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,690   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,693   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:15,706   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:15,707   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:15,708   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:15,813   | DEBUG    | Received 61:89:AB:0A:B7:FE: .[0m
+[34m2026-02-08 22:39:15,814   | DEBUG    | Received 61:89:AB:0A:B7:FE: .[0m
+[34m2026-02-08 22:39:15,815   | DEBUG    | Received 66:96:E2:B0:B7:CE: .[0m
+[34m2026-02-08 22:39:15,823   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:15,824   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:15,827   | DEBUG    | Received 42:23:F3:45:E4:A0: .[0m
+[34m2026-02-08 22:39:15,827   | DEBUG    | Received 42:23:F3:45:E4:A0: .[0m
+[34m2026-02-08 22:39:15,833   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,834   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:15,835   | DEBUG    | Received 62:33:96:2B:E4:D9: .[0m
+[34m2026-02-08 22:39:15,838   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:15,839   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:15,906   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:15,906   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:15,921   | DEBUG    | Received 4A:28:00:DE:81:A6: .[0m
+[34m2026-02-08 22:39:15,922   | DEBUG    | Received 4A:28:00:DE:81:A6: STANMORE III [LE].[0m
+[34m2026-02-08 22:39:15,928   | DEBUG    | Received 1D:96:12:E9:FC:50: .[0m
+[34m2026-02-08 22:39:16,026   | DEBUG    | Received F2:50:20:C5:80:9B: .[0m
+[34m2026-02-08 22:39:16,037   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:16,045   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,045   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,141   | DEBUG    | Received 7C:BA:D8:6E:AE:29: .[0m
+[34m2026-02-08 22:39:16,146   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,146   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,150   | DEBUG    | Received 4A:DF:3A:5E:B8:DC: .[0m
+[34m2026-02-08 22:39:16,157   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:16,261   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:16,265   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:16,266   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:16,273   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:16,381   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,382   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,387   | DEBUG    | Received 62:33:96:2B:E4:D9: .[0m
+[34m2026-02-08 22:39:16,392   | DEBUG    | Received 3B:35:0C:A5:28:BA: .[0m
+[34m2026-02-08 22:39:16,395   | DEBUG    | Received 6E:16:B9:58:81:DD: .[0m
+[34m2026-02-08 22:39:16,495   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,496   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,497   | DEBUG    | Received 1D:96:12:E9:FC:50: .[0m
+[34m2026-02-08 22:39:16,516   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:16,516   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:16,614   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:16,615   | DEBUG    | Received D9:DC:8C:96:8D:E7: .[0m
+[34m2026-02-08 22:39:16,632   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,633   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,635   | DEBUG    | Received 68:A7:50:E9:2D:14: .[0m
+[34m2026-02-08 22:39:16,635   | DEBUG    | Received 68:A7:50:E9:2D:14: .[0m
+[34m2026-02-08 22:39:16,736   | DEBUG    | Received 62:05:4E:56:8E:AC: .[0m
+[34m2026-02-08 22:39:16,742   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:16,743   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:16,747   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,748   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,761   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,761   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,864   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,865   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,871   | DEBUG    | Received 1D:96:12:E9:FC:50: .[0m
+[34m2026-02-08 22:39:16,874   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,875   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:16,968   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,969   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:16,975   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,976   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:16,983   | DEBUG    | Received 80:64:6F:10:8E:B2: SPCARE_108EB0.[0m
+[34m2026-02-08 22:39:16,989   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:16,994   | DEBUG    | Received 4E:6B:7E:97:57:9F: .[0m
+[34m2026-02-08 22:39:16,995   | DEBUG    | Received 4E:6B:7E:97:57:9F: .[0m
+[34m2026-02-08 22:39:17,100   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:17,107   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,108   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,114   | DEBUG    | Received F3:FD:F2:1B:A7:98: .[0m
+[34m2026-02-08 22:39:17,119   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,121   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:17,122   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,123   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,204   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:17,209   | DEBUG    | Received 04:2C:30:6C:17:99: .[0m
+[34m2026-02-08 22:39:17,213   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,213   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,218   | DEBUG    | Received 78:71:55:06:80:2A: .[0m
+[34m2026-02-08 22:39:17,226   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,229   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:17,230   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:17,231   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,232   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,324   | DEBUG    | Received E6:14:AE:7D:32:D9: .[0m
+[34m2026-02-08 22:39:17,326   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:17,329   | DEBUG    | Received C0:28:8D:90:7F:00: .[0m
+[34m2026-02-08 22:39:17,330   | DEBUG    | Received C0:28:8D:90:7F:00: .[0m
+[34m2026-02-08 22:39:17,332   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,334   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:17,335   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:17,336   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:17,337   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:17,341   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,342   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,349   | DEBUG    | Received 3B:35:0C:A5:28:BA: .[0m
+[34m2026-02-08 22:39:17,572   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,579   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,579   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,678   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:17,684   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,685   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,686   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,694   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,695   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,798   | DEBUG    | Received 79:E8:20:57:12:09: .[0m
+[34m2026-02-08 22:39:17,803   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,804   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,809   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:17,813   | DEBUG    | Received 80:64:6F:10:8E:B2: SPCARE_108EB0.[0m
+[34m2026-02-08 22:39:17,814   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:17,916   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:17,923   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:17,924   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:17,928   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:17,929   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:17,931   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,932   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:17,936   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:17,937   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,031   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,031   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,032   | DEBUG    | Received F1:29:3B:68:67:8B: .[0m
+[34m2026-02-08 22:39:18,035   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:18,043   | DEBUG    | Received 45:F1:5B:82:51:30: .[0m
+[34m2026-02-08 22:39:18,044   | DEBUG    | Received 45:F1:5B:82:51:30: .[0m
+[34m2026-02-08 22:39:18,051   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,052   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,150   | DEBUG    | Received 5B:55:50:83:D9:52: .[0m
+[34m2026-02-08 22:39:18,153   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,158   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,159   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,165   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:18,166   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:18,272   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:18,273   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:18,274   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,275   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,281   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:18,285   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:18,294   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,295   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,397   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,398   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,404   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:18,410   | DEBUG    | Received 3B:35:0C:A5:28:BA: .[0m
+[34m2026-02-08 22:39:18,506   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:18,527   | DEBUG    | Received 5B:55:50:83:D9:52: .[0m
+[34m2026-02-08 22:39:18,531   | DEBUG    | Received 64:4E:D3:B7:0A:52: .[0m
+[34m2026-02-08 22:39:18,532   | DEBUG    | Received 64:4E:D3:B7:0A:52: .[0m
+[34m2026-02-08 22:39:18,625   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,626   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,629   | DEBUG    | Received CC:E7:C8:49:1B:4A: .[0m
+[34m2026-02-08 22:39:18,632   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,633   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,643   | DEBUG    | Received 45:F1:5B:82:51:30: .[0m
+[34m2026-02-08 22:39:18,644   | DEBUG    | Received E7:6E:14:09:81:8A: .[0m
+[34m2026-02-08 22:39:18,652   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:18,745   | DEBUG    | Received 72:BB:BF:B0:95:22: .[0m
+[34m2026-02-08 22:39:18,748   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:18,749   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:18,753   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:18,754   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:18,756   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,757   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,758   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:18,761   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,762   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,765   | DEBUG    | Received 4A:BA:ED:EB:9E:EA: .[0m
+[34m2026-02-08 22:39:18,766   | DEBUG    | Received 4A:BA:ED:EB:9E:EA: .[0m
+[34m2026-02-08 22:39:18,867   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,868   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:18,869   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,870   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:18,874   | DEBUG    | Received 44:36:FA:EA:BD:CE: .[0m
+[34m2026-02-08 22:39:18,877   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,878   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:18,883   | DEBUG    | Received 7C:BA:D8:6E:AE:29: .[0m
+[34m2026-02-08 22:39:18,883   | DEBUG    | Received 7C:BA:D8:6E:AE:29: .[0m
+[34m2026-02-08 22:39:18,977   | DEBUG    | Received F2:A0:C2:DC:2F:3C: .[0m
+[34m2026-02-08 22:39:19,018   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:19,019   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:19,020   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:19,021   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:19,023   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:19,024   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:19,026   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:19,027   | DEBUG    | Received 58:E0:1E:70:99:49: .[0m
+[34m2026-02-08 22:39:19,035   | DEBUG    | Received 64:25:8A:E0:F4:98: .[0m
+[34m2026-02-08 22:39:19,099   | DEBUG    | Received 68:A7:50:E9:2D:14: .[0m
+[34m2026-02-08 22:39:19,101   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:19,106   | DEBUG    | Received 59:D8:B3:9E:98:BB: .[0m
+[34m2026-02-08 22:39:19,108   | DEBUG    | Received 1D:96:12:E9:FC:50: .[0m
+[34m2026-02-08 22:39:19,119   | DEBUG    | Received 6E:69:8E:A3:5F:C5: .[0m
+[34m2026-02-08 22:39:19,122   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,123   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,212   | DEBUG    | Received 05:7E:37:25:AC:B3: .[0m
+[34m2026-02-08 22:39:19,214   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:19,215   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:19,341   | DEBUG    | Received 4B:D5:E0:CF:35:D1: .[0m
+[34m2026-02-08 22:39:19,344   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:19,344   | DEBUG    | Received 58:76:D8:A1:4A:0C: .[0m
+[34m2026-02-08 22:39:19,352   | DEBUG    | Received 53:26:88:01:25:F9: .[0m
+[34m2026-02-08 22:39:19,454   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:19,455   | DEBUG    | Received 6C:2A:68:98:B8:57: .[0m
+[34m2026-02-08 22:39:19,456   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:19,464   | DEBUG    | Received 80:64:6F:10:8E:B2: SPCARE_108EB0.[0m
+[34m2026-02-08 22:39:19,465   | DEBUG    | Received 80:64:6F:10:8E:B2: .[0m
+[34m2026-02-08 22:39:19,469   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:19,470   | DEBUG    | Received 4F:6F:F9:0B:8E:2C: .[0m
+[34m2026-02-08 22:39:19,477   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:19,478   | DEBUG    | Received 7C:93:04:2E:03:66: .[0m
+[34m2026-02-08 22:39:19,567   | DEBUG    | Received A0:0B:16:06:E1:51: .[0m
+[34m2026-02-08 22:39:19,575   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:19,576   | DEBUG    | Received 74:66:BB:CD:4D:3F: .[0m
+[34m2026-02-08 22:39:19,579   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:19,580   | DEBUG    | Received 48:86:30:F9:74:12: .[0m
+[34m2026-02-08 22:39:19,585   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:19,590   | DEBUG    | Received 7D:BE:0E:9F:48:E0: .[0m
+[34m2026-02-08 22:39:19,592   | DEBUG    | Received 62:CA:54:A1:FF:E9: .[0m
+[34m2026-02-08 22:39:19,694   | DEBUG    | Received E6:62:57:0B:A2:DD: .[0m
+[34m2026-02-08 22:39:19,709   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,710   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,710   | DEBUG    | Received C7:1D:B0:1D:0F:42: .[0m
+[34m2026-02-08 22:39:19,803   | DEBUG    | Received C8:8B:29:34:3C:F2: CoolingSystem LCT22002.[0m
+[34m2026-02-08 22:39:19,804   | DEBUG    | Received C8:8B:29:34:3C:F2: .[0m
+[34m2026-02-08 22:39:19,808   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,808   | DEBUG    | Received 50:6C:A4:66:A9:2E: .[0m
+[34m2026-02-08 22:39:19,811   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:19,811   | DEBUG    | Received 61:99:3D:0E:87:B2: .[0m
+[34m2026-02-08 22:39:19,817   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:19,818   | DEBUG    | Received 4E:89:9B:A4:C8:E0: .[0m
+[34m2026-02-08 22:39:19,819   | DEBUG    | Received 58:46:A5:3B:E6:26: .[0m
+[34m2026-02-08 22:39:19,829   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:19,830   | DEBUG    | Received 4A:8D:12:B2:B8:1B: .[0m
+[34m2026-02-08 22:39:19,854   | DEBUG    | 61 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: SPCARE_108EB0 (80:64:6F:10:8E:B2) | UUIDs: ['0000ffff-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (4B:D5:E0:CF:35:D1) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (C0:28:8D:90:7F:00) | UUIDs: ['72daa6c3-29c2-6283-0c4a-2818e4d37e75'][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (48:86:30:F9:74:12) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (4A:BA:ED:EB:9E:EA) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (58:46:A5:3B:E6:26) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (4E:89:9B:A4:C8:E0) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (72:BB:BF:B0:95:22) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (5B:55:50:83:D9:52) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (74:78:2E:C3:36:D7) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (4A:8D:12:B2:B8:1B) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (61:99:3D:0E:87:B2) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (44:40:D5:95:8F:C8) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (5A:25:EB:8E:9C:FD) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (50:6C:A4:66:A9:2E) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: CoolingSystem LCT22002 (C8:8B:29:34:3C:F2) | UUIDs: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (04:2C:30:6C:17:99) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (6C:2A:68:98:B8:57) | UUIDs: ['3e1d50cd-7e3e-427d-8e1c-b78aa87fe624'][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (64:25:8A:E0:F4:98) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (45:F1:5B:82:51:30) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (71:01:38:7A:61:71) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (6F:3B:99:2B:7D:08) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (58:76:D8:A1:4A:0C) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (6E:69:8E:A3:5F:C5) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (1D:96:12:E9:FC:50) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (4F:6F:F9:0B:8E:2C) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (78:71:55:06:80:2A) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (61:89:AB:0A:B7:FE) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (66:96:E2:B0:B7:CE) | UUIDs: ['0000febe-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-08 22:39:19,855   | DEBUG    | 	Device: Unknown (42:23:F3:45:E4:A0) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (62:33:96:2B:E4:D9) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (58:E0:1E:70:99:49) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: STANMORE III [LE] (4A:28:00:DE:81:A6) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (F2:50:20:C5:80:9B) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (7C:BA:D8:6E:AE:29) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (4A:DF:3A:5E:B8:DC) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (74:66:BB:CD:4D:3F) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (44:36:FA:EA:BD:CE) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (3B:35:0C:A5:28:BA) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (6E:16:B9:58:81:DD) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (05:7E:37:25:AC:B3) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (D9:DC:8C:96:8D:E7) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (68:A7:50:E9:2D:14) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (62:05:4E:56:8E:AC) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (4E:6B:7E:97:57:9F) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (F3:FD:F2:1B:A7:98) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (79:E8:20:57:12:09) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (E6:14:AE:7D:32:D9) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (7C:93:04:2E:03:66) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (F1:29:3B:68:67:8B) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (64:4E:D3:B7:0A:52) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (CC:E7:C8:49:1B:4A) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (E7:6E:14:09:81:8A) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (F2:A0:C2:DC:2F:3C) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (59:D8:B3:9E:98:BB) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (53:26:88:01:25:F9) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (A0:0B:16:06:E1:51) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (7D:BE:0E:9F:48:E0) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (62:CA:54:A1:FF:E9) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (E6:62:57:0B:A2:DD) | UUIDs: [][0m
+[34m2026-02-08 22:39:19,856   | DEBUG    | 	Device: Unknown (C7:1D:B0:1D:0F:42) | UUIDs: [][0m
+2026-02-08 22:39:19,859   | INFO     |   - SPCARE_108EB0 @ 80:64:6F:10:8E:B2, Services: ['0000ffff-0000-1000-8000-00805f9b34fb'][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 4B:D5:E0:CF:35:D1, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ C0:28:8D:90:7F:00, Services: ['72daa6c3-29c2-6283-0c4a-2818e4d37e75'][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 48:86:30:F9:74:12, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 4A:BA:ED:EB:9E:EA, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 58:46:A5:3B:E6:26, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 4E:89:9B:A4:C8:E0, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 72:BB:BF:B0:95:22, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 5B:55:50:83:D9:52, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 74:78:2E:C3:36:D7, Services: [][0m
+2026-02-08 22:39:19,860   | INFO     |   - Unknown @ 4A:8D:12:B2:B8:1B, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 61:99:3D:0E:87:B2, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 44:40:D5:95:8F:C8, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 5A:25:EB:8E:9C:FD, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 50:6C:A4:66:A9:2E, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - CoolingSystem LCT22002 @ C8:8B:29:34:3C:F2, Services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 04:2C:30:6C:17:99, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 6C:2A:68:98:B8:57, Services: ['3e1d50cd-7e3e-427d-8e1c-b78aa87fe624'][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 64:25:8A:E0:F4:98, Services: [][0m
+2026-02-08 22:39:19,861   | INFO     |   - Unknown @ 45:F1:5B:82:51:30, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 71:01:38:7A:61:71, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 6F:3B:99:2B:7D:08, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 58:76:D8:A1:4A:0C, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 6E:69:8E:A3:5F:C5, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 1D:96:12:E9:FC:50, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 4F:6F:F9:0B:8E:2C, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 78:71:55:06:80:2A, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 61:89:AB:0A:B7:FE, Services: [][0m
+2026-02-08 22:39:19,862   | INFO     |   - Unknown @ 66:96:E2:B0:B7:CE, Services: ['0000febe-0000-1000-8000-00805f9b34fb'][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 42:23:F3:45:E4:A0, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 62:33:96:2B:E4:D9, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 58:E0:1E:70:99:49, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - STANMORE III [LE] @ 4A:28:00:DE:81:A6, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ F2:50:20:C5:80:9B, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 7C:BA:D8:6E:AE:29, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 4A:DF:3A:5E:B8:DC, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 74:66:BB:CD:4D:3F, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 44:36:FA:EA:BD:CE, Services: [][0m
+2026-02-08 22:39:19,863   | INFO     |   - Unknown @ 3B:35:0C:A5:28:BA, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 6E:16:B9:58:81:DD, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 05:7E:37:25:AC:B3, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ D9:DC:8C:96:8D:E7, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 68:A7:50:E9:2D:14, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 62:05:4E:56:8E:AC, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 4E:6B:7E:97:57:9F, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ F3:FD:F2:1B:A7:98, Services: [][0m
+2026-02-08 22:39:19,864   | INFO     |   - Unknown @ 79:E8:20:57:12:09, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ E6:14:AE:7D:32:D9, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ 7C:93:04:2E:03:66, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ F1:29:3B:68:67:8B, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ 64:4E:D3:B7:0A:52, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ CC:E7:C8:49:1B:4A, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ E7:6E:14:09:81:8A, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ F2:A0:C2:DC:2F:3C, Services: [][0m
+2026-02-08 22:39:19,865   | INFO     |   - Unknown @ 59:D8:B3:9E:98:BB, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ 53:26:88:01:25:F9, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ A0:0B:16:06:E1:51, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ 7D:BE:0E:9F:48:E0, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ 62:CA:54:A1:FF:E9, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ E6:62:57:0B:A2:DD, Services: [][0m
+2026-02-08 22:39:19,866   | INFO     |   - Unknown @ C7:1D:B0:1D:0F:42, Services: [][0m
+[31m2026-02-08 22:39:19,866   | ERROR    | BioCoin device named "Unknown" not found. Ensure it is powered on and in range.
+Traceback (most recent call last):
+  File "C:\Biocoin\software\src\main.py", line 51, in main
+    await device.connect()
+  File "C:\Biocoin\software\src\biocoin\device.py", line 79, in connect
+    raise RuntimeError(f'BioCoin device named "{name}" not found. Ensure it is powered on and in range.')
+RuntimeError: BioCoin device named "Unknown" not found. Ensure it is powered on and in range.[0m

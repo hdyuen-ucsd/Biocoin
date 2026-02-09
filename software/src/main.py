@@ -153,7 +153,7 @@ async def main():
             AC_coupled=False,
             E_ac=100.0,
             frequency=1.0)
-        Imp_data = await Imp.run(duration=35)
+        Imp_data = await Imp.run(duration=60)
         logging.info(f'Imp Data:\n {Imp_data}')
 
         # # Run an impedance measurement 2

@@ -123,8 +123,8 @@ namespace storage {
 // #define PIN_TEMP_VDD_CTRL 11
 
 //BIOZ SPECIFIC PINOUTS
-#define PIN_MUX_A0_BIOZ 11
-#define PIN_MUX_A1_BIOZ 12
+#define PIN_MUX_A0_BIOZ 23
+#define PIN_MUX_A1_BIOZ 22
 #define PIN_HEATER_EN1 24
 #define PIN_HEATER_EN2 25
 

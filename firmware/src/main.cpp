@@ -75,10 +75,12 @@ void setup() {
 #endif
 
   // Initialize the subsystems
-  // power::init();
-  // storage::init();
-  // battery::init();
-  // bluetooth::init();
+
+  power::init();
+  storage::init();
+  battery::init();
+  bluetooth::init();
+  sensor::init();
 //   Serial.printf(
 //   "Port: %u, BitMask: 0x%08lX\r\n",
 //   digitalPinToPort(PIN_MUX_A0_BIOZ),
@@ -90,14 +92,7 @@ void setup() {
   
 
 
-  pinMode(23, OUTPUT);
-  pinMode(22, OUTPUT);
-  // pinMode(PIN_HEATER_EN1, OUTPUT);
-  // pinMode(PIN_HEATER_EN2, OUTPUT);
-  digitalWrite(23, HIGH);
-  digitalWrite(22, HIGH);
-  // digitalWrite(PIN_HEATER_EN1, HIGH);
-  // digitalWrite(PIN_HEATER_EN2, HIGH);
+  
 
   Serial.println("Turning on mux pins");
 
@@ -107,7 +102,7 @@ void setup() {
   dbgInfo("Done initializing... Off to sleep!");
 #endif
 
-  //suspendLoop(); // This code is event driven -- it does not use the main loop
+  suspendLoop(); // This code is event driven -- it does not use the main loop
 }
 
 void loop() {

@@ -117,7 +117,7 @@ bool EChem_Imp::start() {
 
   clear();                       // Clear the data queue
   
-  //setBioZChannel(0);          // Set MUX to BioZ channel1 for Z1
+  setBioZChannel(1);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
