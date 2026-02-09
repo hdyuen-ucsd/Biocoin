@@ -113,8 +113,7 @@ void power::powerOnAFE(uint8_t muxChannel) {
   //digitalWrite(PIN_IONTOPH_PMOS_CTRL,
   //             HIGH); // Turn off iontopheresis switch -- the power down state assumes LDO is off to save power
 
-  digitalWrite(PIN_MUX_A0_BIOZ, 1);
-  digitalWrite(PIN_MUX_A1_BIOZ, 0);
+  
   setAFEChannel(muxChannel);
   
   delay(kStartupDelay); // Needed to let the chips startup before we do anything
