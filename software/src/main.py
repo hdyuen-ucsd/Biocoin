@@ -146,14 +146,14 @@ async def main():
         # Run an impedance measurement
         Imp = Impedance(device)
         await Imp.configure(
-            sampling_interval=12.0,
-            processing_interval=15.0,
+            sampling_interval=4.0,
+            processing_interval=10.0,
             max_current=100.0,
             IMP_4wire=False,
             AC_coupled=False,
             E_ac=100.0,
-            frequency=1.0)
-        Imp_data = await Imp.run(duration=60)
+            frequency=47100)
+        Imp_data = await Imp.run(duration=20)
         logging.info(f'Imp Data:\n {Imp_data}')
 
         # # Run an impedance measurement 2

@@ -4,6 +4,7 @@
 #include "util/debug_log.h"
 #include "drivers/ad5940_hal.h"
 #include "power/led_task.h"
+#include "power/heater_task.h"
 
 #include <nrf_sdm.h>
 #include <nrf_soc.h>
@@ -18,6 +19,7 @@ void power::init() {
   powerOffPeripherials();   // Default states
   enableDCDC();             // Turn on the dc-dc converter to save power
   startHeartbeatTask();     // Start the LED heartbeat
+  startHeaterTask();        // Start the Heater PWM
 }
 
 void power::initPins() {
@@ -29,7 +31,7 @@ void power::initPins() {
   pinMode(PIN_BUCKBOOST_AUX_EN, OUTPUT);
   pinMode(PIN_BUCKBOOST_ANALOG_EN, OUTPUT);
   pinMode(PIN_AFE_VDD_CTRL, OUTPUT);
-  //pinMode(PIN_TEMP_VDD_CTRL, OUTPUT);
+  pinMode(PIN_TEMP_VDD_CTRL, OUTPUT);
 
   // MUX control
   pinMode(PIN_MUX_EN, OUTPUT);
@@ -107,7 +109,7 @@ void power::reconnectInputGPIO(uint32_t pin, PullConfig pull = PullConfig::Disab
 void power::powerOnAFE(uint8_t muxChannel) {
   digitalWrite(PIN_BUCKBOOST_ANALOG_EN, HIGH); // Turn on the LDO output of the buck/boost converter (Out1)
   digitalWrite(PIN_AFE_VDD_CTRL, LOW);         // AFE on (active low)
-  //digitalWrite(PIN_TEMP_VDD_CTRL, HIGH);       // Temperature off (active low)
+  digitalWrite(PIN_TEMP_VDD_CTRL, HIGH);       // Temperature off (active low)
   digitalWrite(PIN_MUX_EN, HIGH);              // Enable the MUX
 
   //digitalWrite(PIN_IONTOPH_PMOS_CTRL,
@@ -122,7 +124,7 @@ void power::powerOnAFE(uint8_t muxChannel) {
 // Assume transitioning from peripherialOffState
 void power::powerOnTempSensor() {
   digitalWrite(PIN_BUCKBOOST_ANALOG_EN, HIGH); // Turn on the LDO output of the buck/boost converter (Out1)
-  //digitalWrite(PIN_TEMP_VDD_CTRL, LOW);        // Turn on the temp load switch (active low)
+  digitalWrite(PIN_TEMP_VDD_CTRL, LOW);        // Turn on the temp load switch (active low)
   digitalWrite(PIN_AFE_VDD_CTRL, LOW);         // Turn on the AFE load switch (active low)
 
   //digitalWrite(PIN_IONTOPH_PMOS_CTRL,
@@ -136,7 +138,7 @@ void power::powerOnIontophoresis() {
   digitalWrite(PIN_BUCKBOOST_AUX_EN, HIGH);    // Current monitoring amplifier, separate supply
   digitalWrite(PIN_BUCKBOOST_ANALOG_EN, HIGH); // Turn on the LDO output of the buck/boost converter (Out1)
   digitalWrite(PIN_AFE_VDD_CTRL, LOW);         // AFE on (active low) -- Needed for the DAC
-  //digitalWrite(PIN_TEMP_VDD_CTRL, HIGH);       // Temperature off (active low)
+  digitalWrite(PIN_TEMP_VDD_CTRL, HIGH);       // Temperature off (active low)
 
   digitalWrite(PIN_IONTOPH_NMOS_CTRL, HIGH); // Connect electrode to AFE
   digitalWrite(PIN_IONTOPH_PMOS_CTRL, LOW);  // Connect electrode to AFE (active low)
@@ -149,7 +151,7 @@ void power::powerOffPeripherials() {
   digitalWrite(PIN_BOOST_EN, LOW);            // Turn off the 20V boost converter
   digitalWrite(PIN_BUCKBOOST_AUX_EN, LOW);    // Turn off the current monitoring amplifier
 
-  //digitalWrite(PIN_TEMP_VDD_CTRL, LOW);       // Turn on the temp load switch (active low) -- Note this is behind the LDO, so
+  digitalWrite(PIN_TEMP_VDD_CTRL, LOW);       // Turn on the temp load switch (active low) -- Note this is behind the LDO, so
                                               // it is "on" but this reduces pin power
   digitalWrite(PIN_AFE_VDD_CTRL, LOW);        // Turn on the AFE load switch (active low) -- Note this is behind the LDO, so it
                                               // is "on" but this reduces pin power

@@ -37,6 +37,8 @@ namespace battery {
 namespace power {
   constexpr uint32_t kBlinkOn = 50;                     // Heartbeat LED on time [ms]
   constexpr uint32_t kBlinkOff = (5*60*1000) - 50; //9950;                  // Heartbeat LED off time [ms]
+  constexpr uint32_t kHeaterOn = 50;
+  constexpr uint32_t kHeaterOff = 50;
 } // namespace power
 
 namespace bluetooth {
@@ -72,6 +74,12 @@ namespace bluetooth {
 
   const uint8_t kUUIDChrSensorParams[] = {0xAA, 0x93, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15,
                                           0xDE, 0xEF, 0x12, 0x12, 0x2A, 0x15, 0x00, 0x00};
+
+  const uint8_t kUUIDChrPinConfig[] = {0xAA, 0x93, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15,
+                                          0xDE, 0xEF, 0x12, 0x12, 0x2B, 0x15, 0x00, 0x00};
+
+  const uint8_t kUUIDChrPinCtrl[] = {0xAA, 0x93, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15,
+                                          0xDE, 0xEF, 0x12, 0x12, 0x2C, 0x15, 0x00, 0x00};
 } // namespace bluetooth
 
 namespace sensor {
@@ -120,15 +128,15 @@ namespace storage {
 #define PIN_BUCKBOOST_AUX_EN 8 // CH2
 #define PIN_BUCKBOOST_ANALOG_EN 29 // CH1
 #define PIN_AFE_VDD_CTRL 9
-// #define PIN_TEMP_VDD_CTRL 11
+#define PIN_TEMP_VDD_CTRL 11
 
 //BIOZ SPECIFIC PINOUTS
 #define PIN_MUX_A0_BIOZ 23
 #define PIN_MUX_A1_BIOZ 22
-#define PIN_HEATER_EN1 24
-#define PIN_HEATER_EN2 25
+#define PIN_HEATER_EN1 1
+#define PIN_HEATER_EN2 0
 
-#define PIN_UARTRX 1
+// #define PIN_UARTRX 1
 
 // for communicating with AD5940
 #define PIN_AFE_IntPin_GPIO0 15

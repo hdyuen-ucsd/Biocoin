@@ -86,15 +86,8 @@ void setup() {
 //   digitalPinToPort(PIN_MUX_A0_BIOZ),
 //   digitalPinToBitMask(PIN_MUX_A0_BIOZ)
 // );
-//   findArduinoPin(0, 11);  // P0.11
-// findArduinoPin(0, 12);  // P0.12
-
-  
-
-
-  
-
-  Serial.println("Turning on mux pins");
+  // findArduinoPin(0, 24);  
+  // findArduinoPin(0, 25);  
 
 #ifdef DEBUG_MODE
   // dbgPrintDetailedPinStatus();
