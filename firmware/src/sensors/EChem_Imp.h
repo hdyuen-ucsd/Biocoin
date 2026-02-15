@@ -96,6 +96,7 @@ namespace sensor {
     int32_t initAD5940(void);
     AD5940Err setupMeasurement(void);
     void configureWaveformParameters(void);
+    AD5940Err configureFrequencySpecifics(float freq);
     AD5940Err AD5940_CalibrateHSRTIA(void);
     AD5940Err updateRegisters(void);
 

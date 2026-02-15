@@ -15,8 +15,13 @@ struct IMP_PARAMETERS {
   uint8_t IMP_4wire;        // flag indicating if running 4-wire (true) or 2-wire measurement (false)
   uint8_t AC_coupled;       // flag indicating if measurement is AC coupled (true) or DC coupled (false)
   float maxCurrent;
-  float Eac;       //[mv]
-  float frequency; //[Hz]
+  float Eac;                // [mv]
+  float frequency;          // [Hz] single frequency (or start frequency if sweeping)
+  uint8_t sweepEnabled;     // 1 = sweep, 0 = single frequency
+  float sweepStopFreq;      // stop frequency
+  uint16_t sweepPoints;     // number of points
+  uint8_t sweepLog;         // 1 = logarithmic, 0 = linear
+
 } __attribute__((packed));
 
 EChem_Imp::EChem_Imp() {
@@ -51,7 +56,7 @@ EChem_Imp::EChem_Imp() {
   config.DacVoltPP = 800.0;
 
   config.DftNum = DFTNUM_16384;
-  config.DftSrc = DFTSRC_SINC2NOTCH;
+  config.DftSrc = DFTSRC_SINC3;
   config.HanWinEn = bTRUE;
 
   config.SweepCfg.SweepEn = bFALSE;
@@ -80,11 +85,16 @@ bool EChem_Imp::loadParameters(uint8_t* data, uint16_t len) {
   dbgInfo(String("\tSampling Interval [s]: ") + String(params.samplingInterval));
   dbgInfo(String("\tProcessing Interval [s]: ") + String(params.processingInterval));
   dbgInfo(String("\tMax Current [mA]: ") + String(params.maxCurrent));
-  dbgInfo(String("\tEac Potential [mV]: ") + String(params.Eac));
-  dbgInfo(String("\tFrequency [Hz]: ") + String(params.frequency));
   dbgInfo(String("\t4-wire Measurement: ") + String(params.IMP_4wire ? "Enabled" : "Disabled"));
   dbgInfo(String("\tAC-coupled Measurement: ") + String(params.AC_coupled ? "True" : "False"));
-
+  dbgInfo(String("\tEac Potential [mV]: ") + String(params.Eac));
+  dbgInfo(String("\tFrequency [Hz]: ") + String(params.frequency));
+  dbgInfo(String("\tSweep Enabled: ") + String(params.sweepEnabled ? "Yes" : "No"));
+  if (params.sweepEnabled) {
+    dbgInfo(String("\tSweep Stop Frequency [Hz]: ") + String(params.sweepStopFreq));
+    dbgInfo(String("\tSweep Points: ") + String(params.sweepPoints));
+    dbgInfo(String("\tSweep Logarithmic: ") + String(params.sweepLog ? "Yes" : "No"));
+  }
   // Bounds/validity checking of parameters
   if (params.processingInterval < params.samplingInterval) {
     dbgError("Processing interval needs to be more than sampling interval.");
@@ -101,8 +111,25 @@ bool EChem_Imp::loadParameters(uint8_t* data, uint16_t len) {
 
   config.IMP4WIRE = static_cast<BoolFlag>(params.IMP_4wire);   // Specify if 4-wire or 2-wire Impedance measurement
   config.ACcoupled = static_cast<BoolFlag>(params.AC_coupled); // Specify if operating in an AC-coupled scenario
-  config.Eac = params.Eac;                                     // mV amplitude (peak)
+  config.DacVoltPP = config.Eac;                              // convert to peak to peak. If EXCITBUFGAIN * HsDacGain = 2, then the Eac parameter is already effectively peak-to-peak, no need to adjust further.
   config.SinFreq = params.frequency;                           // Hz
+
+  if (params.sweepEnabled) {
+    config.SweepCfg.SweepEn = bTRUE;
+    config.SweepCfg.SweepStart = params.frequency;            // start at the base frequency
+    config.SweepCfg.SweepStop = params.sweepStopFreq;
+    config.SweepCfg.SweepPoints = params.sweepPoints;
+    config.SweepCfg.SweepLog = params.sweepLog ? bTRUE : bFALSE;
+    config.SweepCfg.SweepIndex = 0;
+    
+    // Initialize the sweep logic immediately
+    config.FreqofData = config.SweepCfg.SweepStart;
+    config.SweepCurrFreq = config.SweepCfg.SweepStart;
+    AD5940_SweepNext(&config.SweepCfg, &config.SweepNextFreq);
+  } else {
+    config.SweepCfg.SweepEn = bFALSE;
+    config.FreqofData = config.SinFreq; // Single point
+  }
 
   // Still need to use max_current to calculate the gain resistor
   // config.LptiaRtiaSel = LPTIARTIA_10K;		// this sets the current range for the experiment
@@ -119,7 +146,9 @@ bool EChem_Imp::start() {
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
-  configureWaveformParameters(); // Define parameters for the measurement
+  float startFreq = (config.SweepCfg.SweepEn) ? config.SweepCfg.SweepStart : config.SinFreq;
+  configureFrequencySpecifics(startFreq);
+  //configureWaveformParameters(); // Define parameters for the measurement
   setupMeasurement();            // Initialize measurement sequence
 
   if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
@@ -242,15 +271,74 @@ AD5940Err EChem_Imp::setupMeasurement(void) {
   return AD5940ERR_OK;
 }
 
-void EChem_Imp::configureWaveformParameters(void) {
-  // AFE mode settings
-  if (config.SinFreq >= 20000.0)
-    config.PwrMod = AFEPWR_HP;
-  else
-    config.PwrMod = AFEPWR_LP;
+// void EChem_Imp::configureWaveformParameters(void) {
+//   // AFE mode settings
+//   if (config.SinFreq >= 20000.0)
+//     config.PwrMod = AFEPWR_HP;
+//   else
+//     config.PwrMod = AFEPWR_LP;
 
-  config.DacVoltPP = config.Eac; // convert to peak to peak. If EXCITBUFGAIN * HsDacGain = 2, then the Eac parameter is
-                                 // already effectively peak-to-peak, no need to adjust further.
+//   config.DacVoltPP = config.Eac; // convert to peak to peak. If EXCITBUFGAIN * HsDacGain = 2, then the Eac parameter is
+//                                  // already effectively peak-to-peak, no need to adjust further.
+// }
+
+AD5940Err EChem_Imp::configureFrequencySpecifics(float freq) {
+  ADCFilterCfg_Type filter_cfg;
+  DFTCfg_Type dft_cfg;
+  HSDACCfg_Type hsdac_cfg;
+  ClksCalInfo_Type clks_cal;
+  FreqParams_Type freq_params;
+  uint32_t WaitClks;
+
+  freq_params = AD5940_GetFreqParameters(freq);
+
+  if (freq_params.HighPwrMode == bTRUE) {
+    // High Frequency (> ~80kHz): Use 32MHz clock
+    config.SysClkFreq = 32000000.0;
+    config.AdcClkFreq = 32000000.0;
+    
+    hsdac_cfg.ExcitBufGain = config.ExcitBufGain;
+    hsdac_cfg.HsDacGain = config.HsDacGain;
+    hsdac_cfg.HsDacUpdateRate = 0x7; // Faster update rate for DAC
+    AD5940_HSDacCfgS(&hsdac_cfg);
+
+    filter_cfg.ADCRate = ADCRATE_1P6MHZ; // Faster ADC
+    AD5940_HPModeEn(bTRUE); // Enable High Power Mode
+  } else {
+    // Low Frequency: Use 16MHz clock
+    config.SysClkFreq = 16000000.0;
+    config.AdcClkFreq = 16000000.0;
+
+    hsdac_cfg.ExcitBufGain = config.ExcitBufGain;
+    hsdac_cfg.HsDacGain = config.HsDacGain;
+    hsdac_cfg.HsDacUpdateRate = 0x1B; // Slower update rate is fine
+    AD5940_HSDacCfgS(&hsdac_cfg);
+
+    filter_cfg.ADCRate = ADCRATE_800KHZ; // Standard ADC rate
+    AD5940_HPModeEn(bFALSE); // Disable High Power Mode
+  }
+
+  filter_cfg.ADCAvgNum = ADCAVGNUM_16; 
+  filter_cfg.ADCSinc2Osr = freq_params.ADCSinc2Osr;
+  filter_cfg.ADCSinc3Osr = freq_params.ADCSinc3Osr;
+  filter_cfg.BpSinc3 = bFALSE;
+  filter_cfg.BpNotch = bTRUE;
+  filter_cfg.Sinc2NotchEnable = bTRUE;
+  
+  dft_cfg.DftNum = freq_params.DftNum;
+  dft_cfg.DftSrc = freq_params.DftSrc;
+  dft_cfg.HanWinEn = config.HanWinEn;
+
+  AD5940_ADCFilterCfgS(&filter_cfg);
+  AD5940_DFTCfgS(&dft_cfg);
+
+  // Update our config struct so other functions use the new values
+  config.ADCSinc2Osr = freq_params.ADCSinc2Osr;
+  config.ADCSinc3Osr = freq_params.ADCSinc3Osr;
+  config.DftNum = freq_params.DftNum;
+  config.DftSrc = freq_params.DftSrc;
+
+  return AD5940ERR_OK;
 }
 
 /* Generate init sequence for CA. This runs only one time. */

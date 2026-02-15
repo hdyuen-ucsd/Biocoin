@@ -146,54 +146,15 @@ async def main():
         # Run an impedance measurement
         Imp = Impedance(device)
         await Imp.configure(
-            sampling_interval=12.0,
-            processing_interval=15.0,
+            sampling_interval=2.0,
+            processing_interval=4.0,
             max_current=100.0,
             IMP_4wire=False,
             AC_coupled=False,
             E_ac=100.0,
-            frequency=1.0)
-        Imp_data = await Imp.run(duration=35)
+            frequency=1235.0)
+        Imp_data = await Imp.run(duration=10)
         logging.info(f'Imp Data:\n {Imp_data}')
-
-        # # Run an impedance measurement 2
-        # Imp = Impedance(device)
-        # await Imp.configure(
-        #     sampling_interval=2.0,
-        #     processing_interval=4.0,
-        #     max_current=100.0,
-        #     IMP_4wire=False,
-        #     AC_coupled=False,
-        #     E_ac=100.0,
-        #     frequency=10.0)
-        # Imp_data = await Imp.run(duration=10)
-        # logging.info(f'Imp Data:\n {Imp_data}')
-
-        # # Run an impedance measurement 3
-        # Imp = Impedance(device)
-        # await Imp.configure(
-        #     sampling_interval=2.0,
-        #     processing_interval=4.0,
-        #     max_current=100.0,
-        #     IMP_4wire=False,
-        #     AC_coupled=False,
-        #     E_ac=100.0,
-        #     frequency=100.0)
-        # Imp_data = await Imp.run(duration=10)
-        # logging.info(f'Imp Data:\n {Imp_data}')
-
-        # # Run an impedance measurement 4
-        # Imp = Impedance(device)
-        # await Imp.configure(
-        #     sampling_interval=2.0,
-        #     processing_interval=4.0,
-        #     max_current=100.0,
-        #     IMP_4wire=False,
-        #     AC_coupled=False,
-        #     E_ac=100.0,
-        #     frequency=1000.0)
-        # Imp_data = await Imp.run(duration=10)
-        # logging.info(f'Imp Data:\n {Imp_data}')
 
 
         # logging.info('Saving Imp data to CSV file...')
