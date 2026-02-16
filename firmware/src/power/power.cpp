@@ -20,6 +20,7 @@ void power::init() {
   enableDCDC();             // Turn on the dc-dc converter to save power
   startHeartbeatTask();     // Start the LED heartbeat
   startHeaterTask();        // Start the Heater PWM
+  //setBioZChannel(1);         // Default to first BioZ channel
 }
 
 void power::initPins() {

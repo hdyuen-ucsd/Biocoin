@@ -77,11 +77,11 @@ void bluetooth::initGatt() {
   chrPinConfig.setWriteCallback(onConfigPins);
 
   //Pin Control
-  chrPinConfig.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
-  chrPinConfig.setPermission(SECMODE_OPEN, SECMODE_OPEN);
-  chrPinConfig.setMaxLen(2);
-  chrPinConfig.begin();
-  chrPinConfig.setWriteCallback(onControlPins);
+  chrPinCtrl.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
+  chrPinCtrl.setPermission(SECMODE_OPEN, SECMODE_OPEN);
+  chrPinCtrl.setMaxLen(2);
+  chrPinCtrl.begin();
+  chrPinCtrl.setWriteCallback(onControlPins);
 
 }
 
@@ -123,6 +123,7 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
   dbgInfo("Received Pin Control");
   int pinNumber = data[0];
   int mode = data[1];
+  dbgInfo("Setting pin " + String(pinNumber) + " to mode " + String(mode));
   digitalWrite(pinNumber, mode);
 }
 
