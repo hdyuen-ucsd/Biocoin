@@ -1,0 +1,178 @@
+2026-02-16 11:37:02,796   | INFO     | BioCoin Test Script[0m
+2026-02-16 11:37:02,796   | INFO     | Searching for the BioCoin device named "Biocoin"...[0m
+2026-02-16 11:37:02,797   | INFO     | Scanning for devices...[0m
+[34m2026-02-16 11:37:03,095   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:03,102   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:03,337   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:03,340   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:03,443   | DEBUG    | Received FD:78:73:B5:CB:43: .[0m
+[34m2026-02-16 11:37:03,458   | DEBUG    | Received 40:D7:D2:F3:80:1B: .[0m
+[34m2026-02-16 11:37:03,471   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:03,474   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:03,479   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:03,620   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:03,623   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:03,680   | DEBUG    | Received 60:D6:EF:AC:52:03: .[0m
+[34m2026-02-16 11:37:03,683   | DEBUG    | Received 60:D6:EF:AC:52:03: .[0m
+[34m2026-02-16 11:37:03,688   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:03,691   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:03,701   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:03,703   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:03,708   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:03,714   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:03,918   | DEBUG    | Received F4:63:F3:FC:B4:56: .[0m
+[34m2026-02-16 11:37:04,032   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:04,053   | DEBUG    | Received 7C:3C:3C:50:A0:BF: .[0m
+[34m2026-02-16 11:37:04,066   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:04,158   | DEBUG    | Received 6C:80:0B:97:36:B4: .[0m
+[34m2026-02-16 11:37:04,388   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:04,390   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:04,504   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:04,523   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:04,525   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:04,527   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:04,530   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:04,629   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:04,631   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:04,646   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:04,983   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:04,985   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:04,987   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:04,989   | DEBUG    | Received 34:81:F4:CE:83:FF: .[0m
+[34m2026-02-16 11:37:05,003   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:05,005   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:05,126   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,127   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,129   | DEBUG    | Received FA:DF:F6:1D:E7:B4: .[0m
+[34m2026-02-16 11:37:05,333   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,335   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,339   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:05,340   | DEBUG    | Received 34:81:F4:CE:83:FF: .[0m
+[34m2026-02-16 11:37:05,354   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:05,362   | DEBUG    | Received 05:3A:9F:AB:97:E1: .[0m
+[34m2026-02-16 11:37:05,370   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,370   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,456   | DEBUG    | Received 53:5D:DC:E9:00:50: .[0m
+[34m2026-02-16 11:37:05,565   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,567   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,689   | DEBUG    | Received 05:3A:9F:AB:97:E1: .[0m
+[34m2026-02-16 11:37:05,691   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:05,716   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,718   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,720   | DEBUG    | Received 59:E1:E7:B1:5E:53: .[0m
+[34m2026-02-16 11:37:05,804   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:05,826   | DEBUG    | Received 53:5D:DC:E9:00:50: .[0m
+[34m2026-02-16 11:37:05,840   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,842   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:05,918   | DEBUG    | Received F4:63:F3:FC:B4:56: .[0m
+[34m2026-02-16 11:37:05,943   | DEBUG    | Received 3E:55:76:6F:E6:64: .[0m
+[34m2026-02-16 11:37:05,946   | DEBUG    | Received 3E:55:76:6F:E6:64: .[0m
+[34m2026-02-16 11:37:05,949   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:05,951   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:06,039   | DEBUG    | Received 4A:ED:7D:28:CB:0A: .[0m
+[34m2026-02-16 11:37:06,041   | DEBUG    | Received 4A:ED:7D:28:CB:0A: .[0m
+[34m2026-02-16 11:37:06,049   | DEBUG    | Received 3E:55:76:6F:E6:64: .[0m
+[34m2026-02-16 11:37:06,069   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:06,070   | DEBUG    | Received 34:81:F4:CE:83:FF: .[0m
+[34m2026-02-16 11:37:06,078   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:06,183   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:06,191   | DEBUG    | Received 61:16:A8:DE:90:79: .[0m
+[34m2026-02-16 11:37:06,193   | DEBUG    | Received 61:16:A8:DE:90:79: .[0m
+[34m2026-02-16 11:37:06,199   | DEBUG    | Received 53:5D:DC:E9:00:50: .[0m
+[34m2026-02-16 11:37:06,525   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:06,533   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:06,640   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:06,662   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:06,663   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:06,751   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:06,753   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:06,760   | DEBUG    | Received 53:5D:DC:E9:00:50: .[0m
+[34m2026-02-16 11:37:06,813   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:06,820   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:06,821   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:06,884   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:06,887   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:06,888   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:06,891   | DEBUG    | Received 6C:6A:32:37:EB:4D: .[0m
+[34m2026-02-16 11:37:06,892   | DEBUG    | Received 6C:6A:32:37:EB:4D: .[0m
+[34m2026-02-16 11:37:06,992   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:06,993   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:07,110   | DEBUG    | Received 60:F4:E6:91:10:AA: .[0m
+[34m2026-02-16 11:37:07,111   | DEBUG    | Received 60:F4:E6:91:10:AA: .[0m
+[34m2026-02-16 11:37:07,133   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:07,135   | DEBUG    | Received FA:DF:F6:1D:E7:B4: .[0m
+[34m2026-02-16 11:37:07,219   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:07,221   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:07,227   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:07,228   | DEBUG    | Received 40:49:D7:10:84:30: .[0m
+[34m2026-02-16 11:37:07,249   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:07,343   | DEBUG    | Received 25:DD:44:4B:BB:54: .[0m
+[34m2026-02-16 11:37:07,464   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:07,698   | DEBUG    | Received 53:5D:DC:E9:00:50: .[0m
+[34m2026-02-16 11:37:07,819   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:07,820   | DEBUG    | Received 7B:11:82:F4:71:D0: .[0m
+[34m2026-02-16 11:37:07,827   | DEBUG    | Received 34:81:F4:CE:83:FF: QT 13534207.[0m
+[34m2026-02-16 11:37:07,966   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:07,969   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:07,971   | DEBUG    | 21 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: BioCoin (CD:89:AF:2D:2B:2B) | UUIDs: ['00001523-1212-efde-1523-785feabc93aa'][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (FD:78:73:B5:CB:43) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (40:D7:D2:F3:80:1B) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (2D:4A:43:4F:8D:68) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (60:D6:EF:AC:52:03) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (7B:11:82:F4:71:D0) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (40:49:D7:10:84:30) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: QT 13534207 (34:81:F4:CE:83:FF) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,972   | DEBUG    | 	Device: Unknown (F4:63:F3:FC:B4:56) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (7C:3C:3C:50:A0:BF) | UUIDs: ['0000fe9f-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (6C:80:0B:97:36:B4) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (25:DD:44:4B:BB:54) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (FA:DF:F6:1D:E7:B4) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (05:3A:9F:AB:97:E1) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (53:5D:DC:E9:00:50) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (59:E1:E7:B1:5E:53) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (3E:55:76:6F:E6:64) | UUIDs: ['0000fe78-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (4A:ED:7D:28:CB:0A) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (61:16:A8:DE:90:79) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (6C:6A:32:37:EB:4D) | UUIDs: [][0m
+[34m2026-02-16 11:37:07,973   | DEBUG    | 	Device: Unknown (60:F4:E6:91:10:AA) | UUIDs: [][0m
+2026-02-16 11:37:07,973   | INFO     | Found BioCoin device at CD:89:AF:2D:2B:2B![0m
+[34m2026-02-16 11:37:08,018   | DEBUG    | Received 6C:6A:32:37:EB:4D: .[0m
+[34m2026-02-16 11:37:08,020   | DEBUG    | Received 6C:6A:32:37:EB:4D: .[0m
+[34m2026-02-16 11:37:08,022   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:08,125   | DEBUG    | Received 3E:55:76:6F:E6:64: .[0m
+[34m2026-02-16 11:37:08,128   | DEBUG    | Received 3E:55:76:6F:E6:64: .[0m
+[34m2026-02-16 11:37:08,130   | DEBUG    | Received 2D:4A:43:4F:8D:68: .[0m
+[34m2026-02-16 11:37:08,244   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-16 11:37:08,245   | DEBUG    | 4 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-16 11:37:08,246   | DEBUG    | Connecting to BLE device @ CD:89:AF:2D:2B:2B[0m
+[34m2026-02-16 11:37:08,247   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-16 11:37:08,327   | DEBUG    | getting services (service_cache_mode=None, cache_mode=None)...[0m
+[34m2026-02-16 11:37:08,374   | DEBUG    | session_status_changed_event_handler: id: BluetoothLE#BluetoothLE2c:6d:c1:90:b4:0f-cd:89:af:2d:2b:2b, error: <BluetoothError.SUCCESS: 0>, status: <GattSessionStatus.ACTIVE: 1>[0m
+[34m2026-02-16 11:37:08,397   | DEBUG    | max_pdu_size_changed_handler: 247[0m
+[34m2026-02-16 11:37:08,478   | DEBUG    | CD:89:AF:2D:2B:2B: services changed[0m
+[34m2026-02-16 11:37:08,840   | DEBUG    | CD:89:AF:2D:2B:2B: services changed[0m
+2026-02-16 11:37:09,201   | INFO     | Connected to BioCoin device at CD:89:AF:2D:2B:2B.[0m
+[34m2026-02-16 11:37:09,215   | DEBUG    | Read Characteristic 0022 : bytearray(b'\x00')[0m
+2026-02-16 11:37:09,215   | INFO     | Battery Level: 0%[0m
+2026-02-16 11:37:09,216   | INFO     | Sending IMP technique parameters...[0m
+[34m2026-02-16 11:37:18,819   | DEBUG    | session_status_changed_event_handler: id: BluetoothLE#BluetoothLE2c:6d:c1:90:b4:0f-cd:89:af:2d:2b:2b, error: <BluetoothError.SUCCESS: 0>, status: <GattSessionStatus.CLOSED: 0>[0m
+[34m2026-02-16 11:37:18,820   | DEBUG    | closing requester[0m
+[34m2026-02-16 11:37:18,820   | DEBUG    | max_pdu_size_changed_handler: 23[0m
+[34m2026-02-16 11:37:18,827   | DEBUG    | closing session[0m
+[31m2026-02-16 11:37:18,829   | ERROR    | [WinError -2147023673] The operation was canceled by the user
+Traceback (most recent call last):
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\main.py", line 148, in main
+    await Imp.configure(
+    ...<10 lines>...
+        sweepLog=True)
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\biocoin\techniques\Impedance.py", line 113, in configure
+    await self.device.write_technique_config(payload)
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\biocoin\device.py", line 202, in write_technique_config
+    await self.client.write_gatt_char(tech_char, bytearray(config_bytes))
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\.venv\Lib\site-packages\bleak\__init__.py", line 786, in write_gatt_char
+    await self._backend.write_gatt_char(characteristic, data, response)
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\.venv\Lib\site-packages\bleak\backends\winrt\client.py", line 906, in write_gatt_char
+    await characteristic.obj.write_value_with_result_async(buf, response),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [WinError -2147023673] The operation was canceled by the user[0m

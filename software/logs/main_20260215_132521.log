@@ -1,0 +1,304 @@
+2026-02-15 13:25:21,405   | INFO     | BioCoin Test Script[0m
+2026-02-15 13:25:21,406   | INFO     | Searching for the BioCoin device named "Biocoin"...[0m
+2026-02-15 13:25:21,406   | INFO     | Scanning for devices...[0m
+[34m2026-02-15 13:25:21,596   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:21,603   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:21,603   | DEBUG    | Received 90:DE:80:E1:81:C6: .[0m
+[34m2026-02-15 13:25:21,603   | DEBUG    | Received 90:DE:80:E1:73:6A: .[0m
+[34m2026-02-15 13:25:21,702   | DEBUG    | Received 1C:69:20:85:D5:DE: Fellow Aiden D5DC.[0m
+[34m2026-02-15 13:25:21,712   | DEBUG    | Received 1C:69:20:85:D5:DE: .[0m
+[34m2026-02-15 13:25:21,713   | DEBUG    | Received 65:DE:25:F9:62:0B: .[0m
+[34m2026-02-15 13:25:21,819   | DEBUG    | Received 4C:D6:E5:3F:E9:56: .[0m
+[34m2026-02-15 13:25:21,820   | DEBUG    | Received 4C:D6:E5:3F:E9:56: .[0m
+[34m2026-02-15 13:25:21,850   | DEBUG    | Received 16:5F:79:42:6F:08: .[0m
+[34m2026-02-15 13:25:21,851   | DEBUG    | Received 75:88:37:7E:6D:38: .[0m
+[34m2026-02-15 13:25:21,854   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:21,864   | DEBUG    | Received 1C:69:20:85:D5:DE: Fellow Aiden D5DC.[0m
+[34m2026-02-15 13:25:21,865   | DEBUG    | Received 1C:69:20:85:D5:DE: .[0m
+[34m2026-02-15 13:25:21,868   | DEBUG    | Received 19:AD:D7:C3:11:C6: .[0m
+[34m2026-02-15 13:25:21,870   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:21,872   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:21,875   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:21,934   | DEBUG    | Received 20:F9:ED:61:A8:64: .[0m
+[34m2026-02-15 13:25:21,940   | DEBUG    | Received 00:E0:4C:23:99:87: .[0m
+[34m2026-02-15 13:25:21,945   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:21,948   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:21,949   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:21,951   | DEBUG    | Received 75:88:37:7E:6D:38: .[0m
+[34m2026-02-15 13:25:22,054   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:22,063   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:22,176   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:22,178   | DEBUG    | Received 01:E9:37:2E:25:CA: .[0m
+[34m2026-02-15 13:25:22,180   | DEBUG    | Received 19:AD:D7:C3:11:C6: .[0m
+[34m2026-02-15 13:25:22,182   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:22,188   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:22,190   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:22,192   | DEBUG    | Received 04:60:05:33:6B:CA: .[0m
+[34m2026-02-15 13:25:22,196   | DEBUG    | Received 1C:69:20:85:D5:DE: Fellow Aiden D5DC.[0m
+[34m2026-02-15 13:25:22,198   | DEBUG    | Received 1C:69:20:85:D5:DE: .[0m
+[34m2026-02-15 13:25:22,293   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-15 13:25:22,295   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-15 13:25:22,304   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:22,309   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:22,411   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:22,415   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:22,416   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:22,538   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:22,540   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:22,543   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:22,647   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:22,649   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:22,651   | DEBUG    | Received 90:DE:80:E1:73:6A: .[0m
+[34m2026-02-15 13:25:22,663   | DEBUG    | Received 00:E0:4C:23:99:87: .[0m
+[34m2026-02-15 13:25:22,779   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:22,789   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:22,880   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:22,883   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:22,885   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:22,888   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:22,890   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:22,894   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:22,896   | DEBUG    | Received 90:DE:80:99:19:1A: .[0m
+[34m2026-02-15 13:25:22,905   | DEBUG    | Received 19:AD:D7:C3:11:C6: .[0m
+[34m2026-02-15 13:25:22,908   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-15 13:25:22,910   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-15 13:25:22,912   | DEBUG    | Received 58:7F:83:6F:86:8C: .[0m
+[34m2026-02-15 13:25:22,913   | DEBUG    | Received 58:7F:83:6F:86:8C: .[0m
+[34m2026-02-15 13:25:23,001   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:23,002   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:23,132   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:23,137   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:23,138   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:23,233   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:23,238   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:23,239   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:23,245   | DEBUG    | Received 16:5F:79:42:6F:08: .[0m
+[34m2026-02-15 13:25:23,251   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:23,255   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:23,257   | DEBUG    | Received 21:01:11:71:98:83: .[0m
+[34m2026-02-15 13:25:23,260   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:23,261   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:23,356   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:23,358   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:23,362   | DEBUG    | Received 21:01:11:71:98:83: .[0m
+[34m2026-02-15 13:25:23,372   | DEBUG    | Received 90:DE:80:E1:81:C6: .[0m
+[34m2026-02-15 13:25:23,477   | DEBUG    | Received 1E:37:03:F7:55:2A: .[0m
+[34m2026-02-15 13:25:23,479   | DEBUG    | Received 1E:37:03:F7:55:2A: LE-Bose QC Ultra Headphones.[0m
+[34m2026-02-15 13:25:23,480   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:23,482   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:23,616   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:23,617   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:23,723   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:23,826   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:23,828   | DEBUG    | Received 20:F9:ED:61:A8:64: .[0m
+[34m2026-02-15 13:25:23,832   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:23,841   | DEBUG    | Received 33:14:42:C3:52:39: .[0m
+[34m2026-02-15 13:25:23,845   | DEBUG    | Received 4B:95:7B:5C:8F:DD: .[0m
+[34m2026-02-15 13:25:23,848   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:23,944   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:23,951   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:23,955   | DEBUG    | Received 19:AD:D7:C3:11:C6: .[0m
+[34m2026-02-15 13:25:23,963   | DEBUG    | Received 90:DE:80:E1:90:28: .[0m
+[34m2026-02-15 13:25:24,065   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:24,067   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:24,073   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:24,079   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:24,080   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:24,198   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:24,200   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:24,301   | DEBUG    | Received 90:DE:80:2C:2E:10: .[0m
+[34m2026-02-15 13:25:24,305   | DEBUG    | Received 21:01:11:71:98:83: .[0m
+[34m2026-02-15 13:25:24,309   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:24,318   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:24,319   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:24,321   | DEBUG    | Received 2A:E2:EF:95:16:50: .[0m
+[34m2026-02-15 13:25:24,427   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:24,428   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:24,430   | DEBUG    | Received 90:DE:80:E1:73:6A: .[0m
+[34m2026-02-15 13:25:24,437   | DEBUG    | Received 00:E0:4C:23:99:87: .[0m
+[34m2026-02-15 13:25:24,562   | DEBUG    | Received 58:7F:83:6F:86:8C: .[0m
+[34m2026-02-15 13:25:24,563   | DEBUG    | Received 58:7F:83:6F:86:8C: .[0m
+[34m2026-02-15 13:25:24,657   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:24,661   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:24,666   | DEBUG    | Received DF:22:CE:F9:4D:AC: .[0m
+[34m2026-02-15 13:25:24,672   | DEBUG    | Received 77:34:2F:16:62:39: .[0m
+[34m2026-02-15 13:25:24,681   | DEBUG    | Received 6F:3C:D6:09:61:BE: .[0m
+[34m2026-02-15 13:25:24,682   | DEBUG    | Received 6F:3C:D6:09:61:BE: .[0m
+[34m2026-02-15 13:25:24,778   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:24,780   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:24,789   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:24,897   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:24,899   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:24,909   | DEBUG    | Received 62:46:C7:36:F5:0B: .[0m
+[34m2026-02-15 13:25:24,911   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:24,913   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:25,012   | DEBUG    | Received 7A:E4:50:2A:07:0F: .[0m
+[34m2026-02-15 13:25:25,014   | DEBUG    | Received 7A:E4:50:2A:07:0F: JBL Wave Beam 2-GFP.[0m
+[34m2026-02-15 13:25:25,016   | DEBUG    | Received 90:DE:80:E1:90:28: .[0m
+[34m2026-02-15 13:25:25,018   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:25,019   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:25,048   | DEBUG    | Received 90:DE:80:E1:81:C6: .[0m
+[34m2026-02-15 13:25:25,055   | DEBUG    | Received 16:5F:79:42:6F:08: .[0m
+[34m2026-02-15 13:25:25,055   | DEBUG    | Received 90:DE:80:E1:73:6A: .[0m
+[34m2026-02-15 13:25:25,255   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:25,260   | DEBUG    | Received 7A:E4:50:2A:07:0F: .[0m
+[34m2026-02-15 13:25:25,362   | DEBUG    | Received 90:DE:80:E1:81:C6: .[0m
+[34m2026-02-15 13:25:25,365   | DEBUG    | Received 47:A3:98:F3:27:12: .[0m
+[34m2026-02-15 13:25:25,366   | DEBUG    | Received 47:A3:98:F3:27:12: .[0m
+[34m2026-02-15 13:25:25,369   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:25,373   | DEBUG    | Received 00:E0:4C:23:99:87: .[0m
+[34m2026-02-15 13:25:25,380   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:25,386   | DEBUG    | Received 20:F9:ED:61:A8:64: .[0m
+[34m2026-02-15 13:25:25,484   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:25,486   | DEBUG    | Received 00:E0:4C:23:99:87: .[0m
+[34m2026-02-15 13:25:25,489   | DEBUG    | Received 20:F9:ED:61:A8:64: .[0m
+[34m2026-02-15 13:25:25,493   | DEBUG    | Received 1C:69:20:85:D5:DE: Fellow Aiden D5DC.[0m
+[34m2026-02-15 13:25:25,494   | DEBUG    | Received 1C:69:20:85:D5:DE: .[0m
+[34m2026-02-15 13:25:25,600   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:25,601   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:25,603   | DEBUG    | Received 77:34:2F:16:62:39: .[0m
+[34m2026-02-15 13:25:25,606   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:25,608   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:25,618   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:25,620   | DEBUG    | Received 4B:95:7B:5C:8F:DD: .[0m
+[34m2026-02-15 13:25:25,621   | DEBUG    | Received 33:14:42:C3:52:39: .[0m
+[34m2026-02-15 13:25:25,719   | DEBUG    | Received 4C:D6:E5:3F:E9:56: .[0m
+[34m2026-02-15 13:25:25,720   | DEBUG    | Received 4C:D6:E5:3F:E9:56: .[0m
+[34m2026-02-15 13:25:25,722   | DEBUG    | Received 40:4E:36:44:42:F9: .[0m
+[34m2026-02-15 13:25:25,724   | DEBUG    | Received 75:88:37:7E:6D:38: .[0m
+[34m2026-02-15 13:25:25,726   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:25,728   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:25,730   | DEBUG    | Received 33:14:42:C3:52:39: .[0m
+[34m2026-02-15 13:25:25,736   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:25,741   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:25,840   | DEBUG    | Received 24:04:E6:94:49:B2: .[0m
+[34m2026-02-15 13:25:25,843   | DEBUG    | Received 62:46:C7:36:F5:0B: .[0m
+[34m2026-02-15 13:25:25,973   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:25,975   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:26,072   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:26,073   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:26,084   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:26,086   | DEBUG    | Received 16:5F:79:42:6F:08: .[0m
+[34m2026-02-15 13:25:26,089   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:26,191   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-15 13:25:26,193   | DEBUG    | Received CD:89:AF:2D:2B:2B: BioCoin.[0m
+[34m2026-02-15 13:25:26,195   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:26,197   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:26,199   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:26,201   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:26,327   | DEBUG    | Received 1C:69:20:85:D5:DE: Fellow Aiden D5DC.[0m
+[34m2026-02-15 13:25:26,329   | DEBUG    | Received 1C:69:20:85:D5:DE: .[0m
+[34m2026-02-15 13:25:26,331   | DEBUG    | Received 90:DE:80:99:19:CC: .[0m
+[34m2026-02-15 13:25:26,345   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:26,349   | DEBUG    | Received 4B:95:7B:5C:8F:DD: .[0m
+[34m2026-02-15 13:25:26,429   | DEBUG    | Received 20:F9:ED:61:A8:64: .[0m
+[34m2026-02-15 13:25:26,432   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:26,433   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 41 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: [TV]Hall office TV (84:C0:EF:0A:5E:7B) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (90:DE:80:E1:81:C6) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (90:DE:80:E1:73:6A) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Fellow Aiden D5DC (1C:69:20:85:D5:DE) | UUIDs: ['0000ffff-0000-1000-8000-00805f9b34fb'][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (65:DE:25:F9:62:0B) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (4C:D6:E5:3F:E9:56) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (16:5F:79:42:6F:08) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (75:88:37:7E:6D:38) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (31:8B:0B:C5:20:32) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,531   | DEBUG    | 	Device: Unknown (19:AD:D7:C3:11:C6) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (13:A4:67:B6:58:F6) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (77:0F:E9:5A:65:D4) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (20:F9:ED:61:A8:64) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (00:E0:4C:23:99:87) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (38:15:D5:79:05:10) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (5D:4C:2A:E9:B9:B3) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (01:E9:37:2E:25:CA) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (04:60:05:33:6B:CA) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: BioCoin (CD:89:AF:2D:2B:2B) | UUIDs: ['00001523-1212-efde-1523-785feabc93aa'][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (3A:BC:3F:F4:65:ED) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (0F:3F:C0:75:CF:70) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (90:DE:80:99:19:CC) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (24:04:E6:94:49:B2) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (90:DE:80:99:19:1A) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (58:7F:83:6F:86:8C) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (D4:FE:41:68:CC:F0) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (21:01:11:71:98:83) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: LE-Bose QC Ultra Headphones (1E:37:03:F7:55:2A) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (33:14:42:C3:52:39) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (4B:95:7B:5C:8F:DD) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (90:DE:80:E1:90:28) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (90:DE:80:2C:2E:10) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (2A:E2:EF:95:16:50) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (DF:22:CE:F9:4D:AC) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (77:34:2F:16:62:39) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,532   | DEBUG    | 	Device: Unknown (6F:3C:D6:09:61:BE) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,533   | DEBUG    | 	Device: Unknown (62:46:C7:36:F5:0B) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,533   | DEBUG    | 	Device: JBL Wave Beam 2-GFP (7A:E4:50:2A:07:0F) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,533   | DEBUG    | 	Device: Unknown (47:A3:98:F3:27:12) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,533   | DEBUG    | 	Device: Unknown (5F:6F:0E:E7:DE:AA) | UUIDs: [][0m
+[34m2026-02-15 13:25:26,533   | DEBUG    | 	Device: Unknown (40:4E:36:44:42:F9) | UUIDs: [][0m
+2026-02-15 13:25:26,533   | INFO     | Found BioCoin device at CD:89:AF:2D:2B:2B![0m
+[34m2026-02-15 13:25:26,705   | DEBUG    | Received F7:AE:DE:AD:23:F1: .[0m
+[34m2026-02-15 13:25:26,709   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:26,711   | DEBUG    | Received 5F:6F:0E:E7:DE:AA: .[0m
+[34m2026-02-15 13:25:26,713   | DEBUG    | Received C8:2E:18:CF:ED:52: .[0m
+[34m2026-02-15 13:25:26,715   | DEBUG    | Received C8:2E:18:CF:ED:52: classic300s.[0m
+[34m2026-02-15 13:25:26,717   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:26,814   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:26,816   | DEBUG    | Received 77:0F:E9:5A:65:D4: .[0m
+[34m2026-02-15 13:25:26,818   | DEBUG    | Received 40:4E:36:44:42:F9: .[0m
+[34m2026-02-15 13:25:26,823   | DEBUG    | Received 16:5F:79:42:6F:08: .[0m
+[34m2026-02-15 13:25:26,825   | DEBUG    | Received 0F:3F:C0:75:CF:70: .[0m
+[34m2026-02-15 13:25:26,830   | DEBUG    | Received 5D:4C:2A:E9:B9:B3: .[0m
+[34m2026-02-15 13:25:26,833   | DEBUG    | Received 5A:7C:76:47:94:0C: .[0m
+[34m2026-02-15 13:25:26,835   | DEBUG    | Received 5A:7C:76:47:94:0C: .[0m
+[34m2026-02-15 13:25:26,842   | DEBUG    | Received 90:DE:80:E1:73:6A: .[0m
+[34m2026-02-15 13:25:26,935   | DEBUG    | Received 3A:BC:3F:F4:65:ED: .[0m
+[34m2026-02-15 13:25:26,977   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:26,978   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:27,052   | DEBUG    | Received C5:A9:B8:AD:47:9B: .[0m
+[34m2026-02-15 13:25:27,054   | DEBUG    | Received C5:A9:B8:AD:47:9B: JBL Wave Beam 2-LE.[0m
+[34m2026-02-15 13:25:27,059   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:27,169   | DEBUG    | Received 62:46:C7:36:F5:0B: .[0m
+[34m2026-02-15 13:25:27,178   | DEBUG    | Received 84:C0:EF:0A:5E:7B: .[0m
+[34m2026-02-15 13:25:27,180   | DEBUG    | Received 84:C0:EF:0A:5E:7B: [TV]Hall office TV.[0m
+[34m2026-02-15 13:25:27,182   | DEBUG    | Received F7:5C:42:CF:59:70: .[0m
+[34m2026-02-15 13:25:27,186   | DEBUG    | Received 31:8B:0B:C5:20:32: .[0m
+[34m2026-02-15 13:25:27,288   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:27,290   | DEBUG    | Received D4:FE:41:68:CC:F0: .[0m
+[34m2026-02-15 13:25:27,296   | DEBUG    | Received 47:A3:98:F3:27:12: .[0m
+[34m2026-02-15 13:25:27,299   | DEBUG    | Received 47:A3:98:F3:27:12: .[0m
+[34m2026-02-15 13:25:27,301   | DEBUG    | Received 13:A4:67:B6:58:F6: .[0m
+[34m2026-02-15 13:25:27,303   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:27,407   | DEBUG    | Received 38:15:D5:79:05:10: .[0m
+[34m2026-02-15 13:25:27,412   | DEBUG    | Received 33:14:42:C3:52:39: .[0m
+[34m2026-02-15 13:25:27,414   | DEBUG    | Received CD:89:AF:2D:2B:2B: .[0m
+[34m2026-02-15 13:25:27,415   | DEBUG    | 22 devices found. Watcher status: <BluetoothLEAdvertisementWatcherStatus.STOPPED: 3>.[0m
+[34m2026-02-15 13:25:27,416   | DEBUG    | Connecting to BLE device @ CD:89:AF:2D:2B:2B[0m
+[34m2026-02-15 13:25:27,459   | DEBUG    | getting services (service_cache_mode=None, cache_mode=None)...[0m
+[34m2026-02-15 13:25:29,268   | DEBUG    | session_status_changed_event_handler: id: BluetoothLE#BluetoothLE2c:6d:c1:90:b4:0f-cd:89:af:2d:2b:2b, error: <BluetoothError.SUCCESS: 0>, status: <GattSessionStatus.ACTIVE: 1>[0m
+[34m2026-02-15 13:25:29,289   | DEBUG    | max_pdu_size_changed_handler: 247[0m
+[34m2026-02-15 13:25:29,369   | DEBUG    | CD:89:AF:2D:2B:2B: services changed[0m
+[34m2026-02-15 13:25:29,743   | DEBUG    | CD:89:AF:2D:2B:2B: services changed[0m
+2026-02-15 13:25:30,120   | INFO     | Connected to BioCoin device at CD:89:AF:2D:2B:2B.[0m
+[34m2026-02-15 13:25:30,135   | DEBUG    | Read Characteristic 0022 : bytearray(b'd')[0m
+2026-02-15 13:25:30,135   | INFO     | Battery Level: 100%[0m
+2026-02-15 13:25:30,135   | INFO     | Sending IMP technique parameters...[0m
+[34m2026-02-15 13:25:31,170   | DEBUG    | Read Characteristic 0026 : bytearray(b'\x01')[0m
+[34m2026-02-15 13:25:31,170   | DEBUG    | Device status read: INVALID_PARAMETERS (1)[0m
+[31m2026-02-15 13:25:31,170   | ERROR    | Invalid parameters
+Traceback (most recent call last):
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\main.py", line 148, in main
+    await Imp.configure(
+    ...<10 lines>...
+        sweepLog=True)
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\biocoin\techniques\Impedance.py", line 114, in configure
+    await self.assert_config_ok()
+  File "C:\Users\akoruprolu\Documents\Biocoin\software\src\biocoin\techniques\base_technique.py", line 166, in assert_config_ok
+    raise ValueError('Invalid parameters')
+ValueError: Invalid parameters[0m
+[34m2026-02-15 13:25:31,172   | DEBUG    | Disconnecting from BLE device...[0m
+[34m2026-02-15 13:25:34,422   | DEBUG    | max_pdu_size_changed_handler: 23[0m
+[34m2026-02-15 13:25:34,422   | DEBUG    | session_status_changed_event_handler: id: BluetoothLE#BluetoothLE2c:6d:c1:90:b4:0f-cd:89:af:2d:2b:2b, error: <BluetoothError.SUCCESS: 0>, status: <GattSessionStatus.CLOSED: 0>[0m
+[34m2026-02-15 13:25:34,422   | DEBUG    | closing requester[0m
+[34m2026-02-15 13:25:34,423   | DEBUG    | closing session[0m
+2026-02-15 13:25:34,424   | INFO     | Disconnected from BioCoin device.[0m
