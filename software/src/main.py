@@ -152,12 +152,12 @@ async def main():
             IMP_4wire=False,
             AC_coupled=False,
             E_ac=100.0,
-            frequency=100.0,
+            frequency=10000.0,
             sweepEnabled=True,
-            sweepStopFreq=10000.0,
+            sweepStopFreq=50000.0,
             sweepPoints=3,
             sweepLog=True)
-        Imp_data = await Imp.run(duration=15)
+        Imp_data = await Imp.run(duration=12)
         logging.info(f'Imp Data:\n {Imp_data}')
 
 
