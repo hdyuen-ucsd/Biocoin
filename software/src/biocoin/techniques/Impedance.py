@@ -39,8 +39,11 @@ class Impedance(BaseTechnique):
     def __init__(self, device: BioCoinDevice):
         super().__init__(device)
 
+    # async def configure(self, sampling_interval: float, processing_interval: float, IMP_4wire: bool, AC_coupled: bool, max_current: float,
+    #     E_ac: float, frequency: float) -> None:
     async def configure(self, sampling_interval: float, processing_interval: float, IMP_4wire: bool, AC_coupled: bool, max_current: float,
-        E_ac: float, frequency: float) -> None:
+        E_ac: float, frequency: float, sweepEnabled: bool, sweepStopFreq: float, sweepPoints: int, sweepLog: bool) -> None:
+
         """
         Pack and send the IMP configuration to the device
 
@@ -52,6 +55,10 @@ class Impedance(BaseTechnique):
             - max_current: Maximum current (µA), must be > 0 and ≤ 3000
             - E_ac: AC excitation amplitude (mV), must be between 0 and 2200
             - frequency: Excitation frequency (Hz), must be > 0
+            - sweepEnabled: True to enable frequency sweep, False for single frequency
+            - sweepStopFreq: Stop frequency for sweep (Hz), must be > frequency if sweepEnabled is True
+            - sweepPoints: Number of points in the frequency sweep, must be > 1 if sweepEnabled is True
+            - sweepLog: True for logarithmic spacing in sweep, False for linear spacing
         """
         logging.info('Sending IMP technique parameters...')
 
@@ -65,24 +72,57 @@ class Impedance(BaseTechnique):
             raise ValueError('E_ac must be between 0 and 2200 mV')
         if frequency <= 0:
             raise ValueError('frequency must be > 0')
+        if sweepEnabled:
+            if sweepStopFreq <= frequency:
+                raise ValueError('sweepStopFreq must be > frequency when sweepEnabled is True')
+            if sweepPoints <= 1:
+                raise ValueError('sweepPoints must be > 1 when sweepEnabled is True')
 
         # Duration is not fixed — depends on frequency and acquisition length.
         # For now, set a conservative bound so run() has a wait time.
         self.duration = max(1.0, 10.0 / frequency)
 
+        # # Struct layout (packed, little-endian) with a leading technique ID byte:
+        # # <B f f B B f f f 
+        # #  ^ ^ ^ ^ ^ ^ ^ ^ 
+        # #  | | | | | | | frequency (float)
+        # #  | | | | | | E_ac (float)
+        # #  | | | | | max_current (float)
+        # #  | | | | AC_coupled (uint8)
+        # #  | | | IMP_4wire (uint8)
+        # #  | | processing_interval (float)
+        # #  | sampling_interval (float)
+        # #  technique ID (uint8)
+        # payload = struct.pack(
+        #     '<BffBBfff',
+        #     self.Technique.IMP,
+        #     sampling_interval,
+        #     processing_interval,
+        #     int(IMP_4wire),
+        #     int(AC_coupled),
+        #     max_current,
+        #     E_ac,
+        #     frequency
+        # )
+
+
         # Struct layout (packed, little-endian) with a leading technique ID byte:
-        # <B f f B B f f f
-        #  ^  ^ ^ ^ ^ ^ ^ ^
-        #  |  | | | | | | frequency (float)
-        #  |  | | | | | E_ac (float)
-        #  |  | | | | max_current (float)
-        #  |  | | | AC_coupled (uint8)
-        #  |  | | IMP_4wire (uint8)
-        #  |  | processing_interval (float)
+        # <B f f B B f f f B f B B
+        #  ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+        #  | | | | | | | | | | | sweepLog (uint8)
+        #  | | | | | | | | | | sweepPoints (uint8)
+        #  | | | | | | | | | sweepStopFreq (float)
+        #  | | | | | | | | sweepEnabled (uint8)
+        #  | | | | | | | frequency (float)
+        #  | | | | | | E_ac (float)
+        #  | | | | | max_current (float)
+        #  | | | | AC_coupled (uint8)
+        #  | | | IMP_4wire (uint8)
+        #  | | processing_interval (float)
         #  | sampling_interval (float)
         #  technique ID (uint8)
         payload = struct.pack(
-            '<BffBBfff',
+            '<BffBBfffBfBB',
             self.Technique.IMP,
             sampling_interval,
             processing_interval,
@@ -91,7 +131,12 @@ class Impedance(BaseTechnique):
             max_current,
             E_ac,
             frequency,
+            int(sweepEnabled),
+            sweepStopFreq,
+            int(sweepPoints), 
+            int(sweepLog)
         )
+
 
         await self.device.write_technique_config(payload)
         await self.assert_config_ok()

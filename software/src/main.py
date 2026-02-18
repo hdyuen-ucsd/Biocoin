@@ -33,9 +33,7 @@ import pandas as pd
 
 from biocoin.device import BioCoinDevice
 from biocoin.techniques import (
-    OpenCircuitPotential,
-    Temperature,
-    Iontophoresis
+    Impedance
 )
 from utils.logging_util import setup_logging
 
@@ -100,7 +98,7 @@ async def main():
         # output_path.parent.mkdir(parents=True, exist_ok=True)
         # df.to_csv(output_path, index=False)
 
-        # # Run a DPV measurement
+        # Run a DPV measurement
         # DPV = DifferentialPulseVoltammetry(device)
         # await DPV.configure(
         #     processing_interval=1.0,
@@ -122,18 +120,46 @@ async def main():
         # output_path.parent.mkdir(parents=True, exist_ok=True)
         # df.to_csv(output_path, index=False)
 
-        # Run an impedance measurement
-        # Imp = Impedance(device)
-        # await Imp.configure(
-        #     sampling_interval=2,
-        #     processing_interval=4.0,
+        # # Run an SWV measurement
+        # frequency = 100
+        # SWV = SquareWaveVoltammetry(device)
+        # await SWV.configure(
+        #     processing_interval=100*((1/frequency)/2),
         #     max_current=100.0,
-        #     IMP_4wire=True,
-        #     AC_coupled=False,
-        #     E_ac=10.0,
-        #     frequency=100.0)
-        # Imp_data = await Imp.run(duration=15)
-        # logging.info(f'Imp Data:\n {Imp_data}')
+        #     E_start=-200.0,
+        #     E_stop=200.0,
+        #     E_step=50.0,
+        #     E_amplitude=100.0,
+        #     pulse_period=1/frequency*1000,
+        #     channel=0,
+        # )
+        # SWV_data = await SWV.run()
+        # logging.info(f'SWV Data:\n {SWV_data}')
+
+        # logging.info('Saving SWV data to CSV file...')
+        # df = pd.DataFrame(SWV_data, columns=['Voltage (mV)', 'Current (uA)'])
+        # output_path = Path('./results/SWV_output.csv')
+        # output_path.parent.mkdir(parents=True, exist_ok=True)
+        # df.to_csv(output_path, index=False)
+
+
+        # Run an impedance measurement
+        Imp = Impedance(device)
+        await Imp.configure(
+            sampling_interval=1.0,
+            processing_interval=1.0,
+            max_current=100.0,
+            IMP_4wire=False,
+            AC_coupled=False,
+            E_ac=100.0,
+            frequency=10.0,
+            sweepEnabled=False,
+            sweepStopFreq=200000.0,
+            sweepPoints=30,
+            sweepLog=True)
+        Imp_data = await Imp.run(duration=60)
+        logging.info(f'Imp Data:\n {Imp_data}')
+
 
         # logging.info('Saving Imp data to CSV file...')
         # df = pd.DataFrame(Imp_data, columns=['Magnitude (Ohms)', 'Phase (deg)'])
@@ -184,13 +210,13 @@ async def main():
         # await asyncio.sleep(5)
 
         # Start iontopheresis
-        iontophoresis = Iontophoresis(device)
-        await iontophoresis.configure(
-            current_monitor_interval=1.0,
-            stim_current=5.0,
-            current_safety_threshold=20.0,
-        )
-        _ = await iontophoresis.run(duration=150, poll_interval=3)
+        # iontophoresis = Iontophoresis(device)
+        # await iontophoresis.configure(
+        #     current_monitor_interval=1.0,
+        #     stim_current=5.0,
+        #     current_safety_threshold=20.0,
+        # )
+        # _ = await iontophoresis.run(duration=150, poll_interval=3)
         
         # await asyncio.sleep(5)
 
