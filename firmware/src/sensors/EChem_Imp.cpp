@@ -116,7 +116,6 @@ bool EChem_Imp::loadParameters(uint8_t* data, uint16_t len) {
                            
   config.Eac = params.Eac;                                     // mV amplitude (peak)
   config.DacVoltPP = config.Eac;  
-
   config.SinFreq = params.frequency;                           // Hz
 
   if (params.sweepEnabled) {
@@ -532,12 +531,14 @@ AD5940Err EChem_Imp::generateMeasSequence(void) {
 
   config.MeasSeqCycleCount = AD5940_SEQCycleTime();
   config.MaxODR = 1 / (((config.MeasSeqCycleCount + 10) / 16.0) * 1E-6);
-  if (config.SamplingInterval > config.MaxODR) {
+  if (config.SamplingInterval < 1/config.MaxODR) {
     /* We have requested a sampling rate that cannot be achieved with the time it
        takes to acquire a sample.
     */
-    config.SamplingInterval = config.MaxODR;
+    config.SamplingInterval = 1/config.MaxODR;
   }
+
+//  fprintf(stderr, "Sampling Interval: %f s MaxODR: %f Hz\n", config.SamplingInterval, config.MaxODR);
 
   if (error == AD5940ERR_OK) {
     config.MeasureSeqInfo.SeqId = SEQID_0;
