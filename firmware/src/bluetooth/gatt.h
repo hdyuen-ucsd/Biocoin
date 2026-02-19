@@ -31,8 +31,4 @@ namespace bluetooth {
 
 } // namespace bluetooth
 
-typedef struct __attribute__((packed)) {
-  uint8_t  Channel;
-  float    Impedance;
-  uint32_t Timestamp;
-} ImpedanceSample;
+
