@@ -2,9 +2,6 @@
 
 #include "bluefruit.h"
 #include <queue>
-#include <vector>
-#include <cstdint>
-#include <algorithm>
 
 namespace bluetooth {
 
@@ -13,8 +10,6 @@ namespace bluetooth {
 
 
   void initGatt();
-  void startMuxChannel(uint8_t channel);
-  void stopMuxChannel(uint8_t channel);
 
   template <typename T>
   void clearQueue(std::queue<T>& q);
@@ -25,12 +20,5 @@ namespace bluetooth {
   void onNameWrite(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len);
   void onSensorControl(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len);
   void onSensorParameters(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len);
-  void sendSensorData(uint16_t conn_hdl, uint32_t *pData, uint32_t DataCount);
 
 } // namespace bluetooth
-
-typedef struct __attribute__((packed)) {
-  uint8_t  Channel;
-  float    Impedance;
-  uint32_t Timestamp;
-} ImpedanceSample;

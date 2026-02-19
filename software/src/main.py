@@ -37,8 +37,7 @@ from biocoin.techniques import (
     SquareWaveVoltammetry,
     DifferentialPulseVoltammetry,
     Temperature,
-    Iontophoresis,
-    Impedance
+    Iontophoresis
 )
 from utils.logging_util import setup_logging
 
@@ -149,23 +148,23 @@ async def main():
 
 
         # Run an impedance measurement
-        Imp = Impedance(device)
-        await Imp.configure(
-            sampling_interval=2,
-            processing_interval=4.0,
-            max_current=100.0,
-            IMP_4wire=True,
-            AC_coupled=False,
-            E_ac=10.0,
-            frequency=100.0)
-        Imp_data = await Imp.run(duration=15)
-        logging.info(f'Imp Data:\n {Imp_data}')
+        # Imp = Impedance(device)
+        # await Imp.configure(
+        #     sampling_interval=2,
+        #     processing_interval=4.0,
+        #     max_current=100.0,
+        #     IMP_4wire=True,
+        #     AC_coupled=False,
+        #     E_ac=10.0,
+        #     frequency=100.0)
+        # Imp_data = await Imp.run(duration=15)
+        # logging.info(f'Imp Data:\n {Imp_data}')
 
-        logging.info('Saving Imp data to CSV file...')
-        df = pd.DataFrame(Imp_data, columns=['Magnitude (Ohms)', 'Phase (deg)'])
-        output_path = Path('./results/Imp_output.csv')
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(output_path, index=False)
+        # logging.info('Saving Imp data to CSV file...')
+        # df = pd.DataFrame(Imp_data, columns=['Magnitude (Ohms)', 'Phase (deg)'])
+        # output_path = Path('./results/Imp_output.csv')
+        # output_path.parent.mkdir(parents=True, exist_ok=True)
+        # df.to_csv(output_path, index=False)
 
         # Run a temp measurement
         # Temp = Temperature(device)
@@ -210,13 +209,13 @@ async def main():
         # await asyncio.sleep(5)
 
         # Start iontopheresis
-        # iontophoresis = Iontophoresis(device)
-        # await iontophoresis.configure(
-        #     current_monitor_interval=1.0,
-        #     stim_current=5.0,
-        #     current_safety_threshold=20.0,
-        # )
-        # _ = await iontophoresis.run(duration=150, poll_interval=3)
+        iontophoresis = Iontophoresis(device)
+        await iontophoresis.configure(
+            current_monitor_interval=1.0,
+            stim_current=5.0,
+            current_safety_threshold=20.0,
+        )
+        _ = await iontophoresis.run(duration=150, poll_interval=3)
         
         # await asyncio.sleep(5)
 

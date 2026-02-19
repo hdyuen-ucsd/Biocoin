@@ -38,7 +38,7 @@ static_assert((sizeof(kModel) - 1) <= 20, "Model string exceeds BLE DIS limit");
 void bluetooth::init() {
   dbgInfo("Initializing Bluetooth...");
 
-  String device_name = storage::readDeviceName().c_str();
+  String device_name = storage::readDeviceName();
   dbgInfo(String("Advertising as: ") + device_name);
 
   // Bluefruit BLE initialization
