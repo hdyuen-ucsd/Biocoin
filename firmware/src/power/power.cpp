@@ -172,4 +172,7 @@ void power::powerOffPeripherials() {
   digitalWrite(PIN_MUX_A1, LOW);
   digitalWrite(PIN_AFE_RESET, LOW);
   digitalWrite(PIN_SPI_CS, LOW);
+
+  digitalWrite(PIN_MUX_A0_BIOZ, LOW);
+  digitalWrite(PIN_MUX_A1_BIOZ, LOW);
 }

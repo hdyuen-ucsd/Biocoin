@@ -24,11 +24,11 @@ void power::startHeaterTask() {
 void power::heaterTask(void* pvParameters) {
   while (true) {
     // LED Heartbeat ON
-    if (nrf_gpio_pin_dir_get(PIN_HEATER_EN1) == NRF_GPIO_PIN_DIR_OUTPUT){
-        digitalWrite(PIN_HEATER_EN1, HIGH);
+    if (nrf_gpio_pin_dir_get(PIN_HEATER_EN2) == NRF_GPIO_PIN_DIR_OUTPUT){
+        digitalWrite(PIN_HEATER_EN2, HIGH);
     }
     
-    digitalWrite(PIN_HEATER_EN2, HIGH);
+    digitalWrite(PIN_HEATER_EN1, HIGH);
     vTaskDelay(pdMS_TO_TICKS(kHeaterOn));
 
     // LED Heartbeat OFF
