@@ -4,6 +4,7 @@
 #include "util/debug_log.h"
 #include "drivers/ad5940_hal.h"
 #include "power/led_task.h"
+#include "power/heater_task.h"
 
 #include <nrf_sdm.h>
 #include <nrf_soc.h>
@@ -18,6 +19,8 @@ void power::init() {
   powerOffPeripherials();   // Default states
   enableDCDC();             // Turn on the dc-dc converter to save power
   startHeartbeatTask();     // Start the LED heartbeat
+  startHeaterTask();        // Start the Heater PWM
+  //setBioZChannel(1);         // Default to first BioZ channel
 }
 
 void power::initPins() {
@@ -48,6 +51,12 @@ void power::initPins() {
   pinMode(PIN_AFE_GPIO4_AUX, INPUT);
   pinMode(PIN_AFE_RESET, OUTPUT);
   pinMode(PIN_SPI_CS, OUTPUT);
+
+  // BIOZ specific pins
+  pinMode(PIN_MUX_A0_BIOZ, OUTPUT);
+  pinMode(PIN_MUX_A1_BIOZ, OUTPUT);
+  pinMode(PIN_HEATER_EN1, OUTPUT);
+  pinMode(PIN_HEATER_EN2, OUTPUT);
 }
 
 void power::enableDCDC() {
@@ -107,8 +116,9 @@ void power::powerOnAFE(uint8_t muxChannel) {
   //digitalWrite(PIN_IONTOPH_PMOS_CTRL,
   //             HIGH); // Turn off iontopheresis switch -- the power down state assumes LDO is off to save power
 
+  
   setAFEChannel(muxChannel);
-
+  
   delay(kStartupDelay); // Needed to let the chips startup before we do anything
 }
 

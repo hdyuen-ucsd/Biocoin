@@ -4,6 +4,7 @@
 #include "HWConfig/constants.h"
 #include "battery/battery.h"
 #include "bluetooth/bluetooth.h"
+#include "bluetooth/gatt.h"
 #include "power/power.h"
 #include "sensors/SensorManager.h"
 #include "storage/storage.h"
@@ -16,6 +17,7 @@
 //////////////////////////////////
 //       Initialization         //
 //////////////////////////////////
+// Hou Dren Repo
 void setup() {
 #ifdef DEBUG_MODE
   Serial.begin(115200); // The baudrate here does not matter when using USB CDC
@@ -31,11 +33,13 @@ void setup() {
 #endif
 
   // Initialize the subsystems
+
   power::init();
   storage::init();
   battery::init();
   bluetooth::init();
   sensor::init();
+
 
 #ifdef DEBUG_MODE
   // dbgPrintDetailedPinStatus();
@@ -46,4 +50,6 @@ void setup() {
   suspendLoop(); // This code is event driven -- it does not use the main loop
 }
 
-void loop() {}
+void loop() {
+  
+}

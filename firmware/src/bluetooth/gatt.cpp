@@ -8,13 +8,17 @@
 
 #include <bluefruit.h>
 
+
+
 namespace bluetooth {
   BLECharacteristic chrStatus(kUUIDChrStatus);
   BLECharacteristic chrDeviceName(kUUIDChrDeviceName);
   BLECharacteristic chrSensorCtrl(kUUIDChrSensorCtrl);
   BLECharacteristic chrSensorData(kUUIDChrSensorData);
   BLECharacteristic chrSensorParams(kUUIDChrSensorParams);
-
+  BLECharacteristic chrPinConfig(kUUIDChrPinConfig);
+  BLECharacteristic chrPinCtrl(kUUIDChrPinCtrl);
+  
 } // namespace bluetooth
 
 using namespace bluetooth;
@@ -58,6 +62,21 @@ void bluetooth::initGatt() {
   chrSensorData.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
   chrSensorData.setMaxLen(kMTURequest - kATTHeaderLen);                        // We set this to the MAX, but we will only send in MTU chunks
   chrSensorData.begin();
+
+  //Pin Configuration
+  chrPinConfig.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
+  chrPinConfig.setPermission(SECMODE_OPEN, SECMODE_OPEN);
+  chrPinConfig.setMaxLen(BLE_GAP_DEVNAME_MAX_LEN);
+  chrPinConfig.begin();
+  chrPinConfig.setWriteCallback(onConfigPins);
+
+  //Pin Control
+  chrPinCtrl.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
+  chrPinCtrl.setPermission(SECMODE_OPEN, SECMODE_OPEN);
+  chrPinCtrl.setMaxLen(2);
+  chrPinCtrl.begin();
+  chrPinCtrl.setWriteCallback(onControlPins);
+
 }
 
 template <typename T>
@@ -80,8 +99,43 @@ void bluetooth::onNameWrite(uint16_t, BLECharacteristic*, uint8_t* data, uint16_
 void bluetooth::onSensorControl(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
   dbgInfo("Received EChem Control Command");
   if (sensor::controlCommand(data, len)) clearQueue(TX_queue);
+  // dbgInfo("Received BioZ Control Command");
+  // uint8_t well = data[0];
+  // uint8_t command = data[1];
+  // command == 1 ? startMuxChannel(well) : stopMuxChannel(well);
 }
 
+void bluetooth::onConfigPins(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
+  dbgInfo("Received Pin Configuration");
+  // int type = data[];
+  // int pinNumber = data[];
+  // int direction = data[];
+  // pinMode(pinNumber, direction);
+}
+
+void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
+  dbgInfo("Received Pin Control");
+  int pinNumber = data[0];
+  int mode = data[1];
+  dbgInfo("Setting pin " + String(pinNumber) + " to mode " + String(mode));
+  digitalWrite(pinNumber, mode);
+}
+
+// void bluetooth::startMuxChannel(uint8_t channel) {
+//     if (std::find(muxChannels.begin(), muxChannels.end(), channel-1) == muxChannels.end()) {
+//         muxChannels.push_back(channel-1);
+//     }
+//     Serial.println("Start Well: " + String(channel));
+// }
+
+// void bluetooth::stopMuxChannel(uint8_t channel) {
+//     muxChannels.erase(std::remove(muxChannels.begin(), muxChannels.end(), channel-1), muxChannels.end());
+//     Serial.println("Stop Well: " + String(channel));
+// }
+
 void bluetooth::onSensorParameters(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
+  //Serial.println("Received Sensor Parameters");
   sensor::loadParameters(data, len);
 }
+
+

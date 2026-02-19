@@ -57,7 +57,7 @@ EChem_Imp::EChem_Imp() {
   config.DacVoltPP = 800.0;
   config.Eac = config.DacVoltPP;
 
-  config.DftNum = DFTNUM_8192;
+  config.DftNum = DFTNUM_16384;
   config.DftSrc = DFTSRC_SINC2NOTCH;
   config.HanWinEn = bTRUE;
 
@@ -147,6 +147,8 @@ bool EChem_Imp::start() {
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
+  
+  //setBioZChannel(1);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940

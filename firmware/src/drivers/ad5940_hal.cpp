@@ -162,3 +162,18 @@ int8_t setAFEChannel(uint8_t ch) {
 
   return 0;
 }
+
+// Control BioZ Motherboard Mux
+// Truth table for the MUX: 00 = S1 = Z1, 01 = S2 = Z2, 10 = S3 = Heater 1, 11 = S4 = Heater 2
+int8_t setBioZChannel(uint8_t ch) {
+  static const uint8_t sel_bits[] = {0x00, 0x01, 0x02, 0x03};
+  if (ch > 3) return -1;
+
+  dbgInfo(String("Setting BioZ channel to: ") + ch);
+  digitalWrite(PIN_MUX_A0_BIOZ, sel_bits[ch] & 0x01);
+  digitalWrite(PIN_MUX_A1_BIOZ, sel_bits[ch] & 0x02);
+
+  delay(5); // Needed to let the chips startup before we do anything
+
+  return 0;
+}
