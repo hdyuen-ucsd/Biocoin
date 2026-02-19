@@ -7,3 +7,4 @@
 software/logs/
 **/.DS_Store
 *.log
+*.pyc
