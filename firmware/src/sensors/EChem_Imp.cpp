@@ -48,7 +48,7 @@ EChem_Imp::EChem_Imp() {
   config.ADCSinc3Osr = ADCSINC3OSR_4;
   config.ADCSinc2Osr = ADCSINC2OSR_22; // adjust these as needed if really fast or really slow sampling is required.
                                        // Power vs. SNR tradeoff.
-  config.HstiaRtiaSel = HSTIARTIA_20K;
+  config.HstiaRtiaSel = HSTIARTIA_200;
 
   config.CtiaSel = 32;
   config.ExcitBufGain = EXCITBUFGAIN_2;
@@ -208,6 +208,7 @@ int32_t EChem_Imp::initAD5940(void) {
  * @brief Initialize the amperometric test. Call this function every time before starting amperometric test.
  */
 AD5940Err EChem_Imp::setupMeasurement(void) {
+  dbgInfo("Running");
   AD5940Err error = AD5940ERR_OK;
   SEQCfg_Type seq_cfg;
   FIFOCfg_Type fifo_cfg;

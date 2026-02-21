@@ -46,7 +46,8 @@ void setup() {
   // dbgPrintInterrupts();
   dbgInfo("Done initializing... Off to sleep!");
 #endif
-
+  
+  
   suspendLoop(); // This code is event driven -- it does not use the main loop
 }
 

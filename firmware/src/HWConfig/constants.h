@@ -37,8 +37,8 @@ namespace battery {
 namespace power {
   constexpr uint32_t kBlinkOn = 50;                     // Heartbeat LED on time [ms]
   constexpr uint32_t kBlinkOff = (5*60*1000) - 50; //9950;                  // Heartbeat LED off time [ms]
-  constexpr uint32_t kHeaterOn = 500;
-  constexpr uint32_t kHeaterOff = 4500;
+  constexpr uint32_t kHeaterOn = 2500;
+  constexpr uint32_t kHeaterOff = 2500;
 } // namespace power
 
 namespace bluetooth {
