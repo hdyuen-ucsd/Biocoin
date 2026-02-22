@@ -151,7 +151,7 @@ async def main():
             max_current=100.0,
             IMP_4wire=False,
             AC_coupled=False,
-            E_ac=50.0,
+            E_ac=800.0,
             frequency=100.0,
             sweepEnabled=False,
             sweepStopFreq=100000.0,

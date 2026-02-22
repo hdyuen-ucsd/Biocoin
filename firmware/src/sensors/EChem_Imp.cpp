@@ -57,8 +57,8 @@ EChem_Imp::EChem_Imp() {
   config.DacVoltPP = 800.0;
   config.Eac = config.DacVoltPP;
 
-  config.DftNum = DFTNUM_16384;
-  config.DftSrc = DFTSRC_SINC2NOTCH;
+  config.DftNum = DFTNUM_8192;
+  config.DftSrc = DFTSRC_SINC3;
   config.HanWinEn = bTRUE;
 
   config.SweepCfg.SweepEn = bFALSE;
@@ -151,6 +151,9 @@ bool EChem_Imp::start() {
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
+
+  // Comment out when using dynamic frequency parameters
+  configureWaveformParameters(); // Define parameters for the measurement
   
   setupMeasurement();            // Initialize measurement sequence
   
@@ -264,7 +267,7 @@ AD5940Err EChem_Imp::setupMeasurement(void) {
   config.MeasureSeqInfo.WriteSRAM = bFALSE;
   AD5940_SEQInfoCfg(&config.MeasureSeqInfo);
 
-  configureFrequencySpecifics(config.FreqofData); // Configure frequency-specific settings like gain and bandwidth based on the starting frequency  
+  //configureFrequencySpecifics(config.FreqofData); // Configure frequency-specific settings like gain and bandwidth based on the starting frequency  
   seq_cfg.SeqEnable = bTRUE;
   AD5940_SEQCfg(&seq_cfg); /* Enable sequencer, and wait for trigger */
   AD5940_INTCClrFlag(AFEINTSRC_ENDSEQ);
@@ -352,6 +355,14 @@ AD5940Err EChem_Imp::configureFrequencySpecifics(float freq) {
   AD5940_SEQCmdWrite(SRAMAddr + 16, SeqCmdBuff, 1); 
   
   return AD5940ERR_OK;
+}
+
+void sensor::EChem_Imp::configureWaveformParameters(void) {
+  // AFE mode settings
+  if (config.SinFreq >= 20000.0)
+    config.PwrMod = AFEPWR_HP;
+  else
+    config.PwrMod = AFEPWR_LP;
 }
 
 /* Generate init sequence for CA. This runs only one time. */
@@ -553,113 +564,153 @@ AD5940Err EChem_Imp::generateMeasSequence(void) {
   return AD5940ERR_OK;
 }
 
-AD5940Err EChem_Imp::AD5940_CalibrateHSRTIA(void) {
+AD5940Err sensor::EChem_Imp::AD5940_CalibrateHSRTIA(void) {
   HSRTIACal_Type hsrtia_cal;
-  FreqParams_Type freq_params;
 
-  // 1. Initialize Static Parameters
-  hsrtia_cal.bPolarResult = bTRUE; // We need Magnitude and Phase
+  hsrtia_cal.AdcClkFreq = config.AdcClkFreq;
+  hsrtia_cal.ADCSinc2Osr = config.ADCSinc2Osr;
+  hsrtia_cal.ADCSinc3Osr = config.ADCSinc3Osr;
+  hsrtia_cal.bPolarResult = bTRUE; /* We need magnitude and phase here */
+  hsrtia_cal.DftCfg.DftNum = config.DftNum;
+  hsrtia_cal.DftCfg.DftSrc = config.DftSrc;
   hsrtia_cal.DftCfg.HanWinEn = config.HanWinEn;
   hsrtia_cal.fRcal = config.RcalVal;
   hsrtia_cal.HsTiaCfg.DiodeClose = bFALSE;
   hsrtia_cal.HsTiaCfg.HstiaBias = HSTIABIAS_1P1;
   hsrtia_cal.HsTiaCfg.HstiaCtia = config.CtiaSel;
   hsrtia_cal.HsTiaCfg.HstiaDeRload = HSTIADERLOAD_OPEN;
-  hsrtia_cal.HsTiaCfg.HstiaDeRtia = HSTIADERTIA_OPEN;
+  hsrtia_cal.HsTiaCfg.HstiaDeRtia = HSTIADERTIA_TODE;
   hsrtia_cal.HsTiaCfg.HstiaRtiaSel = config.HstiaRtiaSel;
   hsrtia_cal.SysClkFreq = config.SysClkFreq;
+  hsrtia_cal.fFreq = config.SweepCfg.SweepStart;
 
-  // 2. Handle Sweep Mode
   if (config.SweepCfg.SweepEn == bTRUE) {
     uint32_t i;
-    config.SweepCfg.SweepIndex = 0; // Reset index
-    hsrtia_cal.fFreq = config.SweepCfg.SweepStart;
-
-    dbgInfo("--- Starting HSRTIA Calibration Sweep ---");
-
+    config.SweepCfg.SweepIndex = 0; /* Reset index */
     for (i = 0; i < config.SweepCfg.SweepPoints; i++) {
-      // Step A: Get Optimal Parameters for this Frequency
-      freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
-
-      // Step B: Configure Hardware (Clocks & Power Mode)
-      if (freq_params.HighPwrMode == bTRUE) {
-        hsrtia_cal.AdcClkFreq = 32000000.0;
-        hsrtia_cal.SysClkFreq = 32000000.0;
-        AD5940_HPModeEn(bTRUE);
-      } else {
-        hsrtia_cal.AdcClkFreq = 16000000.0;
-        hsrtia_cal.SysClkFreq = 16000000.0;
-        AD5940_HPModeEn(bFALSE);
-      }
-
-      // Step C: Update Filter Settings
-      hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
-      hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
-      hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
-      hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
-
-      // Step D: Perform Measurement
-      // Hardware is now set up correctly for fFreq
       AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCalTable[i]);
-
-      // Step E: Calculate Next Frequency
+      dbgInfo(String("Freq: ") + String(hsrtia_cal.fFreq) + String(", RTIA: Mag: ") +
+              String(config.RtiaCalTable[i][0]) + String(" Ohm, Phase: ") + String(config.RtiaCalTable[i][1]));
       AD5940_SweepNext(&config.SweepCfg, &hsrtia_cal.fFreq);
     }
-
-    // --- DEBUG PRINT: Calibration Table ---
-    dbgInfo("\n--- RTIA Calibration Table ---");
-    dbgInfo("Index | Frequency (Hz) | Magnitude (Ohm) | Phase (Rad)");
-    
-    // Recreate sweep just for printing valid frequencies
-    float print_freq = config.SweepCfg.SweepStart;
-    SoftSweepCfg_Type print_sweep = config.SweepCfg;
-    print_sweep.SweepIndex = 0;
-
-    for(i=0; i<config.SweepCfg.SweepPoints; i++) {
-         char buffer[128];
-         sprintf(buffer, "%3d   | %10.2f     | %10.4f      | %10.4f", 
-                 i, print_freq, config.RtiaCalTable[i][0], config.RtiaCalTable[i][1]);
-         dbgInfo(String(buffer));
-         AD5940_SweepNext(&print_sweep, &print_freq);
-    }
-    dbgInfo("------------------------------------------------------\n");
-
-    // Reset Sweep State
-    config.SweepCfg.SweepIndex = 0;
-    config.RtiaCurrValue[0] = config.RtiaCalTable[0][0];
-    config.RtiaCurrValue[1] = config.RtiaCalTable[0][1];
-  } 
-  // 3. Handle Single Frequency Mode
-  else {
+    config.SweepCfg.SweepIndex = 0; /* Reset index */
+    config.RtiaCurrValue[0] = config.RtiaCalTable[config.SweepCfg.SweepIndex][0];
+    config.RtiaCurrValue[1] = config.RtiaCalTable[config.SweepCfg.SweepIndex][1];
+  } else {
     hsrtia_cal.fFreq = config.SinFreq;
-
-    // Even for single point, we must configure hardware correctly
-    freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
-
-    if (freq_params.HighPwrMode == bTRUE) {
-        hsrtia_cal.AdcClkFreq = 32000000.0;
-        hsrtia_cal.SysClkFreq = 32000000.0;
-        AD5940_HPModeEn(bTRUE);
-    } else {
-        hsrtia_cal.AdcClkFreq = 16000000.0;
-        hsrtia_cal.SysClkFreq = 16000000.0;
-        AD5940_HPModeEn(bFALSE);
-    }
-    
-    hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
-    hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
-    hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
-    hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
-
     AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCurrValue);
-    
-    dbgInfo(String("Single Freq Cal: ") + String(hsrtia_cal.fFreq) + 
-            String(" Hz, Mag: ") + String(config.RtiaCurrValue[0]) + 
-            String(" Ohm, Phase: ") + String(config.RtiaCurrValue[1]));
   }
-
   return AD5940ERR_OK;
 }
+
+// // Dynamic Frequency-based filter parameter selection for calibration
+// AD5940Err EChem_Imp::AD5940_CalibrateHSRTIA(void) {
+//   HSRTIACal_Type hsrtia_cal;
+//   FreqParams_Type freq_params;
+
+//   // 1. Initialize Static Parameters
+//   hsrtia_cal.bPolarResult = bTRUE; // We need Magnitude and Phase
+//   hsrtia_cal.DftCfg.HanWinEn = config.HanWinEn;
+//   hsrtia_cal.fRcal = config.RcalVal;
+//   hsrtia_cal.HsTiaCfg.DiodeClose = bFALSE;
+//   hsrtia_cal.HsTiaCfg.HstiaBias = HSTIABIAS_1P1;
+//   hsrtia_cal.HsTiaCfg.HstiaCtia = config.CtiaSel;
+//   hsrtia_cal.HsTiaCfg.HstiaDeRload = HSTIADERLOAD_OPEN;
+//   hsrtia_cal.HsTiaCfg.HstiaDeRtia = HSTIADERTIA_OPEN;
+//   hsrtia_cal.HsTiaCfg.HstiaRtiaSel = config.HstiaRtiaSel;
+//   hsrtia_cal.SysClkFreq = config.SysClkFreq;
+
+//   // 2. Handle Sweep Mode
+//   if (config.SweepCfg.SweepEn == bTRUE) {
+//     uint32_t i;
+//     config.SweepCfg.SweepIndex = 0; // Reset index
+//     hsrtia_cal.fFreq = config.SweepCfg.SweepStart;
+
+//     dbgInfo("--- Starting HSRTIA Calibration Sweep ---");
+
+//     for (i = 0; i < config.SweepCfg.SweepPoints; i++) {
+//       // Step A: Get Optimal Parameters for this Frequency
+//       freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
+
+//       // Step B: Configure Hardware (Clocks & Power Mode)
+//       if (freq_params.HighPwrMode == bTRUE) {
+//         hsrtia_cal.AdcClkFreq = 32000000.0;
+//         hsrtia_cal.SysClkFreq = 32000000.0;
+//         AD5940_HPModeEn(bTRUE);
+//       } else {
+//         hsrtia_cal.AdcClkFreq = 16000000.0;
+//         hsrtia_cal.SysClkFreq = 16000000.0;
+//         AD5940_HPModeEn(bFALSE);
+//       }
+
+//       // Step C: Update Filter Settings
+//       hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
+//       hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
+//       hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
+//       hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
+
+//       // Step D: Perform Measurement
+//       // Hardware is now set up correctly for fFreq
+//       AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCalTable[i]);
+
+//       // Step E: Calculate Next Frequency
+//       AD5940_SweepNext(&config.SweepCfg, &hsrtia_cal.fFreq);
+//     }
+
+//     // --- DEBUG PRINT: Calibration Table ---
+//     dbgInfo("\n--- RTIA Calibration Table ---");
+//     dbgInfo("Index | Frequency (Hz) | Magnitude (Ohm) | Phase (Rad)");
+    
+//     // Recreate sweep just for printing valid frequencies
+//     float print_freq = config.SweepCfg.SweepStart;
+//     SoftSweepCfg_Type print_sweep = config.SweepCfg;
+//     print_sweep.SweepIndex = 0;
+
+//     for(i=0; i<config.SweepCfg.SweepPoints; i++) {
+//          char buffer[128];
+//          sprintf(buffer, "%3d   | %10.2f     | %10.4f      | %10.4f", 
+//                  i, print_freq, config.RtiaCalTable[i][0], config.RtiaCalTable[i][1]);
+//          dbgInfo(String(buffer));
+//          AD5940_SweepNext(&print_sweep, &print_freq);
+//     }
+//     dbgInfo("------------------------------------------------------\n");
+
+//     // Reset Sweep State
+//     config.SweepCfg.SweepIndex = 0;
+//     config.RtiaCurrValue[0] = config.RtiaCalTable[0][0];
+//     config.RtiaCurrValue[1] = config.RtiaCalTable[0][1];
+//   } 
+//   // 3. Handle Single Frequency Mode
+//   else {
+//     hsrtia_cal.fFreq = config.SinFreq;
+
+//     // Even for single point, we must configure hardware correctly
+//     freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
+
+//     if (freq_params.HighPwrMode == bTRUE) {
+//         hsrtia_cal.AdcClkFreq = 32000000.0;
+//         hsrtia_cal.SysClkFreq = 32000000.0;
+//         AD5940_HPModeEn(bTRUE);
+//     } else {
+//         hsrtia_cal.AdcClkFreq = 16000000.0;
+//         hsrtia_cal.SysClkFreq = 16000000.0;
+//         AD5940_HPModeEn(bFALSE);
+//     }
+    
+//     hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
+//     hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
+//     hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
+//     hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
+
+//     AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCurrValue);
+    
+//     dbgInfo(String("Single Freq Cal: ") + String(hsrtia_cal.fFreq) + 
+//             String(" Hz, Mag: ") + String(config.RtiaCurrValue[0]) + 
+//             String(" Ohm, Phase: ") + String(config.RtiaCurrValue[1]));
+//   }
+
+//   return AD5940ERR_OK;
+// }
 
 // Function to handle interrupts
 void EChem_Imp::ISR(void) {
@@ -748,7 +799,7 @@ AD5940Err EChem_Imp::updateRegisters(void) {
   /* Need to set new frequency and set power mode */
   if (config.SweepCfg.SweepEn) {
     AD5940_WGFreqCtrlS(config.SweepNextFreq, config.SysClkFreq);
-    configureFrequencySpecifics(config.SweepNextFreq);
+    //configureFrequencySpecifics(config.SweepNextFreq);
   }
 
   return AD5940ERR_OK;
