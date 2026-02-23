@@ -3,6 +3,7 @@
 #include "HWConfig/constants.h"
 #include "drivers/ad5940_hal.h"
 #include "power/power.h"
+#include "power/heater_task.h"
 #include "sensors/Sensor.h"
 #include "util/debug_log.h"
 
@@ -146,7 +147,10 @@ bool EChem_Imp::start() {
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
-  
+  power::suspendHeating();
+  while (!power::isHeaterOff()){
+    vTaskDelay(1);
+  }
   //setBioZChannel(1);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
@@ -189,6 +193,7 @@ bool EChem_Imp::stop() {
   Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
+  power::resumeHeating();
   return true;
 }
 
@@ -486,6 +491,7 @@ AD5940Err EChem_Imp::generateInitSequence(void) {
 
 /* Generate measurement sequence for CA. This runs indefinitely until test is ended. */
 AD5940Err EChem_Imp::generateMeasSequence(void) {
+  dbgInfo("Measurement");
   AD5940Err error = AD5940ERR_OK;
   uint32_t const* pSeqCmd;
   uint32_t SeqLen;

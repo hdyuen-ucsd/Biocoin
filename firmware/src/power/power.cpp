@@ -19,7 +19,7 @@ void power::init() {
   powerOffPeripherials();   // Default states
   enableDCDC();             // Turn on the dc-dc converter to save power
   startHeartbeatTask();     // Start the LED heartbeat
-  //startHeaterTask();        // Start the Heater PWM
+  startHeaterTask();        // Start the Heater PWM
   
         // heater 1 imp measurement
 }
