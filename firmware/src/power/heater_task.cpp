@@ -10,7 +10,7 @@ namespace power {
     volatile bool heatingSuspended = false;
     volatile bool heaterOff = false;
     static volatile uint32_t resumeTimeMs = 0;
-    static const uint32_t kResumeDelayMs = 100;   // 3–10ms usually enough
+    static const uint32_t kResumeDelayMs = 1000;  
 
     void startHeaterTask() {
       xTaskCreate(heaterTask,   // Task function
