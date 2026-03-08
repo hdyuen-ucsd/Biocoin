@@ -49,7 +49,7 @@ EChem_Imp::EChem_Imp() {
   config.ADCSinc3Osr = ADCSINC3OSR_4;
   config.ADCSinc2Osr = ADCSINC2OSR_22; // adjust these as needed if really fast or really slow sampling is required.
                                        // Power vs. SNR tradeoff.
-  config.HstiaRtiaSel = HSTIARTIA_200;
+  config.HstiaRtiaSel = HSTIARTIA_1K;
 
   config.CtiaSel = 32;
   config.ExcitBufGain = EXCITBUFGAIN_2;
@@ -818,7 +818,10 @@ void EChem_Imp::printResult(void) {
   const float freq = (config.SweepCfg.SweepEn == bTRUE) ? config.FreqofData : config.SinFreq;
 
   forEach([freq](const fImpPol_Type& imp) {
-    Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
-                  imp.Phase * 180 / MATH_PI);
+    // Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
+    //               imp.Phase * 180 / MATH_PI);
+
+    Serial.printf("%.5f", imp.Magnitude);
+    Serial.println();
   });
 }

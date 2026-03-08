@@ -43,7 +43,7 @@ namespace power {
         }
         heaterOff = false;
         //dbgInfo("Heater on");
-        digitalWrite(PIN_HEATER_EN2, HIGH);
+        digitalWrite(PIN_HEATER_EN2, LOW);
         digitalWrite(PIN_HEATER_EN1, HIGH);
         vTaskDelay(pdMS_TO_TICKS(kHeaterOn));
         //dbgInfo("Heater off");

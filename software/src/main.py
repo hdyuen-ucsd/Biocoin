@@ -146,12 +146,12 @@ async def main():
         # Run an impedance measurement
         Imp = Impedance(device)
         await Imp.configure(
-            sampling_interval=2.0,
-            processing_interval=2.0,
+            sampling_interval=0.1,
+            processing_interval=1.0,
             max_current=100.0,
             IMP_4wire=False,
             AC_coupled=False,
-            E_ac=800.0,
+            E_ac=8.0,
             frequency=100.0,
             sweepEnabled=False,
             sweepStopFreq=100000.0,

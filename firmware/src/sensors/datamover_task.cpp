@@ -41,8 +41,9 @@ void sensor::dataMoverTask(void* pvParameters) {
     if (pActiveSensor != nullptr) {
       pActiveSensor->ISR();
       #ifdef DEBUG_MODE
-        pActiveSensor->printResult();
+        //pActiveSensor->printResult();
       #endif
+      pActiveSensor->printResult();
       queueDataForTX(pActiveSensor->getNumBytesAvailable());       // Get the data and queue it up for transmitting
     }
     
