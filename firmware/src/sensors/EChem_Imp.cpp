@@ -49,7 +49,7 @@ EChem_Imp::EChem_Imp() {
   config.ADCSinc3Osr = ADCSINC3OSR_4;
   config.ADCSinc2Osr = ADCSINC2OSR_22; // adjust these as needed if really fast or really slow sampling is required.
                                        // Power vs. SNR tradeoff.
-  config.HstiaRtiaSel = HSTIARTIA_200;
+  config.HstiaRtiaSel = HSTIARTIA_1K;
 
   config.CtiaSel = 32;
   config.ExcitBufGain = EXCITBUFGAIN_2;
@@ -151,7 +151,9 @@ bool EChem_Imp::start() {
   while (!power::isHeaterOff()){
     vTaskDelay(1);
   }
-  //setBioZChannel(1);          // Set MUX to BioZ channel1 for Z1
+  // digitalWrite(PIN_MUX_A0_BIOZ, HIGH);
+  // digitalWrite(PIN_MUX_A1_BIOZ, LOW);
+  setBioZChannel(2);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
@@ -194,6 +196,7 @@ bool EChem_Imp::stop() {
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
   power::resumeHeating();
+  setBioZChannel(0);
   return true;
 }
 
@@ -815,7 +818,10 @@ void EChem_Imp::printResult(void) {
   const float freq = (config.SweepCfg.SweepEn == bTRUE) ? config.FreqofData : config.SinFreq;
 
   forEach([freq](const fImpPol_Type& imp) {
-    Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
-                  imp.Phase * 180 / MATH_PI);
+    // Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
+    //               imp.Phase * 180 / MATH_PI);
+
+    Serial.printf("%.5f", imp.Magnitude);
+    Serial.println();
   });
 }
