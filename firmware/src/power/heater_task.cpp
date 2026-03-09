@@ -42,6 +42,8 @@ namespace power {
             continue;
         }
         heaterOff = false;
+        kHeaterOn = (kHeaterDutyCycle * kHeaterCyclePeriod) / 100;
+        kHeaterOff = kHeaterCyclePeriod - kHeaterOn;
         //dbgInfo("Heater on");
         digitalWrite(PIN_HEATER_EN2, LOW);
         digitalWrite(PIN_HEATER_EN1, HIGH);

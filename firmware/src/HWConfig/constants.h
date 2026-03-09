@@ -37,8 +37,10 @@ namespace battery {
 namespace power {
   constexpr uint32_t kBlinkOn = 50;                     // Heartbeat LED on time [ms]
   constexpr uint32_t kBlinkOff = (5*60*1000) - 50; //9950;                  // Heartbeat LED off time [ms]
+  constexpr uint32_t kHeaterCyclePeriod = 5000;
   constexpr uint32_t kHeaterOn = 2500;
   constexpr uint32_t kHeaterOff = 2500;
+  constexpr uint32_t kHeaterDutyCycle = 50; 
 } // namespace power
 
 namespace bluetooth {
@@ -80,6 +82,9 @@ namespace bluetooth {
 
   const uint8_t kUUIDChrPinCtrl[] = {0xAA, 0x93, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15,
                                           0xDE, 0xEF, 0x12, 0x12, 0x2C, 0x15, 0x00, 0x00};
+
+  const uint8_t kUUIDChrHeaterCtrl[] = {0xAA, 0x93, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15,
+                                          0xDE, 0xEF, 0x12, 0x12, 0x2D, 0x15, 0x00, 0x00};
 } // namespace bluetooth
 
 namespace sensor {

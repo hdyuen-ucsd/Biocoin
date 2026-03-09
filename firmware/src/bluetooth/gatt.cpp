@@ -18,6 +18,7 @@ namespace bluetooth {
   BLECharacteristic chrSensorParams(kUUIDChrSensorParams);
   BLECharacteristic chrPinConfig(kUUIDChrPinConfig);
   BLECharacteristic chrPinCtrl(kUUIDChrPinCtrl);
+  BLECharacteristic chrHeaterCtrl(kUUIDChrHeaterCtrl);
   
 } // namespace bluetooth
 
@@ -77,6 +78,13 @@ void bluetooth::initGatt() {
   chrPinCtrl.begin();
   chrPinCtrl.setWriteCallback(onControlPins);
 
+  // Heater Control
+  chrHeaterCtrl.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
+  chrHeaterCtrl.setPermission(SECMODE_OPEN, SECMODE_OPEN);
+  chrHeaterCtrl.setFixedLen(1);
+  chrHeaterCtrl.begin();
+  chrHeaterCtrl.setWriteCallback(onHeaterControl);
+
 }
 
 template <typename T>
@@ -119,6 +127,13 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
   int mode = data[1];
   dbgInfo("Setting pin " + String(pinNumber) + " to mode " + String(mode));
   digitalWrite(pinNumber, mode);
+}
+
+void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
+  uint8_t dutyCycle = data[0];
+  dbgInfo("Received Heater Control Command, duty cycle = " + String(dutyCycle) + "%");
+  if (dutyCycle > 100) dutyCycle = 100;
+  power::setHeaterDutyCycle(dutyCycle);
 }
 
 // void bluetooth::startMuxChannel(uint8_t channel) {
