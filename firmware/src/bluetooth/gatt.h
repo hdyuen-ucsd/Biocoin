@@ -28,6 +28,7 @@ namespace bluetooth {
   void sendSensorData(uint16_t conn_hdl, uint32_t *pData, uint32_t DataCount);
   void onConfigPins(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len);
   void onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len);
+  void onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len);
 
 } // namespace bluetooth
 
