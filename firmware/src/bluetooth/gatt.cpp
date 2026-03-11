@@ -81,7 +81,7 @@ void bluetooth::initGatt() {
   // Heater Control
   chrHeaterCtrl.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
   chrHeaterCtrl.setPermission(SECMODE_OPEN, SECMODE_OPEN);
-  chrHeaterCtrl.setFixedLen(1);
+  chrHeaterCtrl.setFixedLen(2);
   chrHeaterCtrl.begin();
   chrHeaterCtrl.setWriteCallback(onHeaterControl);
 
@@ -131,6 +131,7 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
 
 void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
   uint8_t dutyCycle = data[0];
+  uint8_t heaterChannel = data[1];
   dbgInfo("Received Heater Control Command, duty cycle = " + String(dutyCycle) + "%");
   if (dutyCycle > 100) dutyCycle = 100;
   power::setHeaterDutyCycle(dutyCycle);

@@ -151,9 +151,6 @@ bool EChem_Imp::start() {
   while (!power::isHeaterOff()){
     vTaskDelay(1);
   }
-  // digitalWrite(PIN_MUX_A0_BIOZ, HIGH);
-  // digitalWrite(PIN_MUX_A1_BIOZ, LOW);
-  setBioZChannel(2);          // Set MUX to BioZ channel1 for Z1
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
@@ -196,7 +193,6 @@ bool EChem_Imp::stop() {
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
   power::resumeHeating();
-  setBioZChannel(0);
   return true;
 }
 
