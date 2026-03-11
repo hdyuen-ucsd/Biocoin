@@ -5,6 +5,7 @@
 #include "util/debug_log.h"
 #include "sensors/SensorManager.h"
 #include "storage/storage.h"
+#include "power/heater_task.h"
 
 #include <bluefruit.h>
 
@@ -130,6 +131,10 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
 }
 
 void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
+  if (len < 1) {
+    dbgWarn("Heater control command received with insufficient data");
+    return;
+  }
   uint8_t dutyCycle = data[0];
   uint8_t heaterChannel = data[1];
   dbgInfo("Received Heater Control Command, duty cycle = " + String(dutyCycle) + "%");

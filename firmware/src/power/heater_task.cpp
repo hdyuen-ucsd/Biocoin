@@ -5,12 +5,16 @@
 
 #include <Arduino.h>
 
+
 namespace power {
     static void heaterTask(void* pvParameters);
     volatile bool heatingSuspended = false;
     volatile bool heaterOff = false;
     static volatile uint32_t resumeTimeMs = 0;
-    static const uint32_t kResumeDelayMs = 1000;  
+    static const uint32_t kResumeDelayMs = 1000;
+    static volatile uint8_t kHeaterDutyCycle = 50; // Default duty cycle percentage (0-100)  
+    static uint32_t kHeaterOn;
+    static uint32_t kHeaterOff;
 
     void startHeaterTask() {
       xTaskCreate(heaterTask,   // Task function
@@ -44,6 +48,20 @@ namespace power {
         heaterOff = false;
         kHeaterOn = (kHeaterDutyCycle * kHeaterCyclePeriod) / 100;
         kHeaterOff = kHeaterCyclePeriod - kHeaterOn;
+
+        if (kHeaterOn == 0) {
+            digitalWrite(PIN_HEATER_EN1, LOW);
+            digitalWrite(PIN_HEATER_EN2, LOW);
+            vTaskDelay(pdMS_TO_TICKS(kHeaterCyclePeriod));
+            continue;
+        }
+
+        if (kHeaterOff == 0) {
+            digitalWrite(PIN_HEATER_EN1, HIGH);
+            digitalWrite(PIN_HEATER_EN2, LOW);
+            vTaskDelay(pdMS_TO_TICKS(kHeaterCyclePeriod));
+            continue;
+        }
         //dbgInfo("Heater on");
         digitalWrite(PIN_HEATER_EN2, LOW);
         digitalWrite(PIN_HEATER_EN1, HIGH);
@@ -71,5 +89,16 @@ namespace power {
     bool isHeaterOff()
     {
       return heaterOff;
+    }
+
+    void setHeaterDutyCycle(uint8_t dutyCycle)
+    {
+      if (dutyCycle > 100) dutyCycle = 100;
+
+      if (kHeaterDutyCycle != dutyCycle)
+      {
+          kHeaterDutyCycle = dutyCycle;
+          dbgInfo("Heater duty cycle set to " + String(dutyCycle) + "%");
+      }
     }
 }

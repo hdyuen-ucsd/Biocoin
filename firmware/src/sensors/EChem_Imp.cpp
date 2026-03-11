@@ -814,10 +814,10 @@ void EChem_Imp::printResult(void) {
   const float freq = (config.SweepCfg.SweepEn == bTRUE) ? config.FreqofData : config.SinFreq;
 
   forEach([freq](const fImpPol_Type& imp) {
-    // Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
-    //               imp.Phase * 180 / MATH_PI);
+    Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
+                  imp.Phase * 180 / MATH_PI);
 
-    Serial.printf("%.5f", imp.Magnitude);
-    Serial.println();
+    // Serial.printf("%.5f", imp.Magnitude);
+    // Serial.println();
   });
 }
