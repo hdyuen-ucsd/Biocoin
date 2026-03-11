@@ -37,7 +37,7 @@ namespace battery {
 namespace power {
   constexpr uint32_t kBlinkOn = 50;                     // Heartbeat LED on time [ms]
   constexpr uint32_t kBlinkOff = (5*60*1000) - 50; //9950;                  // Heartbeat LED off time [ms]
-  constexpr uint32_t kHeaterCyclePeriod = 5000;
+  constexpr uint32_t kHeaterCyclePeriod = 2500;
   // constexpr uint32_t kHeaterOn = 2500;
   // constexpr uint32_t kHeaterOff = 2500;
   // constexpr uint32_t kHeaterDutyCycle = 50; 
