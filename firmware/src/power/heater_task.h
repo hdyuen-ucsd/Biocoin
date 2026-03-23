@@ -6,7 +6,7 @@ namespace power {
   void suspendHeating();
   void resumeHeating();
   bool isHeaterOff();
-  void setHeaterDutyCycle(uint8_t dutyCycle);
+  void setHeaterDutyCycle(uint8_t dutyCycle, uint8_t heaterChannel);
   extern volatile bool heatingSuspended;
   extern volatile bool heaterOff;
   

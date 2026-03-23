@@ -139,7 +139,7 @@ void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uin
   uint8_t heaterChannel = data[1];
   dbgInfo("Received Heater Control Command, duty cycle = " + String(dutyCycle) + "%");
   if (dutyCycle > 100) dutyCycle = 100;
-  power::setHeaterDutyCycle(dutyCycle);
+  power::setHeaterDutyCycle(dutyCycle, heaterChannel);
 }
 
 // void bluetooth::startMuxChannel(uint8_t channel) {

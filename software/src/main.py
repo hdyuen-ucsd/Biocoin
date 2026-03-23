@@ -157,7 +157,7 @@ async def main():
             sweepStopFreq=100000.0,
             sweepPoints=3,
             sweepLog=True)
-        Imp_data = await Imp.run(duration=10)
+        Imp_data = await Imp.run(duration=100)
         logging.info(f'Imp Data:\n {Imp_data}')
 
         # logging.info('Saving Imp data to CSV file...')
