@@ -9,6 +9,7 @@
 #include "sensors/EChem_DPV.h"
 #include "sensors/EChem_SWV.h"
 #include "sensors/EChem_Imp.h"
+#include "sensors/EChem_BioZ.h"
 #include "sensors/EChem_OCP.h"
 #include "sensors/EChem_Temp.h"
 #include "sensors/datamover_task.h"
@@ -47,6 +48,8 @@ std::unique_ptr<Sensor> sensor::createSensor(sensor::SensorType type) {
     return std::unique_ptr<Sensor>(new sensor::EChem_SWV());
   case SensorType::IMP:
     return std::unique_ptr<Sensor>(new sensor::EChem_Imp());
+  case SensorType::BIOZ:
+    return std::unique_ptr<Sensor>(new sensor::EChem_BioZ());
   case SensorType::OCP:
     return std::unique_ptr<Sensor>(new sensor::EChem_OCP());
   case SensorType::TEMP:

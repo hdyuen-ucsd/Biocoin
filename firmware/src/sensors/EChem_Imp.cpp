@@ -144,13 +144,14 @@ bool EChem_Imp::loadParameters(uint8_t* data, uint16_t len) {
 }
 
 bool EChem_Imp::start() {
+  double startTime = millis();
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
-  power::suspendHeating();
-  while (!power::isHeaterOff()){
-    vTaskDelay(1);
-  }
+  // power::suspendHeating();
+  // while (!power::isHeaterOff()){
+  //   vTaskDelay(1);
+  // }
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
@@ -158,6 +159,8 @@ bool EChem_Imp::start() {
   // Comment out when using dynamic frequency parameters
   configureWaveformParameters(); // Define parameters for the measurement
   
+  double measurementTime = millis() - startTime;
+  dbgInfo(String("Time taken for AD5940 initialization and configuration: ") + String(measurementTime) + String(" ms"));
   setupMeasurement();            // Initialize measurement sequence
   
   if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
@@ -177,10 +180,13 @@ bool EChem_Imp::start() {
 
   Stop_AD5940_SPI(); // Once the test has started, turn off SPI to reduce power
   setRunning();
+  double endTime = millis();
+  dbgInfo(String("Total time taken to start measurement: ") + String(endTime - startTime) + String(" ms"));
   return true;
 }
 
 bool EChem_Imp::stop() {
+  double startTime = millis();
   if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
     return false;             /* Wakeup Failed */
   /* Start Wupt right now */
@@ -190,9 +196,13 @@ bool EChem_Imp::stop() {
   AD5940_WUPTCtrl(bFALSE);
   AD5940_ShutDownS();
   Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
+  double peripheralOffTime = millis() - startTime;
+  dbgInfo(String("Time taken to power off peripherals and stop measurement: ") + String(peripheralOffTime) + String(" ms"));
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
-  power::resumeHeating();
+  //power::resumeHeating();
+  double endTime = millis();
+  dbgInfo(String("Total time taken to stop measurement: ") + String(endTime - startTime) + String(" ms"));
   return true;
 }
 
