@@ -74,6 +74,8 @@ namespace sensor {
     // Control functions
     bool start(void);
     bool stop(void);
+    bool globalStart(void);
+    bool globalStop(void);
     bool loadParameters(uint8_t* data, uint16_t len);
 
     // Interrupt service routine

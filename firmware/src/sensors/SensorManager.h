@@ -22,6 +22,8 @@ namespace sensor {
   enum class SensorCmd : uint8_t {
     START = 0x01,
     STOP = 0xFF,
+    GLOBAL_START = 0x11,
+    GLOBAL_STOP = 0xEE   
   };
 
   enum class TestState : uint8_t { NOT_RUNNING = 0x00, INVALID_PARAMETERS, RUNNING, ERROR, CURRENT_LIMIT_EXCEEDED };

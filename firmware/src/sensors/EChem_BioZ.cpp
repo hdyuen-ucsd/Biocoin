@@ -144,14 +144,19 @@ bool EChem_BioZ::loadParameters(uint8_t* data, uint16_t len) {
 }
 
 bool EChem_BioZ::start() {
-  double startTime = millis();
+  dbgInfo("Regular start");
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
-  // power::suspendHeating();
-  // while (!power::isHeaterOff()){
-  //   vTaskDelay(1);
-  // }
+  // turns heater off if a coil channel is being used for measurement
+  if (digitalRead(PIN_MUX_A1_BIOZ) == HIGH) {
+    dbgInfo("Suspending heating to protect the coil during measurement...");
+    power::suspendHeating();
+    while (!power::isHeaterOff()){
+      vTaskDelay(1);
+    }
+  } 
+  
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
   initAD5940();                  // Initialize the AD5940
@@ -159,8 +164,6 @@ bool EChem_BioZ::start() {
   // Comment out when using dynamic frequency parameters
   configureWaveformParameters(); // Define parameters for the measurement
   
-  double measurementTime = millis() - startTime;
-  dbgInfo(String("Time taken for AD5940 initialization and configuration: ") + String(measurementTime) + String(" ms"));
   setupMeasurement();            // Initialize measurement sequence
   
   if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
@@ -180,13 +183,11 @@ bool EChem_BioZ::start() {
 
   Stop_AD5940_SPI(); // Once the test has started, turn off SPI to reduce power
   setRunning();
-  double endTime = millis();
-  dbgInfo(String("Total time taken to start measurement: ") + String(endTime - startTime) + String(" ms"));
   return true;
 }
 
 bool EChem_BioZ::stop() {
-  double startTime = millis();
+  dbgInfo("Regular stop");
   if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
     return false;             /* Wakeup Failed */
   /* Start Wupt right now */
@@ -196,13 +197,64 @@ bool EChem_BioZ::stop() {
   AD5940_WUPTCtrl(bFALSE);
   AD5940_ShutDownS();
   Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
-  double peripheralOffTime = millis() - startTime;
-  dbgInfo(String("Time taken to power off peripherals and stop measurement: ") + String(peripheralOffTime) + String(" ms"));
+  power::powerOffPeripherials(); // Shut down the test
+  setStopped();
+  power::resumeHeating();
+  return true;
+}
+
+bool EChem_BioZ::globalStart() {
+  dbgInfo("Global start");
+  if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
+
+  clear();                       // Clear the data queue
+  // power::suspendHeating();
+  // while (!power::isHeaterOff()){
+  //   vTaskDelay(1);
+  // }
+  power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
+  Start_AD5940_SPI();            // Initialize SPI
+  initAD5940();                  // Initialize the AD5940
+
+  // Comment out when using dynamic frequency parameters
+  configureWaveformParameters(); // Define parameters for the measurement
+  
+  setupMeasurement();            // Initialize measurement sequence
+  
+  if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
+    return false;             /* Wakeup Failed */
+
+  /* Configure Wakeup Timer*/
+  // configure to trigger above sequence periodically to measure data.
+  WUPTCfg_Type wupt_cfg;
+  wupt_cfg.WuptEn = bTRUE;
+  wupt_cfg.WuptEndSeq = WUPTENDSEQ_A;
+  wupt_cfg.WuptOrder[0] = SEQID_0;
+  wupt_cfg.SeqxSleepTime[SEQID_0] = 1; //  minimum value is 1 (2x 32kHz clock). Do not set it to zero.
+  wupt_cfg.SeqxWakeupTime[SEQID_0] = (uint32_t)(LFOSCFreq * config.SamplingInterval) - 2 - 1;
+  AD5940_WUPTCfg(&wupt_cfg); // will enable Wakeup timer, measurement begins here
+  AD5940_EnterSleepS(); // Enter Hibernate now otherwise it won't start sleeping until after the first interrupt period
+  config.FifoDataCount = 0; /* restart */
+
+  Stop_AD5940_SPI(); // Once the test has started, turn off SPI to reduce power
+  setRunning();
+  return true;
+}
+
+bool EChem_BioZ::globalStop() {
+  dbgInfo("Global stop");
+  if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
+    return false;             /* Wakeup Failed */
+  /* Start Wupt right now */
+  AD5940_WUPTCtrl(bFALSE);
+  /* There is chance this operation will fail because sequencer could put AFE back
+    to hibernate mode just after waking up. Use STOPSYNC is better. */
+  AD5940_WUPTCtrl(bFALSE);
+  AD5940_ShutDownS();
+  Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
   //power::resumeHeating();
-  double endTime = millis();
-  dbgInfo(String("Total time taken to stop measurement: ") + String(endTime - startTime) + String(" ms"));
   return true;
 }
 

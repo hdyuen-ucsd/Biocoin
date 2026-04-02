@@ -43,7 +43,7 @@ namespace power {
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN1, LOW);
-          vTaskDelay(pdMS_TO_TICKS(1500));
+          vTaskDelay(pdMS_TO_TICKS(100));
           heaterOff = true;
           continue;
         }
@@ -86,7 +86,7 @@ namespace power {
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN2, LOW);
-          vTaskDelay(pdMS_TO_TICKS(1500));
+          vTaskDelay(pdMS_TO_TICKS(100));
           heaterOff = true;
           continue;
         }

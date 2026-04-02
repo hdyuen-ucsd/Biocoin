@@ -16,6 +16,8 @@ namespace sensor {
     // Standard control interface
     virtual bool start() = 0;
     virtual bool stop() = 0;
+    virtual bool globalStart() { return false; } // Override if sensor supports global start
+    virtual bool globalStop() { return false; }  // Override if sensor supports global stop
     virtual bool loadParameters(uint8_t* data, uint16_t len) = 0;
 
     // Interrupt service routine

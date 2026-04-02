@@ -120,6 +120,23 @@ bool sensor::controlCommand(uint8_t* data, uint16_t len) {
     queueDataForTX(0); // Push out any remaining data in the queue
     updateStatus(TestState::NOT_RUNNING);
     break;
+  case SensorCmd::GLOBAL_START:
+    if (!pActiveSensor->globalStart()) {
+      updateStatus(TestState::ERROR);
+      return false;
+    }
+    if (activeSensorID != SensorType::IONTOPHORESIS) enableAFEInterrupt(interruptHandler);
+    updateStatus(TestState::RUNNING);
+    break;
+  case SensorCmd::GLOBAL_STOP:
+    if (!pActiveSensor->globalStop()) {
+      updateStatus(TestState::ERROR);
+      return false;
+    }
+    disableAFEInterrupt();
+    queueDataForTX(0); // Push out any remaining data in the queue
+    updateStatus(TestState::NOT_RUNNING);
+    break;
   default: // Unknown command
     dbgError(String("Unknown control command: ") + data[0]);
     updateStatus(TestState::INVALID_PARAMETERS);
