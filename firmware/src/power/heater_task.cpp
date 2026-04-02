@@ -11,8 +11,9 @@ namespace power {
     static void heaterTask2(void* pvParameters);
     volatile bool heatingSuspended = false;
     volatile bool heaterOff = false;
+    static volatile uint32_t heaterOffDelayMs = 50;
     static volatile uint32_t resumeTimeMs = 0;
-    static const uint32_t kResumeDelayMs = 1000;
+    static const uint32_t kResumeDelayMs = 50;
     static volatile uint8_t kHeaterDutyCycle1 = 50; // Default duty cycle percentage (0-100)  
     static volatile uint8_t kHeaterDutyCycle2 = 50; // Default duty cycle percentage (0-100)  
     static uint32_t kHeaterOn1;
@@ -43,7 +44,7 @@ namespace power {
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN1, LOW);
-          vTaskDelay(pdMS_TO_TICKS(100));
+          vTaskDelay(pdMS_TO_TICKS(heaterOffDelayMs));
           heaterOff = true;
           continue;
         }
@@ -86,8 +87,7 @@ namespace power {
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN2, LOW);
-          vTaskDelay(pdMS_TO_TICKS(100));
-          heaterOff = true;
+          vTaskDelay(pdMS_TO_TICKS(heaterOffDelayMs));          heaterOff = true;
           continue;
         }
         if ((millis() - resumeTimeMs) < kResumeDelayMs)

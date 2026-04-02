@@ -126,6 +126,13 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
   dbgInfo("Received Pin Control");
   int pinNumber = data[0];
   int mode = data[1];
+  if (pinNumber == PIN_MUX_A1_BIOZ && mode == HIGH) {
+    dbgInfo("Suspending heating to protect the coil during 0`                               measurement...");
+    power::suspendHeating();
+    while (!power::isHeaterOff()){
+      vTaskDelay(1);
+    }
+  }
   dbgInfo("Setting pin " + String(pinNumber) + " to mode " + String(mode));
   digitalWrite(pinNumber, mode);
 }

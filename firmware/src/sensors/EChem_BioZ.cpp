@@ -148,14 +148,6 @@ bool EChem_BioZ::start() {
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue
-  // turns heater off if a coil channel is being used for measurement
-  if (digitalRead(PIN_MUX_A1_BIOZ) == HIGH) {
-    dbgInfo("Suspending heating to protect the coil during measurement...");
-    power::suspendHeating();
-    while (!power::isHeaterOff()){
-      vTaskDelay(1);
-    }
-  } 
   
   power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
   Start_AD5940_SPI();            // Initialize SPI
@@ -199,6 +191,8 @@ bool EChem_BioZ::stop() {
   Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
   power::powerOffPeripherials(); // Shut down the test
   setStopped();
+  // important to swap to non-heater channel before resuming heating
+  // done in powerOffPeripherials() at the moment, but if that changes, we need to ensure we are not powering the heater while the mux is set to the coil
   power::resumeHeating();
   return true;
 }
