@@ -9,7 +9,7 @@
 
 #include <bluefruit.h>
 
-
+volatile uint32_t lastAppCommTime = 0;
 
 namespace bluetooth {
   BLECharacteristic chrStatus(kUUIDChrStatus);
@@ -106,12 +106,9 @@ void bluetooth::onNameWrite(uint16_t, BLECharacteristic*, uint8_t* data, uint16_
 }
 
 void bluetooth::onSensorControl(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  dbgInfo("Received EChem Control Command");
+  lastAppCommTime = millis(); // Refresh watchdog
+  dbgInfo("Received Control Command");
   if (sensor::controlCommand(data, len)) clearQueue(TX_queue);
-  // dbgInfo("Received BioZ Control Command");
-  // uint8_t well = data[0];
-  // uint8_t command = data[1];
-  // command == 1 ? startMuxChannel(well) : stopMuxChannel(well);
 }
 
 void bluetooth::onConfigPins(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
@@ -138,13 +135,11 @@ void bluetooth::onControlPins(uint16_t, BLECharacteristic*, uint8_t* data, uint1
 }
 
 void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uint16_t len) {
-  if (len < 1) {
-    dbgWarn("Heater control command received with insufficient data");
-    return;
-  }
+  lastAppCommTime = millis(); // Refresh watchdog
+  if (len < 1) return;
   uint8_t dutyCycle = data[0];
   uint8_t heaterChannel = data[1];
-  dbgInfo("Received Heater Control Command, duty cycle = " + String(dutyCycle) + "%");
+  
   if (dutyCycle > 100) dutyCycle = 100;
   power::setHeaterDutyCycle(dutyCycle, heaterChannel);
 }
@@ -162,7 +157,7 @@ void bluetooth::onHeaterControl(uint16_t, BLECharacteristic*, uint8_t* data, uin
 // }
 
 void bluetooth::onSensorParameters(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  //Serial.println("Received Sensor Parameters");
+  lastAppCommTime = millis(); // Refresh watchdog
   sensor::loadParameters(data, len);
 }
 

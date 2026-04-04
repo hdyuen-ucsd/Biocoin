@@ -4,13 +4,15 @@
 #include "util/debug_log.h"
 
 #include <Arduino.h>
-
+extern volatile uint32_t lastAppCommTime;
+const uint32_t kWatchdogTimeoutMs = 120000;
 
 namespace power {
     static void heaterTask1(void* pvParameters);
     static void heaterTask2(void* pvParameters);
     volatile bool heatingSuspended = false;
     volatile bool heaterOff = false;
+    
     static volatile uint32_t heaterOffDelayMs = 50;
     static volatile uint32_t resumeTimeMs = 0;
     static const uint32_t kResumeDelayMs = 50;
@@ -40,7 +42,12 @@ namespace power {
 
     void heaterTask1(void* pvParameters) {
       while (true) {
-        // LED Heartbeat ON
+        if ((millis() - lastAppCommTime) > kWatchdogTimeoutMs) {
+            digitalWrite(PIN_HEATER_EN1, LOW);
+            heaterOff = true;
+            vTaskDelay(pdMS_TO_TICKS(1000)); // Idle for 1 sec before checking again
+            continue; 
+        }
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN1, LOW);
@@ -83,11 +90,17 @@ namespace power {
 
     void heaterTask2(void* pvParameters) {
       while (true) {
-        // LED Heartbeat ON
+        if ((millis() - lastAppCommTime) > kWatchdogTimeoutMs) {
+            digitalWrite(PIN_HEATER_EN2, LOW);
+            heaterOff = true;
+            vTaskDelay(pdMS_TO_TICKS(1000)); 
+            continue; 
+        }
         if (heatingSuspended){
           //dbgInfo("Heating suspended");
           digitalWrite(PIN_HEATER_EN2, LOW);
-          vTaskDelay(pdMS_TO_TICKS(heaterOffDelayMs));          heaterOff = true;
+          vTaskDelay(pdMS_TO_TICKS(heaterOffDelayMs));          
+          heaterOff = true;
           continue;
         }
         if ((millis() - resumeTimeMs) < kResumeDelayMs)

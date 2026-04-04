@@ -65,6 +65,15 @@ namespace sensor {
 
     BoolFlag IMP4WIRE;  // flag for 4-wire vs 2-wire Bio-Impedance
     BoolFlag ACcoupled;  // flag for AC vs DC coupling
+
+    // Inside BioZConfig_Type struct
+    float DualRtiaCal[2][2];  // Index 0: Coil (Mag, Phase), Index 1: SPE (Mag, Phase)
+    uint8_t target_mux;       // 0x00=SPE1, 0x01=SPE2, 0xFF=Both Coils
+    uint8_t num_averages;     // Number of averages to take
+    float coilFrequency;      // Target frequency for coils
+    float speFrequency;       // Target frequency for SPEs
+
+    
   } BioZConfig_Type;
 
   class EChem_BioZ : public Sensor, public SensorQueue<fImpPol_Type> {
@@ -73,17 +82,15 @@ namespace sensor {
 
     // Control functions
     bool start(void);
-    bool stop(void);
     bool globalStart(void);
+    bool stop(void);
+    void ISR(void);
     bool globalStop(void);
     bool loadParameters(uint8_t* data, uint16_t len);
 
-    // Interrupt service routine
-    void ISR(void);
 
     // Data processing and retrieval
     void printResult(void);
-    void processData(void);
     std::vector<uint8_t> getData(size_t num_items) override { return SensorQueue<fImpPol_Type>::popBytes(num_items); }
     size_t getNumBytesAvailable(void) const override { return SensorQueue<fImpPol_Type>::size(); }
 
@@ -101,6 +108,9 @@ namespace sensor {
 
     // Processing functions
     bool processAndStoreData(uint32_t* pData, uint32_t num_samples);
+
+    AD5940Err calibrateFrequency(float targetFreq, float* calDataOut);
+    fImpPol_Type takeAveragedMeasurement(uint8_t num_averages);
 
     BioZConfig_Type config;
 

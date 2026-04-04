@@ -180,3 +180,12 @@ void power::powerOffPeripherials() {
   digitalWrite(PIN_HEATER_EN2, LOW);
   
 }
+
+void power::setBioZMux(uint8_t target_mux) {
+  // target_mux: 0b00=SPE1, 0b01=SPE2, 0b10=Coil1, 0b11=Coil2
+  bool a0 = (target_mux & 0x01);
+  bool a1 = (target_mux & 0x02) >> 1;
+  
+  digitalWrite(PIN_MUX_A0_BIOZ, a0 ? HIGH : LOW);
+  digitalWrite(PIN_MUX_A1_BIOZ, a1 ? HIGH : LOW);
+}

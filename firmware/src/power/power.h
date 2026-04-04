@@ -16,6 +16,7 @@ namespace power {
   void powerOnTempSensor();
   void powerOnIontophoresis();
   void powerOffPeripherials();
+  void setBioZMux(uint8_t target_mux);
 
   
 } // namespace power

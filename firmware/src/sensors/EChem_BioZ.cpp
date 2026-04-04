@@ -1,27 +1,26 @@
 #include "sensors/EChem_BioZ.h"
-
 #include "HWConfig/constants.h"
 #include "drivers/ad5940_hal.h"
 #include "power/power.h"
 #include "power/heater_task.h"
 #include "sensors/Sensor.h"
+#include "sensors/SensorManager.h" // <-- ADD THIS LINE
 #include "util/debug_log.h"
+#include <cmath>
 
 using namespace sensor;
 
 // Structure for how parameters are passed down from the host
-struct BIOZ_PARAMETERS {
-  float samplingInterval;   //[s] how often the ADC samples by controlling the sleep time between sequences
-  float processingInterval; //[s] how often the interrupt triggers and thus, how often the MCU reads/processes the data
-  uint8_t IMP_4wire;        // flag indicating if running 4-wire (true) or 2-wire measurement (false)
-  uint8_t AC_coupled;       // flag indicating if measurement is AC coupled (true) or DC coupled (false)
-  float maxCurrent;
-  float Eac;                // [mv]
-  float frequency;          // [Hz] single frequency (or start frequency if sweeping)
-  uint8_t sweepEnabled;     // sweep (true), single frequency (false)
-  float sweepStopFreq;      // stop frequency
-  uint8_t sweepPoints;      // number of points
-  uint8_t sweepLog;         // logarithmic (true), linear (false)
+struct BIOZ_INIT_PARAMETERS {
+  float coilFrequency;      // [Hz]
+  float speFrequency;       // [Hz]
+} __attribute__((packed));
+
+// Struct 2: Sent continuously during the 8-second loop (6 bytes)
+struct BIOZ_MEAS_PARAMETERS {
+  uint8_t target_mux;       // 0x00=SPE1, 0x01=SPE2, 0xFF=Both Coils
+  uint8_t num_averages;     // 10 for Coils, 1 for SPE
+  float Eac;                // [mV]
 } __attribute__((packed));
 
 EChem_BioZ::EChem_BioZ() {
@@ -75,162 +74,130 @@ EChem_BioZ::EChem_BioZ() {
 }
 
 bool EChem_BioZ::loadParameters(uint8_t* data, uint16_t len) {
-  dbgInfo("Updating BIOZ parameters...");
-  if (len != sizeof(BIOZ_PARAMETERS)) { // Check to ensure the size is correct
-    dbgError(String("Incorrect payload size! Expected ") + String(sizeof(BIOZ_PARAMETERS)) + String(" but received ") +
-             String(len));
-    return false;
-  }
-
-  BIOZ_PARAMETERS params;
-  memcpy(&params, data, sizeof(params));
-
-  dbgInfo(String("\tSampling Interval [s]: ") + String(params.samplingInterval));
-  dbgInfo(String("\tProcessing Interval [s]: ") + String(params.processingInterval));
-  dbgInfo(String("\tMax Current [mA]: ") + String(params.maxCurrent));
-  dbgInfo(String("\t4-wire Measurement: ") + String(params.IMP_4wire ? "Enabled" : "Disabled"));
-  dbgInfo(String("\tAC-coupled Measurement: ") + String(params.AC_coupled ? "True" : "False"));
-  dbgInfo(String("\tEac Potential [mV]: ") + String(params.Eac));
-  dbgInfo(String("\tFrequency [Hz]: ") + String(params.frequency));
-  dbgInfo(String("\tSweep Enabled: ") + String(params.sweepEnabled ? "True" : "False"));
-  if (params.sweepEnabled) {
-    dbgInfo(String("\tSweep Stop Frequency [Hz]: ") + String(params.sweepStopFreq));
-    dbgInfo(String("\tSweep Points: ") + String(params.sweepPoints));
-    dbgInfo(String("\tSweep Logarithmic: ") + String(params.sweepLog ? "True" : "False"));
-  }
-  // Bounds/validity checking of parameters
-  if (params.processingInterval < params.samplingInterval) {
-    dbgError("Processing interval needs to be more than sampling interval.");
-    return false;
-  }
-
-  // The threshold to set when the interrupt triggers. Number of samples required to reach desired processing time is
-  // processing time divided by sampling interval
-  config.FifoThresh = (uint32_t)(4u * params.processingInterval / params.samplingInterval);
-  if (config.FifoThresh < 4u) config.FifoThresh = 4u;
-  config.FifoThresh &= ~0x3u; // Ensure it is a multiple of 4
-
-  config.SamplingInterval = params.samplingInterval;
-
-  config.IMP4WIRE = static_cast<BoolFlag>(params.IMP_4wire);   // Specify if 4-wire or 2-wire Impedance measurement
-  config.ACcoupled = static_cast<BoolFlag>(params.AC_coupled); // Specify if operating in an AC-coupled scenario
-                           
-  config.Eac = params.Eac;                                     // mV amplitude (peak)
-  config.DacVoltPP = config.Eac;  
-  config.SinFreq = params.frequency;                           // Hz
-
-  if (params.sweepEnabled) {
-    config.SweepCfg.SweepEn = bTRUE;
-    config.SweepCfg.SweepStart = params.frequency;            // start at the base frequency
-    config.SweepCfg.SweepStop = params.sweepStopFreq;
-    config.SweepCfg.SweepPoints = params.sweepPoints;
-    config.SweepCfg.SweepLog = params.sweepLog ? bTRUE : bFALSE;
-    config.SweepCfg.SweepIndex = 0;
+  
+  // --- Parse Initialization Parameters (8 bytes) ---
+  if (len == sizeof(BIOZ_INIT_PARAMETERS)) {
+    BIOZ_INIT_PARAMETERS initParams;
+    memcpy(&initParams, data, len);
     
-    // Initialize the sweep logic immediately
-    config.FreqofData = config.SweepCfg.SweepStart;
-    config.SweepCurrFreq = config.SweepCfg.SweepStart;
-    AD5940_SweepNext(&config.SweepCfg, &config.SweepNextFreq);
-  } else {
-    config.SweepCfg.SweepEn = bFALSE;
-    config.FreqofData = config.SinFreq; // Single point
+    config.coilFrequency = initParams.coilFrequency;
+    config.speFrequency = initParams.speFrequency;
+    
+    dbgInfo("Init Params Loaded: Coil=" + String(config.coilFrequency) + "Hz, SPE=" + String(config.speFrequency) + "Hz");
+    return true;
+  } 
+  
+  // --- Parse Measurement Parameters (6 bytes) ---
+  else if (len == sizeof(BIOZ_MEAS_PARAMETERS)) {
+    BIOZ_MEAS_PARAMETERS measParams;
+    memcpy(&measParams, data, len);
+
+    config.target_mux = measParams.target_mux;
+    config.num_averages = measParams.num_averages;
+    config.Eac = measParams.Eac;
+    config.DacVoltPP = config.Eac;  
+    
+    config.SweepCfg.SweepEn = bFALSE; 
+    config.bParaChanged = bTRUE; // Flag that we are ready to measure
+    dbgInfo("Meas Params Loaded: MUX=" + String(config.target_mux) + ", Averages=" + String(config.num_averages) + ", Eac=" + String(config.Eac) + "mV");
+    return true;
+  } 
+  
+  // --- Error Handling ---
+  else {
+    dbgError("Incorrect parameter payload size! Received " + String(len) + " bytes.");
+    return false;
   }
-
-  // Still need to use max_current to calculate the gain resistor
-  // config.LptiaRtiaSel = LPTIARTIA_10K;		// this sets the current range for the experiment
-
-  config.bParaChanged = bTRUE;
-  return true;
 }
 
 bool EChem_BioZ::start() {
-  dbgInfo("Regular start");
-  if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
-
-  clear();                       // Clear the data queue
+  if (!isRunning()) return false;
   
-  power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
-  Start_AD5940_SPI();            // Initialize SPI
-  initAD5940();                  // Initialize the AD5940
+  Start_AD5940_SPI();
+  if (AD5940_WakeUp(10) > 10) return false;
 
-  // Comment out when using dynamic frequency parameters
-  configureWaveformParameters(); // Define parameters for the measurement
-  
-  setupMeasurement();            // Initialize measurement sequence
-  
-  if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
-    return false;             /* Wakeup Failed */
+  uint32_t ampWord = (uint32_t)(config.Eac / 800.0f * 2047 + 0.5f);
+  AD5940_WriteReg(REG_AFE_WGAMPLITUDE, ampWord);
 
-  /* Configure Wakeup Timer*/
-  // configure to trigger above sequence periodically to measure data.
-  WUPTCfg_Type wupt_cfg;
-  wupt_cfg.WuptEn = bTRUE;
-  wupt_cfg.WuptEndSeq = WUPTENDSEQ_A;
-  wupt_cfg.WuptOrder[0] = SEQID_0;
-  wupt_cfg.SeqxSleepTime[SEQID_0] = 1; //  minimum value is 1 (2x 32kHz clock). Do not set it to zero.
-  wupt_cfg.SeqxWakeupTime[SEQID_0] = (uint32_t)(LFOSCFreq * config.SamplingInterval) - 2 - 1;
-  AD5940_WUPTCfg(&wupt_cfg); // will enable Wakeup timer, measurement begins here
-  AD5940_EnterSleepS(); // Enter Hibernate now otherwise it won't start sleeping until after the first interrupt period
-  config.FifoDataCount = 0; /* restart */
+  if (config.target_mux == 0xFF) {
+    // ==========================================
+    // COMBINED COIL MEASUREMENT (0xFF)
+    // ==========================================
+    
+    // 1. Safety Interlock: Suspend Heating
+    power::suspendHeating();
+    while (!power::isHeaterOff()) {
+        vTaskDelay(pdMS_TO_TICKS(1)); 
+    }
 
-  Stop_AD5940_SPI(); // Once the test has started, turn off SPI to reduce power
-  setRunning();
+    // 2. Setup AFE for Coils
+    AD5940_WGFreqCtrlS(config.coilFrequency, config.SysClkFreq);
+    config.SinFreq = config.coilFrequency;
+    config.RtiaCurrValue[0] = config.DualRtiaCal[0][0];
+    config.RtiaCurrValue[1] = config.DualRtiaCal[0][1];
+
+    // 3. Measure Coil 1
+    power::setBioZMux(0b10); // Coil 1
+    vTaskDelay(pdMS_TO_TICKS(5)); // MUX settling time
+    fImpPol_Type coil1_result = takeAveragedMeasurement(config.num_averages);
+    push(coil1_result);
+
+    // 4. Measure Coil 2
+    power::setBioZMux(0b11); // Coil 2
+    vTaskDelay(pdMS_TO_TICKS(50)); 
+    fImpPol_Type coil2_result = takeAveragedMeasurement(config.num_averages);
+    push(coil2_result);
+
+    // 5. Restore Safety and Heaters
+    power::setBioZMux(0b00); // Route MUX away from coils safely
+    vTaskDelay(pdMS_TO_TICKS(5)); 
+    power::resumeHeating();  // Re-engages PWM instantly
+
+  } else {
+    // ==========================================
+    // STANDARD SPE MEASUREMENT
+    // ==========================================
+    power::setBioZMux(config.target_mux);
+    AD5940_WGFreqCtrlS(config.speFrequency, config.SysClkFreq);
+    config.SinFreq = config.speFrequency;
+    config.RtiaCurrValue[0] = config.DualRtiaCal[1][0];
+    config.RtiaCurrValue[1] = config.DualRtiaCal[1][1];
+    
+    vTaskDelay(pdMS_TO_TICKS(5)); 
+
+    fImpPol_Type spe_result = takeAveragedMeasurement(config.num_averages);
+    push(spe_result);
+  }
+
+  // Go back to sleep and transmit data
+  AD5940_EnterSleepS();
+  Stop_AD5940_SPI();
+  //queueDataForTX(0);
+
   return true;
 }
 
-bool EChem_BioZ::stop() {
-  dbgInfo("Regular stop");
-  if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
-    return false;             /* Wakeup Failed */
-  /* Start Wupt right now */
-  AD5940_WUPTCtrl(bFALSE);
-  /* There is chance this operation will fail because sequencer could put AFE back
-    to hibernate mode just after waking up. Use STOPSYNC is better. */
-  AD5940_WUPTCtrl(bFALSE);
-  AD5940_ShutDownS();
-  Stop_AD5940_SPI();             // Once the test has started, turn off SPI to reduce power
-  power::powerOffPeripherials(); // Shut down the test
-  setStopped();
-  // important to swap to non-heater channel before resuming heating
-  // done in powerOffPeripherials() at the moment, but if that changes, we need to ensure we are not powering the heater while the mux is set to the coil
-  power::resumeHeating();
-  return true;
-}
 
 bool EChem_BioZ::globalStart() {
-  dbgInfo("Global start");
-  if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
+  dbgInfo("Global Start: Initializing and Calibrating...");
+  if (config.bParaChanged != bTRUE) return false;
 
-  clear();                       // Clear the data queue
-  // power::suspendHeating();
-  // while (!power::isHeaterOff()){
-  //   vTaskDelay(1);
-  // }
-  power::powerOnAFE(0);          // Turn on the power to the AD5940, select the correct mux input
-  Start_AD5940_SPI();            // Initialize SPI
-  initAD5940();                  // Initialize the AD5940
-
-  // Comment out when using dynamic frequency parameters
-  configureWaveformParameters(); // Define parameters for the measurement
+  clear();
+  power::powerOnAFE(0);
+  Start_AD5940_SPI();
+  initAD5940();
+  configureWaveformParameters();
   
-  setupMeasurement();            // Initialize measurement sequence
+  setupMeasurement(); // Note: Removed WUPT configuration from here!
   
-  if (AD5940_WakeUp(10) > 10) /* Wakeup AFE by read register, read 10 times at most */
-    return false;             /* Wakeup Failed */
+  if (AD5940_WakeUp(10) > 10) return false;
 
-  /* Configure Wakeup Timer*/
-  // configure to trigger above sequence periodically to measure data.
-  WUPTCfg_Type wupt_cfg;
-  wupt_cfg.WuptEn = bTRUE;
-  wupt_cfg.WuptEndSeq = WUPTENDSEQ_A;
-  wupt_cfg.WuptOrder[0] = SEQID_0;
-  wupt_cfg.SeqxSleepTime[SEQID_0] = 1; //  minimum value is 1 (2x 32kHz clock). Do not set it to zero.
-  wupt_cfg.SeqxWakeupTime[SEQID_0] = (uint32_t)(LFOSCFreq * config.SamplingInterval) - 2 - 1;
-  AD5940_WUPTCfg(&wupt_cfg); // will enable Wakeup timer, measurement begins here
-  AD5940_EnterSleepS(); // Enter Hibernate now otherwise it won't start sleeping until after the first interrupt period
-  config.FifoDataCount = 0; /* restart */
+  // Perform upfront calibration for both frequencies
+  calibrateFrequency(config.coilFrequency, config.DualRtiaCal[0]);
+  calibrateFrequency(config.speFrequency, config.DualRtiaCal[1]);
 
-  Stop_AD5940_SPI(); // Once the test has started, turn off SPI to reduce power
+  AD5940_EnterSleepS();
+  Stop_AD5940_SPI();
   setRunning();
   return true;
 }
@@ -773,107 +740,96 @@ AD5940Err sensor::EChem_BioZ::AD5940_CalibrateHSRTIA(void) {
 //   return AD5940ERR_OK;
 // }
 
-// Function to handle interrupts
-void EChem_BioZ::ISR(void) {
-  if (!isRunning()) return; // Check that the technique is running
-
-  std::vector<uint32_t> buf;
-
-  // Read the FIFO
-  Start_AD5940_SPI();
-  if (AD5940_WakeUp(10) > 10)        /* Wakeup AFE by read register, read 10 times at most */
-    return;                          /* Wakeup Failed */
-  AD5940_SleepKeyCtrlS(SLPKEY_LOCK); // We need time to read data from FIFO, do not let AD5940 hibernate
-  if (AD5940_INTCTestFlag(AFEINTC_0, AFEINTSRC_DATAFIFOTHRESH) == bTRUE) {
-    uint32_t numSamples = AD5940_FIFOGetCnt() / 4 * 4;
-    buf.resize(numSamples);
-    AD5940_FIFORd(buf.data(), numSamples);
-    AD5940_INTCClrFlag(AFEINTSRC_DATAFIFOTHRESH);
-    updateRegisters();    /* Update registers for next measurement, this function will decide if we need to stop measurement or not */
-    AD5940_SleepKeyCtrlS(SLPKEY_UNLOCK); /* Unlock so sequencer can put AD5940 to sleep */
-    AD5940_EnterSleepS();
-
-    if (!buf.empty()) processAndStoreData(buf.data(), static_cast<uint32_t>(buf.size()));
-    
+AD5940Err EChem_BioZ::calibrateFrequency(float targetFreq, float* calDataOut) {
+  float originalFreq = config.SinFreq;
+  
+  config.SinFreq = targetFreq;
+  AD5940Err err = AD5940_CalibrateHSRTIA(); // Your existing function
+  
+  if (err == AD5940ERR_OK) {
+    calDataOut[0] = config.RtiaCurrValue[0]; // Mag
+    calDataOut[1] = config.RtiaCurrValue[1]; // Phase
   }
-  Stop_AD5940_SPI();
+  
+  config.SinFreq = originalFreq;
+  return err;
 }
 
-bool EChem_BioZ::processAndStoreData(uint32_t* pData, uint32_t numSamples) {
-  if (!pData || (numSamples % 4u) != 0u) return false;
+// Synchronous Averaging Engine
+fImpPol_Type EChem_BioZ::takeAveragedMeasurement(uint8_t num_averages) {
+  fImpPol_Type finalResult = {0.0f, 0.0f};
+  if (num_averages == 0) return finalResult;
 
-  // Convert DFT result to int32_t type
-  for (uint32_t i = 0; i < numSamples; i++) {
-    pData[i] &= 0x3ffff;      /* @todo option to check ECC */
-    if (pData[i] & (1 << 17)) /* Bit17 is sign bit */
-      pData[i] |= 0xfffc0000; /* Data is 18bit in two's complement, bit17 is the sign bit */
-  }
+  float sumMag = 0.0f;
+  float sumPhase = 0.0f;
+  uint8_t validSamples = 0;
 
-  // Cast the data to the appropriate type
-  const iImpCar_Type* impData = reinterpret_cast<const iImpCar_Type*>(pData);
+  for (uint8_t i = 0; i < num_averages; i++) {
+    AD5940_SEQMmrTrig(SEQID_0);
 
-  for (uint32_t i = 0; i < numSamples / 4; i++) {
-    // Each DFT result has two data in FIFO, real part and imaginary part.
-    const iImpCar_Type& curr = impData[2 * i + 0];
-    const iImpCar_Type& volt = impData[2 * i + 1];
-
-    // Calculate the magnitude and phase of the voltage and current
-    const float vm = std::hypot(static_cast<float>(volt.Real), static_cast<float>(volt.Image));
-    const float vp = std::atan2(-static_cast<float>(volt.Image), static_cast<float>(volt.Real));
-
-    const float im = std::hypot(static_cast<float>(curr.Real), static_cast<float>(curr.Image));
-    const float ip = std::atan2(-static_cast<float>(curr.Image), static_cast<float>(curr.Real));
-
-    // Input refer the voltage and current to the RTIA calibration values
-    fImpPol_Type Imp;
-    Imp.Magnitude = vm / im * config.RtiaCurrValue[0];
-    Imp.Phase = vp - ip + config.RtiaCurrValue[1];
-    push(Imp);
-  }
-
-  /* Need to set new frequency and set power mode */
-  if (config.SweepCfg.SweepEn) {
-    config.FreqofData = config.SweepCurrFreq;
-    config.SweepCurrFreq = config.SweepNextFreq;
-
-    config.RtiaCurrValue[0] = config.RtiaCalTable[config.SweepCfg.SweepIndex][0];
-    config.RtiaCurrValue[1] = config.RtiaCalTable[config.SweepCfg.SweepIndex][1];
-    AD5940_SweepNext(&config.SweepCfg, &config.SweepNextFreq);
-  }
-
-  return true;
-}
-
-/* Modify registers when AFE wakeup */
-AD5940Err EChem_BioZ::updateRegisters(void) {
-  if (config.NumOfData > 0) {
-    config.FifoDataCount += getNumBytesAvailable() / 4;
-    if (config.FifoDataCount >= config.NumOfData) {
-      AD5940_WUPTCtrl(bFALSE);
-      return AD5940ERR_OK;
+    uint32_t timeoutTicks = 0;
+    while (AD5940_INTCTestFlag(AFEINTC_0, AFEINTSRC_DATAFIFOTHRESH) == bFALSE) {
+      vTaskDelay(pdMS_TO_TICKS(1));
+      timeoutTicks++;
+      if (timeoutTicks > 500) break; // 500ms safeguard
     }
-  }
-  if (config.StopRequired == bTRUE) {
-    AD5940_WUPTCtrl(bFALSE);
-    return AD5940ERR_OK;
-  }
-  /* Need to set new frequency and set power mode */
-  if (config.SweepCfg.SweepEn) {
-    AD5940_WGFreqCtrlS(config.SweepNextFreq, config.SysClkFreq);
-    //configureFrequencySpecifics(config.SweepNextFreq);
+
+    if (AD5940_INTCTestFlag(AFEINTC_0, AFEINTSRC_DATAFIFOTHRESH) == bFALSE) continue;
+
+    AD5940_INTCClrFlag(AFEINTSRC_DATAFIFOTHRESH);
+
+    uint32_t numSamplesInFifo = AD5940_FIFOGetCnt();
+    if (numSamplesInFifo < 4) continue;
+    
+    uint32_t fifoBuf[4]; 
+    AD5940_FIFORd(fifoBuf, 4);
+
+    if (numSamplesInFifo > 4) {
+        uint32_t dummyBuf[numSamplesInFifo - 4];
+        AD5940_FIFORd(dummyBuf, numSamplesInFifo - 4);
+    }
+
+    for (int j = 0; j < 4; j++) {
+      fifoBuf[j] &= 0x3ffff;      
+      if (fifoBuf[j] & (1 << 17)) fifoBuf[j] |= 0xfffc0000; 
+    }
+
+    const iImpCar_Type* impData = reinterpret_cast<const iImpCar_Type*>(fifoBuf);
+    const float vm = std::hypot(static_cast<float>(impData[1].Real), static_cast<float>(impData[1].Image));
+    const float vp = std::atan2(-static_cast<float>(impData[1].Image), static_cast<float>(impData[1].Real));
+    const float im = std::hypot(static_cast<float>(impData[0].Real), static_cast<float>(impData[0].Image));
+    const float ip = std::atan2(-static_cast<float>(impData[0].Image), static_cast<float>(impData[0].Real));
+
+    sumMag += (vm / im) * config.RtiaCurrValue[0];
+    sumPhase += (vp - ip) + config.RtiaCurrValue[1];
+    validSamples++;
   }
 
-  return AD5940ERR_OK;
+  if (validSamples > 0) {
+    finalResult.Magnitude = sumMag / validSamples;
+    finalResult.Phase = sumPhase / validSamples;
+  }
+  return finalResult;
 }
 
 void EChem_BioZ::printResult(void) {
   const float freq = (config.SweepCfg.SweepEn == bTRUE) ? config.FreqofData : config.SinFreq;
-
+  
   forEach([freq](const fImpPol_Type& imp) {
     Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
                   imp.Phase * 180 / MATH_PI);
-
     // Serial.printf("%.5f", imp.Magnitude);
     // Serial.println();
   });
+}
+
+bool EChem_BioZ::stop() {
+  // Single-shot measurements automatically go back to sleep, 
+  // so we just return true to satisfy the SensorManager.
+  return true; 
+}
+
+void EChem_BioZ::ISR() {
+  // Intentionally left empty. 
+  // The AD5940 is now polled synchronously in takeAveragedMeasurement().
 }
