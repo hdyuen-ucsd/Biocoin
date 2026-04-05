@@ -37,7 +37,7 @@ void sensor::dataMoverTask(void* pvParameters) {
   while (true) {
     ulTaskNotifyTake(pdTRUE, portMAX_DELAY); // wait until we are awaken by an interrupt
 
-    dbgInfo("DataMover()");
+    // dbgInfo("DataMover()");
     if (pActiveSensor != nullptr) {
       pActiveSensor->ISR();
       #ifdef DEBUG_MODE

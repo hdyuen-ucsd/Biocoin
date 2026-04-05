@@ -72,7 +72,6 @@ namespace sensor {
     uint8_t num_averages;     // Number of averages to take
     float coilFrequency;      // Target frequency for coils
     float speFrequency;       // Target frequency for SPEs
-
     
   } BioZConfig_Type;
 

@@ -55,7 +55,11 @@ EChem_BioZ::EChem_BioZ() {
   config.HsDacGain = HSDACGAIN_1;
   config.HsDacUpdateRate = 7;
   config.DacVoltPP = 800.0;
-  config.Eac = config.DacVoltPP;
+  config.Eac = 100.0;
+  config.SinFreq = 47100;
+  config.FifoThresh = 4;
+  config.IMP4WIRE = bTRUE;
+  config.ACcoupled = bFALSE;
 
   config.DftNum = DFTNUM_8192;
   config.DftSrc = DFTSRC_SINC3;
@@ -79,10 +83,10 @@ bool EChem_BioZ::loadParameters(uint8_t* data, uint16_t len) {
   if (len == sizeof(BIOZ_INIT_PARAMETERS)) {
     BIOZ_INIT_PARAMETERS initParams;
     memcpy(&initParams, data, len);
-    
+    //hardcoded
     config.coilFrequency = initParams.coilFrequency;
     config.speFrequency = initParams.speFrequency;
-    
+
     dbgInfo("Init Params Loaded: Coil=" + String(config.coilFrequency) + "Hz, SPE=" + String(config.speFrequency) + "Hz");
     return true;
   } 
@@ -95,9 +99,9 @@ bool EChem_BioZ::loadParameters(uint8_t* data, uint16_t len) {
     config.target_mux = measParams.target_mux;
     config.num_averages = measParams.num_averages;
     config.Eac = measParams.Eac;
+    dbgInfo("Measurement Params Received: MUX=" + String(config.target_mux) + ", Averages=" + String(config.num_averages) + ", Eac=" + String(config.Eac) + "mV");
     config.DacVoltPP = config.Eac;  
     
-    config.SweepCfg.SweepEn = bFALSE; 
     config.bParaChanged = bTRUE; // Flag that we are ready to measure
     dbgInfo("Meas Params Loaded: MUX=" + String(config.target_mux) + ", Averages=" + String(config.num_averages) + ", Eac=" + String(config.Eac) + "mV");
     return true;
@@ -110,15 +114,37 @@ bool EChem_BioZ::loadParameters(uint8_t* data, uint16_t len) {
   }
 }
 
+
+
+
+bool EChem_BioZ::globalStart() {
+  dbgInfo("Global Start: Initializing and Calibrating...");
+  if (config.bParaChanged != bTRUE) return false;
+
+  clear();
+  power::powerOnAFE(0);
+  Start_AD5940_SPI();
+  initAD5940();
+  configureWaveformParameters();
+  
+  setupMeasurement(); // Note: Removed WUPT configuration from here!
+  
+  if (AD5940_WakeUp(10) > 10) return false;
+
+  //AD5940_EnterSleepS();
+  //Stop_AD5940_SPI();
+  setRunning();
+  return true;
+}
+
 bool EChem_BioZ::start() {
   if (!isRunning()) return false;
   
-  Start_AD5940_SPI();
+  //Start_AD5940_SPI();
   if (AD5940_WakeUp(10) > 10) return false;
 
   uint32_t ampWord = (uint32_t)(config.Eac / 800.0f * 2047 + 0.5f);
   AD5940_WriteReg(REG_AFE_WGAMPLITUDE, ampWord);
-
   if (config.target_mux == 0xFF) {
     // ==========================================
     // COMBINED COIL MEASUREMENT (0xFF)
@@ -133,12 +159,12 @@ bool EChem_BioZ::start() {
     // 2. Setup AFE for Coils
     AD5940_WGFreqCtrlS(config.coilFrequency, config.SysClkFreq);
     config.SinFreq = config.coilFrequency;
-    config.RtiaCurrValue[0] = config.DualRtiaCal[0][0];
-    config.RtiaCurrValue[1] = config.DualRtiaCal[0][1];
+    // config.RtiaCurrValue[0] = config.DualRtiaCal[0][0];
+    // config.RtiaCurrValue[1] = config.DualRtiaCal[0][1];
 
     // 3. Measure Coil 1
     power::setBioZMux(0b10); // Coil 1
-    vTaskDelay(pdMS_TO_TICKS(5)); // MUX settling time
+    vTaskDelay(pdMS_TO_TICKS(50)); // MUX settling time
     fImpPol_Type coil1_result = takeAveragedMeasurement(config.num_averages);
     push(coil1_result);
 
@@ -160,45 +186,20 @@ bool EChem_BioZ::start() {
     power::setBioZMux(config.target_mux);
     AD5940_WGFreqCtrlS(config.speFrequency, config.SysClkFreq);
     config.SinFreq = config.speFrequency;
-    config.RtiaCurrValue[0] = config.DualRtiaCal[1][0];
-    config.RtiaCurrValue[1] = config.DualRtiaCal[1][1];
+    // config.RtiaCurrValue[0] = config.DualRtiaCal[1][0];
+    // config.RtiaCurrValue[1] = config.DualRtiaCal[1][1];
     
-    vTaskDelay(pdMS_TO_TICKS(5)); 
+    vTaskDelay(pdMS_TO_TICKS(50)); 
 
     fImpPol_Type spe_result = takeAveragedMeasurement(config.num_averages);
     push(spe_result);
   }
 
-  // Go back to sleep and transmit data
-  AD5940_EnterSleepS();
-  Stop_AD5940_SPI();
+  // // Go back to sleep and transmit data
+  // AD5940_EnterSleepS();
+  // Stop_AD5940_SPI();
   //queueDataForTX(0);
 
-  return true;
-}
-
-
-bool EChem_BioZ::globalStart() {
-  dbgInfo("Global Start: Initializing and Calibrating...");
-  if (config.bParaChanged != bTRUE) return false;
-
-  clear();
-  power::powerOnAFE(0);
-  Start_AD5940_SPI();
-  initAD5940();
-  configureWaveformParameters();
-  
-  setupMeasurement(); // Note: Removed WUPT configuration from here!
-  
-  if (AD5940_WakeUp(10) > 10) return false;
-
-  // Perform upfront calibration for both frequencies
-  calibrateFrequency(config.coilFrequency, config.DualRtiaCal[0]);
-  calibrateFrequency(config.speFrequency, config.DualRtiaCal[1]);
-
-  AD5940_EnterSleepS();
-  Stop_AD5940_SPI();
-  setRunning();
   return true;
 }
 
@@ -265,6 +266,7 @@ AD5940Err EChem_BioZ::setupMeasurement(void) {
   fifo_cfg.FIFOSize = FIFOSIZE_4KB; /* 4kB for FIFO, The reset 2kB for sequencer */
   fifo_cfg.FIFOSrc = FIFOSRC_DFT;
   fifo_cfg.FIFOThresh = config.FifoThresh;
+  dbgInfo("FIFO Threshold set to " + String(config.FifoThresh) + " bytes");
   AD5940_FIFOCfg(&fifo_cfg);
   /* Clear interrupts*/
   AD5940_INTCClrFlag(AFEINTSRC_ALLINT);
@@ -564,7 +566,7 @@ AD5940Err EChem_BioZ::generateMeasSequence(void) {
   sw_cfg.Nswitch = SWN_NL | SWN_NL2;
   sw_cfg.Tswitch = SWT_TRTIA;
   AD5940_SWMatrixCfgS(&sw_cfg); /* Float switches */
-  AD5940_EnterSleepS();         /* Goto hibernate */
+  // AD5940_EnterSleepS();         /* Goto hibernate */
   /* Sequence end. */
   error = AD5940_SEQGenFetchSeq(&pSeqCmd, &SeqLen);
   AD5940_SEQGenCtrl(bFALSE); /* Stop sequencer generator */
@@ -631,140 +633,27 @@ AD5940Err sensor::EChem_BioZ::AD5940_CalibrateHSRTIA(void) {
   return AD5940ERR_OK;
 }
 
-// // Dynamic Frequency-based filter parameter selection for calibration
-// AD5940Err EChem_Imp::AD5940_CalibrateHSRTIA(void) {
-//   HSRTIACal_Type hsrtia_cal;
-//   FreqParams_Type freq_params;
-
-//   // 1. Initialize Static Parameters
-//   hsrtia_cal.bPolarResult = bTRUE; // We need Magnitude and Phase
-//   hsrtia_cal.DftCfg.HanWinEn = config.HanWinEn;
-//   hsrtia_cal.fRcal = config.RcalVal;
-//   hsrtia_cal.HsTiaCfg.DiodeClose = bFALSE;
-//   hsrtia_cal.HsTiaCfg.HstiaBias = HSTIABIAS_1P1;
-//   hsrtia_cal.HsTiaCfg.HstiaCtia = config.CtiaSel;
-//   hsrtia_cal.HsTiaCfg.HstiaDeRload = HSTIADERLOAD_OPEN;
-//   hsrtia_cal.HsTiaCfg.HstiaDeRtia = HSTIADERTIA_OPEN;
-//   hsrtia_cal.HsTiaCfg.HstiaRtiaSel = config.HstiaRtiaSel;
-//   hsrtia_cal.SysClkFreq = config.SysClkFreq;
-
-//   // 2. Handle Sweep Mode
-//   if (config.SweepCfg.SweepEn == bTRUE) {
-//     uint32_t i;
-//     config.SweepCfg.SweepIndex = 0; // Reset index
-//     hsrtia_cal.fFreq = config.SweepCfg.SweepStart;
-
-//     dbgInfo("--- Starting HSRTIA Calibration Sweep ---");
-
-//     for (i = 0; i < config.SweepCfg.SweepPoints; i++) {
-//       // Step A: Get Optimal Parameters for this Frequency
-//       freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
-
-//       // Step B: Configure Hardware (Clocks & Power Mode)
-//       if (freq_params.HighPwrMode == bTRUE) {
-//         hsrtia_cal.AdcClkFreq = 32000000.0;
-//         hsrtia_cal.SysClkFreq = 32000000.0;
-//         AD5940_HPModeEn(bTRUE);
-//       } else {
-//         hsrtia_cal.AdcClkFreq = 16000000.0;
-//         hsrtia_cal.SysClkFreq = 16000000.0;
-//         AD5940_HPModeEn(bFALSE);
-//       }
-
-//       // Step C: Update Filter Settings
-//       hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
-//       hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
-//       hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
-//       hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
-
-//       // Step D: Perform Measurement
-//       // Hardware is now set up correctly for fFreq
-//       AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCalTable[i]);
-
-//       // Step E: Calculate Next Frequency
-//       AD5940_SweepNext(&config.SweepCfg, &hsrtia_cal.fFreq);
-//     }
-
-//     // --- DEBUG PRINT: Calibration Table ---
-//     dbgInfo("\n--- RTIA Calibration Table ---");
-//     dbgInfo("Index | Frequency (Hz) | Magnitude (Ohm) | Phase (Rad)");
-    
-//     // Recreate sweep just for printing valid frequencies
-//     float print_freq = config.SweepCfg.SweepStart;
-//     SoftSweepCfg_Type print_sweep = config.SweepCfg;
-//     print_sweep.SweepIndex = 0;
-
-//     for(i=0; i<config.SweepCfg.SweepPoints; i++) {
-//          char buffer[128];
-//          sprintf(buffer, "%3d   | %10.2f     | %10.4f      | %10.4f", 
-//                  i, print_freq, config.RtiaCalTable[i][0], config.RtiaCalTable[i][1]);
-//          dbgInfo(String(buffer));
-//          AD5940_SweepNext(&print_sweep, &print_freq);
-//     }
-//     dbgInfo("------------------------------------------------------\n");
-
-//     // Reset Sweep State
-//     config.SweepCfg.SweepIndex = 0;
-//     config.RtiaCurrValue[0] = config.RtiaCalTable[0][0];
-//     config.RtiaCurrValue[1] = config.RtiaCalTable[0][1];
-//   } 
-//   // 3. Handle Single Frequency Mode
-//   else {
-//     hsrtia_cal.fFreq = config.SinFreq;
-
-//     // Even for single point, we must configure hardware correctly
-//     freq_params = AD5940_GetFreqParameters(hsrtia_cal.fFreq);
-
-//     if (freq_params.HighPwrMode == bTRUE) {
-//         hsrtia_cal.AdcClkFreq = 32000000.0;
-//         hsrtia_cal.SysClkFreq = 32000000.0;
-//         AD5940_HPModeEn(bTRUE);
-//     } else {
-//         hsrtia_cal.AdcClkFreq = 16000000.0;
-//         hsrtia_cal.SysClkFreq = 16000000.0;
-//         AD5940_HPModeEn(bFALSE);
-//     }
-    
-//     hsrtia_cal.ADCSinc2Osr = freq_params.ADCSinc2Osr;
-//     hsrtia_cal.ADCSinc3Osr = freq_params.ADCSinc3Osr;
-//     hsrtia_cal.DftCfg.DftNum = freq_params.DftNum;
-//     hsrtia_cal.DftCfg.DftSrc = freq_params.DftSrc;
-
-//     AD5940_HSRtiaCal(&hsrtia_cal, config.RtiaCurrValue);
-    
-//     dbgInfo(String("Single Freq Cal: ") + String(hsrtia_cal.fFreq) + 
-//             String(" Hz, Mag: ") + String(config.RtiaCurrValue[0]) + 
-//             String(" Ohm, Phase: ") + String(config.RtiaCurrValue[1]));
-//   }
-
-//   return AD5940ERR_OK;
-// }
-
-AD5940Err EChem_BioZ::calibrateFrequency(float targetFreq, float* calDataOut) {
-  float originalFreq = config.SinFreq;
-  
-  config.SinFreq = targetFreq;
-  AD5940Err err = AD5940_CalibrateHSRTIA(); // Your existing function
-  
-  if (err == AD5940ERR_OK) {
-    calDataOut[0] = config.RtiaCurrValue[0]; // Mag
-    calDataOut[1] = config.RtiaCurrValue[1]; // Phase
-  }
-  
-  config.SinFreq = originalFreq;
-  return err;
-}
-
 // Synchronous Averaging Engine
 fImpPol_Type EChem_BioZ::takeAveragedMeasurement(uint8_t num_averages) {
   fImpPol_Type finalResult = {0.0f, 0.0f};
   if (num_averages == 0) return finalResult;
 
+  float currentMag = 0.0f;
   float sumMag = 0.0f;
   float sumPhase = 0.0f;
   uint8_t validSamples = 0;
 
   for (uint8_t i = 0; i < num_averages; i++) {
+    // ==========================================
+    // 1. FLUSH FIFO & CLEAR INTERRUPTS BEFORE TRIGGERING
+    // ==========================================
+    AD5940_FIFOCtrlS(FIFOSRC_DFT, bFALSE);        // Disable FIFO to wipe it
+    AD5940_FIFOCtrlS(FIFOSRC_DFT, bTRUE);         // Re-enable FIFO
+    AD5940_INTCClrFlag(AFEINTSRC_DATAFIFOTHRESH); // Clear any lingering interrupt flags
+
+    // ==========================================
+    // 2. TRIGGER MEASUREMENT SEQUENCE
+    // ==========================================
     AD5940_SEQMmrTrig(SEQID_0);
 
     uint32_t timeoutTicks = 0;
@@ -780,7 +669,10 @@ fImpPol_Type EChem_BioZ::takeAveragedMeasurement(uint8_t num_averages) {
 
     uint32_t numSamplesInFifo = AD5940_FIFOGetCnt();
     if (numSamplesInFifo < 4) continue;
-    
+
+    // ==========================================
+    // 3. READ FRESH DATA
+    // ==========================================
     uint32_t fifoBuf[4]; 
     AD5940_FIFORd(fifoBuf, 4);
 
@@ -799,8 +691,9 @@ fImpPol_Type EChem_BioZ::takeAveragedMeasurement(uint8_t num_averages) {
     const float vp = std::atan2(-static_cast<float>(impData[1].Image), static_cast<float>(impData[1].Real));
     const float im = std::hypot(static_cast<float>(impData[0].Real), static_cast<float>(impData[0].Image));
     const float ip = std::atan2(-static_cast<float>(impData[0].Image), static_cast<float>(impData[0].Real));
-
-    sumMag += (vm / im) * config.RtiaCurrValue[0];
+    
+    currentMag = (vm / im) * config.RtiaCurrValue[0];
+    sumMag += currentMag;
     sumPhase += (vp - ip) + config.RtiaCurrValue[1];
     validSamples++;
   }

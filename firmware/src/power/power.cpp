@@ -188,4 +188,5 @@ void power::setBioZMux(uint8_t target_mux) {
   
   digitalWrite(PIN_MUX_A0_BIOZ, a0 ? HIGH : LOW);
   digitalWrite(PIN_MUX_A1_BIOZ, a1 ? HIGH : LOW);
+  dbgInfo("Set BioZ MUX to " + String(target_mux) + " (A1=" + String(a1) + ", A0=" + String(a0) + ")");
 }
