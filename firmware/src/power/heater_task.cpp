@@ -13,11 +13,11 @@ namespace power {
     volatile bool heatingSuspended = false;
     volatile bool heaterOff = false;
     
-    static volatile uint32_t heaterOffDelayMs = 50;
+    static volatile uint32_t heaterOffDelayMs = 20;
     static volatile uint32_t resumeTimeMs = 0;
-    static const uint32_t kResumeDelayMs = 50;
-    static volatile uint8_t kHeaterDutyCycle1 = 50; // Default duty cycle percentage (0-100)  
-    static volatile uint8_t kHeaterDutyCycle2 = 50; // Default duty cycle percentage (0-100)  
+    static const uint32_t kResumeDelayMs = 20;
+    static volatile uint8_t kHeaterDutyCycle1 = 0; // Default duty cycle percentage (0-100)  
+    static volatile uint8_t kHeaterDutyCycle2 = 0; // Default duty cycle percentage (0-100)  
     static uint32_t kHeaterOn1;
     static uint32_t kHeaterOff1;
     static uint32_t kHeaterOn2;

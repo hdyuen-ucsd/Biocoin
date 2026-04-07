@@ -145,7 +145,7 @@ bool EChem_Imp::loadParameters(uint8_t* data, uint16_t len) {
 
 bool EChem_Imp::start() {
   double startTime = millis();
-  // setBioZChannel(2);
+  setBioZChannel(1);
   if (config.bParaChanged != bTRUE) return false; // Parameters have not been set
 
   clear();                       // Clear the data queue

@@ -164,13 +164,13 @@ bool EChem_BioZ::start() {
 
     // 3. Measure Coil 1
     power::setBioZMux(0b10); // Coil 1
-    vTaskDelay(pdMS_TO_TICKS(50)); // MUX settling time
+    vTaskDelay(pdMS_TO_TICKS(10)); // MUX settling time
     fImpPol_Type coil1_result = takeAveragedMeasurement(config.num_averages);
     push(coil1_result);
 
     // 4. Measure Coil 2
     power::setBioZMux(0b11); // Coil 2
-    vTaskDelay(pdMS_TO_TICKS(50)); 
+    vTaskDelay(pdMS_TO_TICKS(10)); 
     fImpPol_Type coil2_result = takeAveragedMeasurement(config.num_averages);
     push(coil2_result);
 
@@ -189,7 +189,7 @@ bool EChem_BioZ::start() {
     // config.RtiaCurrValue[0] = config.DualRtiaCal[1][0];
     // config.RtiaCurrValue[1] = config.DualRtiaCal[1][1];
     
-    vTaskDelay(pdMS_TO_TICKS(50)); 
+    vTaskDelay(pdMS_TO_TICKS(30)); 
 
     fImpPol_Type spe_result = takeAveragedMeasurement(config.num_averages);
     push(spe_result);
@@ -709,10 +709,10 @@ void EChem_BioZ::printResult(void) {
   const float freq = (config.SweepCfg.SweepEn == bTRUE) ? config.FreqofData : config.SinFreq;
   
   forEach([freq](const fImpPol_Type& imp) {
-    Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
-                  imp.Phase * 180 / MATH_PI);
-    // Serial.printf("%.5f", imp.Magnitude);
-    // Serial.println();
+    // Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
+    //               imp.Phase * 180 / MATH_PI);
+    Serial.printf("%.5f", imp.Magnitude);
+    Serial.println();
   });
 }
 
