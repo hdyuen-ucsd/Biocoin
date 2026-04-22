@@ -48,14 +48,14 @@ EChem_BioZ::EChem_BioZ() {
   config.ADCSinc3Osr = ADCSINC3OSR_4;
   config.ADCSinc2Osr = ADCSINC2OSR_22; // adjust these as needed if really fast or really slow sampling is required.
                                        // Power vs. SNR tradeoff.
-  config.HstiaRtiaSel = HSTIARTIA_1K;
+  config.HstiaRtiaSel = HSTIARTIA_200;
 
   config.CtiaSel = 32;
   config.ExcitBufGain = EXCITBUFGAIN_2;
   config.HsDacGain = HSDACGAIN_1;
   config.HsDacUpdateRate = 7;
   config.DacVoltPP = 800.0;
-  config.Eac = 100.0;
+  config.Eac = 9.0;
   config.SinFreq = 47100;
   config.FifoThresh = 4;
   config.IMP4WIRE = bTRUE;
@@ -164,15 +164,19 @@ bool EChem_BioZ::start() {
 
     // 3. Measure Coil 1
     power::setBioZMux(0b10); // Coil 1
-    vTaskDelay(pdMS_TO_TICKS(10)); // MUX settling time
+    vTaskDelay(pdMS_TO_TICKS(20)); // MUX settling time
     fImpPol_Type coil1_result = takeAveragedMeasurement(config.num_averages);
     push(coil1_result);
+    Serial.printf("Channel: 2, Mag: %.5f\n", coil1_result.Magnitude);
+    Serial.flush();
 
     // 4. Measure Coil 2
     power::setBioZMux(0b11); // Coil 2
-    vTaskDelay(pdMS_TO_TICKS(10)); 
+    vTaskDelay(pdMS_TO_TICKS(20)); 
     fImpPol_Type coil2_result = takeAveragedMeasurement(config.num_averages);
     push(coil2_result);
+    Serial.printf("Channel: 3, Mag: %.5f\n", coil2_result.Magnitude);
+    Serial.flush();
 
     // 5. Restore Safety and Heaters
     power::setBioZMux(0b00); // Route MUX away from coils safely
@@ -193,6 +197,11 @@ bool EChem_BioZ::start() {
 
     fImpPol_Type spe_result = takeAveragedMeasurement(config.num_averages);
     push(spe_result);
+    if (config.target_mux == 0x00) {
+      Serial.printf("Channel: SPE1, Mag: %.5f\n", spe_result.Magnitude);
+    } else if (config.target_mux == 0x01) {
+      Serial.printf("Channel: SPE2, Mag: %.5f\n", spe_result.Magnitude);
+    }
   }
 
   // // Go back to sleep and transmit data
@@ -711,8 +720,8 @@ void EChem_BioZ::printResult(void) {
   forEach([freq](const fImpPol_Type& imp) {
     // Serial.printf("Freq: %.2f [Hz], Mag: %.5f [Ohm], Phase: %.5f [deg]\n", freq, imp.Magnitude,
     //               imp.Phase * 180 / MATH_PI);
-    Serial.printf("%.5f", imp.Magnitude);
-    Serial.println();
+    //Serial.printf("%.5f", imp.Magnitude);
+    //Serial.println();
   });
 }
 
