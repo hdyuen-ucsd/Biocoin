@@ -16,6 +16,7 @@ struct BIOZ_INIT_PARAMETERS {
   float speFrequency;       // [Hz]
 } __attribute__((packed));
 
+
 // Struct 2: Sent continuously during the 8-second loop (6 bytes)
 struct BIOZ_MEAS_PARAMETERS {
   uint8_t target_mux;       // 0x00=SPE1, 0x01=SPE2, 0xFF=Both Coils
@@ -199,8 +200,10 @@ bool EChem_BioZ::start() {
     push(spe_result);
     if (config.target_mux == 0x00) {
       Serial.printf("Channel: SPE1, Mag: %.5f\n", spe_result.Magnitude);
+      //Serial.flush();
     } else if (config.target_mux == 0x01) {
       Serial.printf("Channel: SPE2, Mag: %.5f\n", spe_result.Magnitude);
+      //Serial.flush();
     }
   }
 
